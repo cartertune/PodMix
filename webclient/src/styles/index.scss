@@ -1,0 +1,8 @@
+@import "~bootstrap/scss/bootstrap";
+@import "./bootstrap_overrides.scss";
+@import "./header.scss";
+
+body {
+  background-color: #fdfdfd;
+  margin: 0;
+}

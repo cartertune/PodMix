@@ -1,0 +1,82 @@
+.header {
+    position: relative;
+    z-index: 100;
+    a, .A {
+    font-family: $font-family-primary;
+    font-size: 20px;
+    font-weight: normal;
+    color: #ffffff !important;
+    text-decoration: none;
+    margin-right: 26px;
+    
+    &:hover {
+            color: #ffffff;
+            cursor: pointer;
+        }
+    }
+    
+    .user-menu {
+        position: absolute;
+        right: 0;
+        background-color: #222222;
+        padding: 12px 108px 12px 36px; 
+        opacity: 0.95;
+        border: solid 1px lightgray;
+        margin-right: 84px;
+        margin-left: auto;
+        display: flex;
+        flex-direction: column;
+        width: fit-content;
+        z-index: 100;
+
+        a {
+            font-family: $font-family-secondary;
+            margin-right: 0;
+            padding: 2px;
+            font-size: 16px;
+
+            &:hover {
+                border-bottom: 1px solid $bif-gold;
+            }
+        }
+    }
+}
+
+.header-content {
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 80px;
+    background-color: #222222;
+    padding: 0 64px;
+
+    .header-div {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+    }
+
+    .right {
+        justify-content: flex-end;
+    }
+
+    .selected-route {
+        border-bottom: 2px solid $bif-gold;
+    }
+
+
+}
+
+.header-logo {
+    height: 40px;
+    margin-right: 52px !important;
+
+    img {
+        height: 100%;
+    }
+}

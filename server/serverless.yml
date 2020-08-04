@@ -1,0 +1,25 @@
+# serverless.yml
+service: apollo-lambda
+provider:
+  name: aws
+  runtime: nodejs8.10
+functions:
+  graphql:
+    handler: build/server/app/app.graphqlHandler
+    environment:
+      MONGO_DB_URI: ${file(./config.${self:provider.stage}.json):MONGO_DB_URI, ${self:provider.stage}}
+    events:
+      - http:
+          path: graphql
+          method: post
+          cors: true
+      - http:
+          path: graphql
+          method: get
+          cores: true
+plugins:
+  - serverless-offline
+  - serverless-domain-manager
+custom:
+  serverless-offline:
+    port: 3000
