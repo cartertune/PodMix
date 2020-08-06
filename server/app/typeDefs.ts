@@ -40,6 +40,7 @@ const typeDefs = gql`
     time: SongTime # may need to rethink formatting
     text: String
     isComplete: Boolean
+    creator: User
   }
   input CommentInput {
     time: SongTime!
