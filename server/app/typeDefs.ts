@@ -62,7 +62,6 @@ const typeDefs = gql`
     creator: [User]
     createdAt: Date
   }
-
   type Mutation {
     login: User
     createUser(user: UserInput!): User
