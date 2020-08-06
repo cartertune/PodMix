@@ -7,34 +7,73 @@ const typeDefs = gql`
     avatarUrl: String
     email: String
     projects: [Project]
+    meta: Meta
+  }
+  input UserInput {
+    name: String!
+    avatarUrl: String
+    email: String
   }
   type Project {
+    id: ID
     title: String
     owner: User
+    collaboratorEmails: [String]
     collaborators: [User]
     mixes: [Mix]
+    meta: Meta
+  }
+  input ProjectInput {
+    title: String!
   }
   type Mix {
+    id: ID
     file: File
     title: String
     comments: [Comment]
+    meta: Meta
+  }
+  input MixInput {
+    title: String!
+    fileUrl: String!
+    fileName: String
   }
   type Comment {
-    time: String # may need to rethink formatting
+    id: ID
+    time: SongTime # may need to rethink formatting
     text: String
     isComplete: Boolean
+    meta: Meta
+  }
+  input CommentInput {
+    time: SongTime!
+    text: String!
+  }
+  type SongTime {
+    minute: Int!
+    second: Int!
+  }
+  type File {
+    name: String
+    url: String
+    meta: Meta
+  }
+  type Meta {
+    creator: [User]
+    createdAt: Date
   }
 
-  #TODO: Figure out inputs to these mutations
   type Mutation {
     login: User
-    createUser: User
-    createProject: Project
-    createMix: Project
-    createComment: Project
+    createUser(user: UserInput!): User
+    createProject(project: ProjectInput!): Project
+    createMix(mix: MixInput!): Project
+    createComment(comment(CommentInput!)): Project
+    addCollaborator(email: String!): Project
+    completeComment(commentId: ID!)
   }
   type Query {
-    user(id: ID!): User
+    currentUser(id: ID!): User
     project(id: ID!): Project
   }
 `;
