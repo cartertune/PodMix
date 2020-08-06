@@ -7,7 +7,6 @@ const typeDefs = gql`
     avatarUrl: String
     email: String
     projects: [Project]
-    meta: Meta
   }
   input UserInput {
     name: String!
@@ -21,7 +20,6 @@ const typeDefs = gql`
     collaboratorEmails: [String]
     collaborators: [User]
     mixes: [Mix]
-    meta: Meta
   }
   input ProjectInput {
     title: String!
@@ -31,7 +29,6 @@ const typeDefs = gql`
     file: File
     title: String
     comments: [Comment]
-    meta: Meta
   }
   input MixInput {
     title: String!
@@ -43,7 +40,6 @@ const typeDefs = gql`
     time: SongTime # may need to rethink formatting
     text: String
     isComplete: Boolean
-    meta: Meta
   }
   input CommentInput {
     time: SongTime!
@@ -56,11 +52,6 @@ const typeDefs = gql`
   type File {
     name: String
     url: String
-    meta: Meta
-  }
-  type Meta {
-    creator: [User]
-    createdAt: Date
   }
   type Mutation {
     login: User
