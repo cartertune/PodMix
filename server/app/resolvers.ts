@@ -1,7 +1,7 @@
 import { Document } from "mongoose";
 import _ from "lodash";
 import UserService from "./services/UserService";
-import { IUser } from "./models/user";
+import { User } from "./models/user";
 
 const resolvers = {
   Query: {
@@ -14,12 +14,28 @@ const resolvers = {
     login: (
       obj: any,
       args: any,
-      ctx: { validatedUser: IUser; authorization: string }
+      ctx: { validatedUser: User; authorization: string }
     ): Promise<Document> => {
       return UserService.login(ctx.validatedUser, ctx.authorization);
     },
   },
-  User: {},
+  User: {
+    projects: (
+      user: User,
+      args: any,
+      ctx: {
+        validatedUser: User;
+        authorization: string;
+      }
+    ): Promise<Document> => {
+      return ProjectService.find({
+        _id: { $in: _.get(user, "projectIds", []) },
+      });
+    },
+  },
+  Project: {},
+  Mix: {},
+  Comment: {},
 };
 
 export default resolvers;
