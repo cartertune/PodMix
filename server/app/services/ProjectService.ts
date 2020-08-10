@@ -20,6 +20,29 @@ class ProjectService extends AModelService {
       }
     );
   }
+
+  addCollaborator(projectId: string, email: string): Promise<Document> {
+    return this.findOneAndUpdate(
+      { _id: projectId },
+      {
+        $addToSet: { collaboratorEmails: email },
+      }
+    );
+  }
+
+  addComment(
+    validatedUserId: string,
+    projectId: string,
+    mixId: string,
+    comment: Comment
+  ): Promise<Document> {
+    return this.findOneAndUpdate(
+      { _id: projectId, "mixes._id": mixId },
+      {
+        $push: { mixes: mix },
+      }
+    );
+  }
 }
 
 export default new ProjectService();

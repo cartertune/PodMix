@@ -39,7 +39,7 @@ const typeDefs = gql`
     id: ID
     time: SongTime # may need to rethink formatting
     text: String
-    isComplete: Boolean
+    # isComplete: Boolean
     creator: User
   }
   input CommentInput {
@@ -58,7 +58,7 @@ const typeDefs = gql`
     login: User
     createProject(project: ProjectInput!): Project
     createMix(projectId: ID!, mix: MixInput!): Project
-    createComment(projectId: ID!, mixId: ID!, comment(CommentInput!)): Project
+    createComment(projectId: ID!, mixId: ID!, comment: CommentInput!): Project
     addCollaborator(projectId: ID!, email: String!): Project
     #completeComment(projectId: ID!, mixId: ID!, commentId: ID!)
   }

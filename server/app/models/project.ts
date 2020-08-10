@@ -58,7 +58,7 @@ const ProjectSchema: Schema = new Schema(
   {
     title: { type: String, required: true, index: true },
     ownerId: { type: ObjectID, ref: "User", index: true },
-    mixes: { type: [MixSchema], default: [] },
+    mixes: { type: [MixSchema], index: true, default: [] },
     collaboratorEmails: { type: [String], index: true, default: [] },
   },
   { timestamps: true }

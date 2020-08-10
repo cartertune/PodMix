@@ -3,7 +3,7 @@ import _ from "lodash";
 import UserService from "./services/UserService";
 import ProjectService from "./services/ProjectService";
 import { User } from "./models/user";
-import { Project, Comment } from "./models/project";
+import { Project, Comment, Mix } from "./models/project";
 
 export interface Context {
   validatedUser: User;
@@ -36,7 +36,47 @@ const resolvers = {
       project.ownerId = _.get(ctx, "validatedUser.id");
       return ProjectService.create(project);
     },
-    createMix: {},
+    createMix: (
+      obj: any,
+      args: {
+        projectId: string;
+        mix: Mix;
+      },
+      ctx: Context
+    ): Promise<Document> => {
+      const validatedUserId = _.get(ctx, "validatedUser.id");
+      const { projectId, mix } = args;
+      return ProjectService.addMix(validatedUserId, projectId, mix);
+    },
+    createComment: (
+      obj: any,
+      args: {
+        projectId: string;
+        mixId: string;
+        comment: Comment;
+      },
+      ctx: Context
+    ): Promise<Document> => {
+      const validatedUserId = _.get(ctx, "validatedUser.id");
+      const { projectId, mixId, comment } = args;
+      return ProjectService.addComment(
+        validatedUserId,
+        projectId,
+        mixId,
+        comment
+      );
+    },
+    addCollaborator: (
+      obj: any,
+      args: {
+        projectId: string;
+        email: string;
+      },
+      ctx: Context
+    ): Promise<Document> => {
+      const { projectId, email } = args;
+      return ProjectService.addCollaborator(projectId, email);
+    },
   },
   User: {
     projects: (user: User, args: any, ctx: Context): Promise<Document[]> => {
