@@ -56,12 +56,11 @@ const typeDefs = gql`
   }
   type Mutation {
     login: User
-    createUser(user: UserInput!): User
     createProject(project: ProjectInput!): Project
-    createMix(mix: MixInput!): Project
-    createComment(comment(CommentInput!)): Project
-    addCollaborator(email: String!): Project
-    completeComment(commentId: ID!)
+    createMix(projectId: ID!, mix: MixInput!): Project
+    createComment(projectId: ID!, mixId: ID!, comment(CommentInput!)): Project
+    addCollaborator(projectId: ID!, email: String!): Project
+    #completeComment(projectId: ID!, mixId: ID!, commentId: ID!)
   }
   type Query {
     currentUser(id: ID!): User

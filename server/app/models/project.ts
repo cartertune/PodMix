@@ -25,7 +25,7 @@ export interface Mix {
   comments: [Comment];
 }
 
-export interface IProject extends Document {
+export interface Project extends Document {
   title: string;
   ownerId: string;
   mixes: [Mix];
@@ -59,9 +59,9 @@ const ProjectSchema: Schema = new Schema(
     title: { type: String, required: true, index: true },
     ownerId: { type: ObjectID, ref: "User", index: true },
     mixes: { type: [MixSchema], default: [] },
-    collaboratorEmails: { type: [String], default: [] },
+    collaboratorEmails: { type: [String], index: true, default: [] },
   },
   { timestamps: true }
 );
 
-export default PlaylistSchema;
+export default ProjectSchema;
