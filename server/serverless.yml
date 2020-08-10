@@ -1,8 +1,16 @@
 # serverless.yml
-service: apollo-lambda
+service: podmix
+# app and org for use with dashboard.serverless.com
+app: podmix
+org: cartertune
+
+# You can pin your service to only deploy with a specific Serverless version
+# Check out our docs for more details
+# frameworkVersion: "=X.X.X"
+
 provider:
   name: aws
-  runtime: nodejs8.10
+  runtime: nodejs12.x
 functions:
   graphql:
     handler: build/server/app/app.graphqlHandler
@@ -19,7 +27,6 @@ functions:
           cores: true
 plugins:
   - serverless-offline
-  - serverless-domain-manager
 custom:
   serverless-offline:
     port: 3000

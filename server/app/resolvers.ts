@@ -1,8 +1,6 @@
 import { Document } from "mongoose";
 import _ from "lodash";
-import PlaylistService from "./services/PlaylistService";
 import UserService from "./services/UserService";
-import PlaylistSchema, { IPlaylist, IResource } from "./models/playlist";
 import { IUser } from "./models/user";
 
 const resolvers = {
@@ -10,7 +8,7 @@ const resolvers = {
     user: (obj: any, args: { id: string }, ctx: any): Promise<Document> => {
       const { id } = args;
       return UserService.findById(id);
-    }
+    },
   },
   Mutation: {
     login: (
@@ -19,9 +17,9 @@ const resolvers = {
       ctx: { validatedUser: IUser; authorization: string }
     ): Promise<Document> => {
       return UserService.login(ctx.validatedUser, ctx.authorization);
-    }
+    },
   },
-  User: {}
+  User: {},
 };
 
 export default resolvers;
