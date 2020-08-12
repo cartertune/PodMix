@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import AuthCallback from "../../auth/AuthCallback";
 
-const Main = props => {
+const Main = (props) => {
   // const { loginToServer } = props;
 
   // if (
@@ -19,7 +19,7 @@ const Main = props => {
       <Switch>
         <Route
           path="/callback"
-          render={props => (
+          render={(props) => (
             <AuthCallback loginToServer={loginToServer} {...props} />
           )}
         />
