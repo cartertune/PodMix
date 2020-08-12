@@ -1,6 +1,6 @@
 import AModelService from "../interfaces/AbstractModelService";
 import { Document } from "mongoose";
-import { IUser } from "../models/user";
+import { User } from "../models/user";
 import Auth0Service from "./Auth0Service";
 
 class UserService extends AModelService {
@@ -8,7 +8,7 @@ class UserService extends AModelService {
     super("User");
   }
 
-  login(user: IUser, token: string): Promise<Document> {
+  login(user: User, token: string): Promise<Document> {
     console.log("token:", token);
     if (!user) {
       return this.createFromAuthToken(token);
@@ -31,7 +31,7 @@ class UserService extends AModelService {
       email,
       family_name,
       given_name,
-      picture
+      picture,
     } = validatedUser;
 
     const user: any = {};
