@@ -66,6 +66,7 @@ const resolvers = {
         comment
       );
     },
+
     addCollaborator: (
       obj: any,
       args: {

@@ -1,6 +1,6 @@
 import AModelService from "../interfaces/AbstractModelService";
 import { Document } from "mongoose";
-import { Mix, Project } from "../models/project";
+import { Mix, Project, Comment } from "../models/project";
 import _ from "lodash";
 
 class ProjectService extends AModelService {
@@ -36,10 +36,11 @@ class ProjectService extends AModelService {
     mixId: string,
     comment: Comment
   ): Promise<Document> {
+    comment.creatorId = validatedUserId;
     return this.findOneAndUpdate(
       { _id: projectId, "mixes._id": mixId },
       {
-        $push: { mixes: mix },
+        $push: { "mixes.$.comments": comment },
       }
     );
   }
