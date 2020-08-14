@@ -9,7 +9,7 @@ class MongoDBService implements IDBService {
       // TODO: make process environment variable
       mongoose.connect(process.env.MONGO_DB_URI, {
         useCreateIndex: true,
-        useNewUrlParser: true
+        useNewUrlParser: true,
       });
       console.log("Connecting...");
       mongoose.connection
@@ -17,7 +17,9 @@ class MongoDBService implements IDBService {
           this.isConnected = true;
           console.log("Connected to Mongo instance.");
         })
-        .on("error", error => console.log("Error connecting to Mongo:", error));
+        .on("error", (error) =>
+          console.log("Error connecting to Mongo:", error)
+        );
 
       // import schemas
       import("../models/index");
@@ -52,6 +54,11 @@ class MongoDBService implements IDBService {
     const model: Model<Document> = this.getModel(modelTitle);
     const doc: Document = new model(obj);
     return doc.save();
+  }
+
+  count(modelTitle: string, query: object): Promise<number> {
+    const model: Model<Document> = this.getModel(modelTitle);
+    return model.count(query).exec();
   }
 
   private getModel(modelTitle: string): Model<Document> {
