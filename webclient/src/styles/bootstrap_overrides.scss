@@ -1,0 +1,46 @@
+h1 {
+  font-family: $font-family-primary;
+  font-size: 28px;
+  font-weight: 800;
+  color: #f6f6f6;
+}
+
+h3 {
+  margin: 0;
+  font-family: $font-family-secondary;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.btn-primary {
+  background-color: $pm-green;
+  border: none;
+  border-radius: 8px;
+
+  &:hover,
+  &:focus {
+    background-color: $pm-green !important;
+    border: solid 2px $pm-white;
+  }
+
+  &:active {
+    background-color: $pm-green !important;
+    border-color: $pm-white !important;
+
+    &:focus {
+      box-shadow: none;
+    }
+  }
+
+  //   &:focus {
+  //     box-shadow: 0 0 0 0.15rem $bif-gold !important;
+  //   }
+
+  //   &:disabled {
+  //     background-color: $muted-bif-black;
+  //     border-color: white;
+  //     &:hover {
+  //       color: white;
+  //     }
+  //   }
+}

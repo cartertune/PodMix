@@ -1,7 +1,8 @@
 @import "~bootstrap/scss/bootstrap";
-@import "./bootstrap_overrides.scss";
 @import "./constants.scss";
+@import "./bootstrap_overrides.scss";
 @import "./header.scss";
+@import "./login_splash.scss";
 
 body {
   background: linear-gradient(

@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
+import LoginSplashPage from "../login-splash/LoginSplashPage";
 import AuthCallback from "../../auth/AuthCallback";
 
 const Main = (props) => {
@@ -17,6 +18,7 @@ const Main = (props) => {
   return (
     <main className="container main-page">
       <Switch>
+        <Route path="/" render={(props) => <LoginSplashPage {...props} />} />
         <Route
           path="/callback"
           render={(props) => (
