@@ -16,15 +16,17 @@ h3 {
   background-color: $pm-green;
   border: none;
   border-radius: 8px;
+  box-shadow: none !important;
 
   &:hover,
   &:focus {
     background-color: $pm-green !important;
     border: solid 2px $pm-white;
+    box-shadow: none;
   }
 
   &:active {
-    background-color: $pm-green !important;
+    background-color: $pm-muted-green !important;
     border-color: $pm-white !important;
 
     &:focus {
