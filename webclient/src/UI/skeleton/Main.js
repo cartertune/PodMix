@@ -1,19 +1,21 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
+import { compose } from "react-apollo";
 import LoginSplashPage from "../login-splash/LoginSplashPage";
+import { login } from "../../connections/userConnections";
 import AuthCallback from "../../auth/AuthCallback";
 
 const Main = (props) => {
-  // const { loginToServer } = props;
+  const { loginToServer } = props;
 
-  // if (
-  //   !_.get(store.getState(), "auth.user.id") &&
-  //   _.get(store.getState(), "auth.jwt")
-  // ) {
-  //   loginToServer().then(({ data }) => {
-  //     store.dispatch({ type: "SET_USER_ID", id: data.login.id });
-  //   });
-  // }
+  if (
+    !_.get(store.getState(), "auth.user.id") &&
+    _.get(store.getState(), "auth.jwt")
+  ) {
+    loginToServer().then(({ data }) => {
+      store.dispatch({ type: "SET_USER_ID", id: data.login.id });
+    });
+  }
 
   return (
     <main className="container main-page">
@@ -30,4 +32,4 @@ const Main = (props) => {
   );
 };
 
-export default Main;
+export default compose(login)(Main);
