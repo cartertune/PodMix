@@ -1,18 +1,16 @@
 import { createStore, combineReducers } from "redux";
 import { persistStore, persistCombineReducers } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import createPageReducer from "./UI/create-page/createPageReducer";
-import playlistPageReducer from "./UI/playlist-page/playlistPageReducer";
 import authReducer from "./auth/authReducer";
 import headerReducer from "./UI/header/headerReducer";
 
 const persistConfig = {
   key: "root",
-  storage
+  storage,
 };
 const persistedReducer = persistCombineReducers(persistConfig, {
   auth: authReducer,
-  header: headerReducer
+  header: headerReducer,
 });
 
 export const store = createStore(

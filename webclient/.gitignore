@@ -1,6 +1,6 @@
 node_modules
-dist
 !dist/index.html
+dist
 .env.staging
 .env.development
 .env.production

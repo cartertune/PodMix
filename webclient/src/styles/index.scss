@@ -1,8 +1,17 @@
 @import "~bootstrap/scss/bootstrap";
+@import "./constants.scss";
 @import "./bootstrap_overrides.scss";
 @import "./header.scss";
+@import "./login_splash.scss";
 
 body {
-  background-color: #fdfdfd;
-  margin: 0;
+  background: linear-gradient(
+    20deg,
+    rgba(27, 43, 45, 1) 0%,
+    rgba(42, 32, 172, 1) 100%
+  );
+}
+
+#app {
+  height: 100vh;
 }
