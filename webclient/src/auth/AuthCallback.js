@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import _ from "lodash";
-//import Auth from "./Auth";
-//import { store } from "../store";
+import Auth from "./Auth";
+import { store } from "../store";
 import { LoadingScreen } from "../UI/components/Loading";
 
 class AuthCallback extends Component {
@@ -23,6 +23,7 @@ class AuthCallback extends Component {
   }
 
   render() {
+    print("rendering callback");
     return <LoadingScreen />;
   }
 }
