@@ -5,7 +5,7 @@ const defaultState = {
   jwt: "",
   expiresAt: "",
   user: {},
-  callbackLink: "/"
+  callbackLink: "/",
 };
 
 const authReducer = (state = defaultState, action) => {

@@ -28,6 +28,7 @@ export default abstract class AbstractModelService {
   }
 
   create(obj: object): Promise<Document> {
+    console.log("creating ", this.modelTitle, obj);
     return this.dbService.create(this.modelTitle, obj);
   }
 }

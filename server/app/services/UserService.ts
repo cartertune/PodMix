@@ -40,6 +40,7 @@ class UserService extends AModelService {
     user.lastName = family_name;
     user.firstName = given_name;
     user.avatarUrl = picture;
+    user.email = email;
 
     return this.create(user);
   }

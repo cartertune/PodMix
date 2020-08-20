@@ -13,8 +13,8 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   context: async ({ event }) => {
-    console.log(event.body);
-    console.log("headers:", event);
+    //console.log(event.body);
+    //console.log("headers:", event);
     return {
       authorization: _.get(event, "headers.authorization")
         ? event.headers.authorization
@@ -24,7 +24,7 @@ const server = new ApolloServer({
       validatedUser: await UserService.validateUser(
         _.get(event, "headers.authorization") ||
           _.get(event, "headers.Authorization")
-      )
+      ),
     };
   },
   formatError: (error: any) => {
@@ -35,12 +35,12 @@ const server = new ApolloServer({
     console.log(response);
     return response;
   },
-  playground: true
+  playground: true,
 });
 
 exports.graphqlHandler = server.createHandler({
   cors: {
     origin: "*",
-    credentials: true
-  }
+    credentials: true,
+  },
 });

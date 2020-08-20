@@ -16,40 +16,40 @@ export const login = graphql(LOGIN_MUTATION, {
   }),
 });
 
-const CURRENT_USER_QUERY = gql`
-  query currentUser {
-    currentUser {
-      ...FullUser
-    }
-  }
-  ${Fragments.user.full}
-`;
+// const CURRENT_USER_QUERY = gql`
+//   query currentUser {
+//     currentUser {
+//       ...FullUser
+//     }
+//   }
+//   ${Fragments.user.full}
+// `;
 
-export const getCurrentUser = graphql(CURRENT_USER_QUERY, {
-  props: ({ data: { loading, error, currentUser } }) => ({
-    loading,
-    error,
-    currentUser,
-  }),
-});
+// export const getCurrentUser = graphql(CURRENT_USER_QUERY, {
+//   props: ({ data: { loading, error, currentUser } }) => ({
+//     loading,
+//     error,
+//     currentUser,
+//   }),
+// });
 
-const GET_USER_QUERY = gql`
-  query user($id: ID!) {
-    user(id: $id) {
-      ...FullUser
-    }
-  }
-  ${Fragments.user.full}
-`;
+// const GET_USER_QUERY = gql`
+//   query user($id: ID!) {
+//     user(id: $id) {
+//       ...FullUser
+//     }
+//   }
+//   ${Fragments.user.full}
+// `;
 
-export const getUser = graphql(GET_USER_QUERY, {
-  options: (props) => ({
-    variables: { id: _.get(props, "match.params.id") },
-  }),
-  props: ({ data: { loading, error, refetch, user } }) => ({
-    loading,
-    error,
-    refetch,
-    user,
-  }),
-});
+// export const getUser = graphql(GET_USER_QUERY, {
+//   options: (props) => ({
+//     variables: { id: _.get(props, "match.params.id") },
+//   }),
+//   props: ({ data: { loading, error, refetch, user } }) => ({
+//     loading,
+//     error,
+//     refetch,
+//     user,
+//   }),
+// });

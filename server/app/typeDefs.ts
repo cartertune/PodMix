@@ -43,10 +43,14 @@ const typeDefs = gql`
     creator: User
   }
   input CommentInput {
-    time: SongTime!
+    time: SongTimeInput!
     text: String!
   }
   type SongTime {
+    minute: Int!
+    second: Int!
+  }
+  input SongTimeInput {
     minute: Int!
     second: Int!
   }
