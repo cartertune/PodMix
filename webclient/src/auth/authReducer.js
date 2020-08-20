@@ -15,7 +15,7 @@ const authReducer = (state = defaultState, action) => {
     case "persist/REHYDRATE":
       const isExpired =
         new Date().getTime() > _.get(action, "payload.auth.expires_at");
-      if (!isExpired) {
+      if (isExpired) {
         return newState;
       }
       return _.get(action, "payload.auth", newState);

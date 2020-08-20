@@ -19,7 +19,6 @@ class Auth0Service {
   //         If invalid:  null
   // Note: This does not confirm that this user is in our DB.
   async validateJWT(rawAuthorization: string): Promise<IAuth0User> {
-    console.log(rawAuthorization);
     // Let this variable equal the validated User, or null.
     let verifiedJWT = null;
     // Let this be the authorization token, cleaned up.
