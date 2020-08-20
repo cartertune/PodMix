@@ -23,7 +23,6 @@ class AuthCallback extends Component {
   }
 
   render() {
-    print("rendering callback");
     return <LoadingScreen />;
   }
 }

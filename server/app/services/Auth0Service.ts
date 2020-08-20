@@ -19,6 +19,7 @@ class Auth0Service {
   //         If invalid:  null
   // Note: This does not confirm that this user is in our DB.
   async validateJWT(rawAuthorization: string): Promise<IAuth0User> {
+    console.log(rawAuthorization);
     // Let this variable equal the validated User, or null.
     let verifiedJWT = null;
     // Let this be the authorization token, cleaned up.
@@ -36,10 +37,13 @@ class Auth0Service {
     // Get the JWKS
     const jwksFull = await this.fetchJWKS();
     const jwks = _.get(jwksFull, "keys[0]");
+    if (!jwks) {
+      return null;
+    }
 
     const signingKeys = {
       kid: jwks.kid,
-      publicKey: this.certToPEM(jwks.x5c[0])
+      publicKey: this.certToPEM(jwks.x5c[0]),
     };
 
     // Verify the given JWT is valid
@@ -49,7 +53,7 @@ class Auth0Service {
     jwt.verify(
       authorization,
       signingKeys.publicKey,
-      { issuer: "https://dev-li8q9fo2.auth0.com/" },
+      { issuer: process.env.KEY_ISSUER },
       (err: VerifyErrors, decoded: string | object): VerifyCallback => {
         if (err) {
           console.log("validateUser: " + err.message);
@@ -71,9 +75,8 @@ class Auth0Service {
   // TODO cache the JWKS.
   private async fetchJWKS(): Promise<object> {
     try {
-      const response = await fetch(
-        "https://dev-li8q9fo2.auth0.com/.well-known/jwks.json"
-      );
+      const url = process.env.KEY_ISSUER + ".well-known/jwks.json";
+      const response = await fetch(url);
       const text = await response.text();
       const json = JSON.parse(text); // Try to parse it as json
       return json;

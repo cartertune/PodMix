@@ -1,3 +1,4 @@
 {
-  "MONGO_DB_URI": ""
+  "MONGO_DB_URI": "mongodb+srv://poduser:IoYhSFTTutH2VzhZ@podmix.uqflv.mongodb.net/podmix?retryWrites=true&w=majority",
+  "KEY_ISSUER": "https://pmix.us.auth0.com/"
 }

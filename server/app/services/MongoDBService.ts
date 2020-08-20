@@ -24,6 +24,11 @@ class MongoDBService implements IDBService {
       // import schemas
       import("../models/index");
     }
+    console.log(
+      "not connecting: ",
+      this.isConnected,
+      mongoose.connection.readyState
+    );
   }
 
   find(modelTitle: string, query: any): Promise<Document[]> {
