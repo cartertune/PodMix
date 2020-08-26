@@ -80,6 +80,9 @@ const resolvers = {
     },
   },
   User: {
+    name: (user: User): string => {
+      return `${user.firstName} ${user.lastName}`;
+    },
     projects: (user: User, args: any, ctx: Context): Promise<Document[]> => {
       return ProjectService.find({
         _id: { $in: _.get(user, "projectIds", []) },
