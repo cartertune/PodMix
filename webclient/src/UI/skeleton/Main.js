@@ -4,7 +4,7 @@ import { compose } from "react-apollo";
 import { store } from "../../store";
 import { login } from "../../connections/userConnections";
 import AuthCallback from "../../auth/AuthCallback";
-import HomePage from "../home-page/HomePage";
+import HomePageContainer from "../home-page/HomePageContainer";
 
 const Main = (props) => {
   const { loginToServer } = props;
@@ -21,7 +21,11 @@ const Main = (props) => {
   return (
     <main className="container main-page">
       <Switch>
-        <Route exact path="/" render={(props) => <HomePage {...props} />} />
+        <Route
+          exact
+          path="/"
+          render={(props) => <HomePageContainer {...props} />}
+        />
         <Route
           path="/callback"
           render={(props) => (
