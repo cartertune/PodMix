@@ -12,6 +12,13 @@ h3 {
   font-weight: 600;
 }
 
+p,
+.form-control {
+  font-family: $font-family-secondary;
+  font-size: 16px;
+  font-weight: normal;
+}
+
 .btn-primary {
   background-color: $pm-green;
   border: none;
@@ -45,4 +52,9 @@ h3 {
   //       color: white;
   //     }
   //   }
+}
+
+.form-control {
+  background-color: rgba(246, 246, 246, 0.1);
+  border: none;
 }

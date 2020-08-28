@@ -10,7 +10,7 @@ class Auth {
       clientID: process.env.AUTH_CLIENT_ID,
       redirectUri: process.env.AUTH_CALLBACK,
       responseType: "token id_token",
-      scope: "openid profile email"
+      scope: "openid profile email",
     });
     this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
@@ -56,6 +56,12 @@ class Auth {
       return state.auth;
     }
     return {};
+  }
+
+  isLoggedIn() {
+    const userId = _.get(this.getAuthState(), "user.id");
+    console.log(userId);
+    return !!userId;
   }
 
   isAuthenticated() {

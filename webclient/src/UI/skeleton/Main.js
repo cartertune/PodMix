@@ -2,9 +2,9 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import { compose } from "react-apollo";
 import { store } from "../../store";
-import LoginSplashPage from "../login-splash/LoginSplashPage";
 import { login } from "../../connections/userConnections";
 import AuthCallback from "../../auth/AuthCallback";
+import HomePageContainer from "../home-page/HomePageContainer";
 
 const Main = (props) => {
   const { loginToServer } = props;
@@ -24,7 +24,7 @@ const Main = (props) => {
         <Route
           exact
           path="/"
-          render={(props) => <LoginSplashPage {...props} />}
+          render={(props) => <HomePageContainer {...props} />}
         />
         <Route
           path="/callback"
