@@ -32,11 +32,12 @@ const resolvers = {
       args: { project: Project },
       ctx: Context
     ): Promise<Document> => {
-      const project: Project = args.project;
-      project.ownerId = _.get(ctx, "validatedUser.id");
-      return ProjectService.create(project);
+      const p: Project = args.project;
+      p.ownerId = _.get(ctx, "validatedUser.id");
+      console.log("user id", p.ownerId);
+      return ProjectService.create(p);
     },
-    createMix: (
+    addMix: (
       obj: any,
       args: {
         projectId: string;
@@ -48,7 +49,7 @@ const resolvers = {
       const { projectId, mix } = args;
       return ProjectService.addMix(validatedUserId, projectId, mix);
     },
-    createComment: (
+    addComment: (
       obj: any,
       args: {
         projectId: string;

@@ -18,7 +18,7 @@ const homePageReducer = (state = defaultState, action) => {
       newState.createModalData = defaultState.createModalData;
       break;
     case "EDIT_CREATE_PROJECT_MODAL_FIELD":
-      newState[action.field] = action.value;
+      newState.createModalData[action.field] = action.value;
       break;
     default:
   }

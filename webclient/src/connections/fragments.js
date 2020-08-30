@@ -4,7 +4,7 @@ const Fragments = {};
 
 Fragments.project = {
   full: gql`
-    fragment Project on Project {
+    fragment FullProject on Project {
       id
       title
       owner {
@@ -25,10 +25,13 @@ Fragments.project = {
       mixes {
         id
         title
-        file
+        fileUrl
         comments {
           id
-          time
+          time {
+            minute
+            second
+          }
           text
           creator {
             id

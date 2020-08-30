@@ -55,7 +55,9 @@ class Auth0Service {
       { issuer: process.env.KEY_ISSUER },
       (err: VerifyErrors, decoded: string | object): VerifyCallback => {
         if (err) {
+          console.log(1);
           console.log("validateUser: " + err.message);
+          console.log(2);
           return null;
         }
 

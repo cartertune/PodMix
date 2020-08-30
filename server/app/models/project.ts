@@ -1,11 +1,6 @@
 import { Document, Schema, model } from "mongoose";
 import { ObjectID } from "bson";
 
-export interface FileType {
-  name: string;
-  url: string;
-}
-
 export interface SongTime {
   minute: number;
   second: number;
@@ -21,7 +16,7 @@ export interface Comment {
 export interface Mix {
   _id: string;
   title: string;
-  file: FileType;
+  fileUrl: string;
   comments: [Comment];
 }
 
@@ -31,11 +26,6 @@ export interface Project extends Document {
   mixes: [Mix];
   collaboratorEmails: [string];
 }
-
-const FileSchema: Schema = new Schema({
-  name: { type: String, required: true },
-  url: { type: String, required: true },
-});
 
 const SongTimeSchema: Schema = new Schema({
   minute: { type: Number, required: true },
@@ -50,7 +40,7 @@ const CommentSchema: Schema = new Schema({
 
 const MixSchema: Schema = new Schema({
   title: { type: String, required: true },
-  file: { type: FileSchema, required: true },
+  file: { type: String, required: true },
   comments: { type: [CommentSchema], default: [] },
 });
 

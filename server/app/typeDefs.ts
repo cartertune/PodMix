@@ -26,14 +26,13 @@ const typeDefs = gql`
   }
   type Mix {
     id: ID
-    file: File
+    fileUrl: String
     title: String
     comments: [Comment]
   }
   input MixInput {
     title: String!
     fileUrl: String!
-    fileName: String
   }
   type Comment {
     id: ID
@@ -54,15 +53,11 @@ const typeDefs = gql`
     minute: Int!
     second: Int!
   }
-  type File {
-    name: String
-    url: String
-  }
   type Mutation {
     login: User
     createProject(project: ProjectInput!): Project
-    createMix(projectId: ID!, mix: MixInput!): Project
-    createComment(projectId: ID!, mixId: ID!, comment: CommentInput!): Project
+    addMix(projectId: ID!, mix: MixInput!): Project
+    addComment(projectId: ID!, mixId: ID!, comment: CommentInput!): Project
     addCollaborator(projectId: ID!, email: String!): Project
     #completeComment(projectId: ID!, mixId: ID!, commentId: ID!)
   }

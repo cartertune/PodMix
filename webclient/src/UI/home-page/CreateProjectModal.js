@@ -19,10 +19,10 @@ const CreateProjectModal = (props) => {
       </div>
       <div className="mt-3 d-flex justify-content-center">
         <button
-          className="btn btn-primary px-4"
+          className="btn btn-primary px-4 py-3"
           onClick={() => onCreate({ title })}
         >
-          Create
+          <h3>Create</h3>
         </button>
       </div>
     </Modal>
