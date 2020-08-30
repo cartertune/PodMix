@@ -1,9 +1,13 @@
 import _ from "lodash";
 import { connect } from "react-redux";
 import { compose } from "react-apollo";
-import { addMix, addComment } from "../../connections/projectConnections";
+import {
+  getProject,
+  addMix,
+  addComment,
+} from "../../connections/projectConnections";
 import { withRouter } from "react-router-dom";
-import HomePage from "../home-page/HomePage";
+import ProjectPage from "./ProjectPage";
 
 const mapStateToProps = (state, ownProps) => ({
   ...state.projectPage,
@@ -34,11 +38,12 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 
 export default withRouter(
   compose(
-    addMix,
-    addComment,
+    getProject,
+    // addMix,
+    // addComment,
     connect(
       mapStateToProps,
       mapDispatchToProps
     )
-  )(HomePage)
+  )(ProjectPage)
 );

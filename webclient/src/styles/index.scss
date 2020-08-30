@@ -4,8 +4,9 @@
 @import "./components.scss";
 @import "./header.scss";
 @import "./login_splash.scss";
-
+@import "./project_page.scss";
 body {
+  overflow: hidden;
   background: linear-gradient(
     20deg,
     rgba(27, 43, 45, 1) 0%,
@@ -14,5 +15,10 @@ body {
 }
 
 #app {
+  overflow: hidden;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 20px;
+  padding-right: 20px;
   height: 100vh;
 }

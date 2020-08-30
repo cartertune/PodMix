@@ -1,3 +1,11 @@
+@media (min-width: map-get($grid-breakpoints, xs)) and (max-width: map-get($grid-breakpoints, sm)) {
+  .row > .col,
+  .row > [class*="col-"] {
+    padding-right: 5px;
+    padding-left: 5px;
+  }
+}
+
 h1 {
   font-family: $font-family-primary;
   font-size: 28px;
@@ -60,6 +68,7 @@ p,
   background-color: $pm-muted-white;
   border: none;
   line-height: 48px;
+  min-height: 48px;
 
   &:focus {
     color: $pm-white;

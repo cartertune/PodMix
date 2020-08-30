@@ -1,44 +1,77 @@
 import React from "react";
+import _ from "lodash";
 import AddMixModal from "./AddMixModal";
+import { LoadingScreen } from "../components/Loading";
 
 const ProjectPage = (props) => {
   const {
     openMixModal,
-    addMixModalData,
+    mixModalData,
     isMixModalOpen,
     editMixModalField,
     closeMixModal,
     addMix,
-    project: { id, title, owner },
+    project,
   } = props;
 
-  return (
-    <React.Fragment>
-      <div className="project-page">
-        <div className="header-section d-flex justify-content-between">
-          <div>Logo</div>
-          <h1>{title}</h1>
-          <div />
+  if (!project) {
+    return <LoadingScreen />;
+  }
+
+  const { id, title, owner, mixes } = project;
+
+  const mixSelect = () => {
+    if (_.isEmpty(mixes)) {
+      return (
+        <div className="mix-share-section row d-flex justify-content-center mt-4">
+          <div className="col-4">
+            <button
+              className="btn btn-primary w-100 py-3"
+              onClick={openMixModal}
+            >
+              <h3>Add Mix</h3>
+            </button>
+          </div>
         </div>
-        <div className="mix-share-section">
-          <select class="form-control" id="exampleFormControlSelect1">
+      );
+    }
+
+    return (
+      <div className="mix-share-section row d-flex justify-content-center">
+        <div className="col-4">
+          <select className="form-control" id="exampleFormControlSelect1">
             <option>1</option>
             <option>2</option>
             <option>3</option>
             <option>4</option>
             <option>5</option>
           </select>
-          <button className="btn btn-primary">Share</button>
         </div>
-        <div className="comment-section">Comment Section</div>
-        <div className="media-section">Media Section</div>
+        <div className="col-4">
+          <button className="btn btn-primary w-100 h-100">Share</button>
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <React.Fragment>
+      <div className="project-page">
+        <div className="header-section text-center">
+          <h1>{title}</h1>
+        </div>
+        {mixSelect()}
+        <div>
+          <div className="comment-section row mt-4">Comment Section</div>
+          <div className="media-section">Media Section</div>
+        </div>
       </div>
       <AddMixModal
-        modalData={addMixModalData}
+        modalData={mixModalData}
         show={isMixModalOpen}
         onEditField={editMixModalField}
         closeModal={closeMixModal}
-        onCreate={addMix}
+        onAddMix={addMix}
       />
     </React.Fragment>
   );

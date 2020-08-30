@@ -5,6 +5,7 @@ import { store } from "../../store";
 import { login } from "../../connections/userConnections";
 import AuthCallback from "../../auth/AuthCallback";
 import HomePageContainer from "../home-page/HomePageContainer";
+import ProjectPageContainer from "../project-page/ProjectPageContainer";
 
 const Main = (props) => {
   const { loginToServer } = props;
@@ -21,15 +22,24 @@ const Main = (props) => {
   return (
     <main className="container main-page">
       <Switch>
-        <Route
-          exact
-          path="/"
-          render={(props) => <HomePageContainer {...props} />}
-        />
+        <Route exact path="/" component={HomePageContainer} />
         <Route
           path="/callback"
           render={(props) => (
             <AuthCallback loginToServer={loginToServer} {...props} />
+          )}
+        />
+        <Route
+          path="/projects"
+          component={() => (
+            <Switch>
+              <Route exact path="/projects" component={HomePageContainer} />
+              <Route
+                path="/projects/:id"
+                component={ProjectPageContainer}
+                props={props}
+              />
+            </Switch>
           )}
         />
       </Switch>

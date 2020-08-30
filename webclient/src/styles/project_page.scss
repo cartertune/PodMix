@@ -1,0 +1,19 @@
+.project-page {
+  height: 100vh;
+  padding-bottom: 30px;
+
+  .comment-section {
+    background: $pm-muted-white;
+    border-radius: 8px;
+  }
+
+  .media-section {
+    position: fixed;
+    bottom: 30px;
+    left: 20px;
+    right: 20px;
+    background: $pm-muted-white;
+    height: 200px;
+    border-radius: 8px;
+  }
+}

@@ -13,9 +13,11 @@ export const GET_PROJECT_QUERY = gql`
 `;
 
 export const getProject = graphql(GET_PROJECT_QUERY, {
-  options: (props) => ({
-    variables: { id: _.get(props, "match.params.id") },
-  }),
+  options: (props) => {
+    return {
+      variables: { id: _.get(props, "match.params.id") },
+    };
+  },
   props: ({ data: { loading, error, refetch, project } }) => ({
     loading,
     error,
