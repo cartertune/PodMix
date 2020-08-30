@@ -12,6 +12,7 @@ const projectPageReducer = (state = defaultState, action) => {
   switch (action.type) {
     case "OPEN_ADD_MIX_MODAL":
       newState.isMixModalOpen = true;
+      newState.mixModalData.title = "Mix " + action.defaultMixNum;
       break;
     case "CLOSE_ADD_MIX_MODAL":
       newState.isMixModalOpen = false;

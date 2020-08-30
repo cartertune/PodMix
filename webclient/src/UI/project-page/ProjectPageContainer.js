@@ -13,8 +13,8 @@ const mapStateToProps = (state, ownProps) => ({
   ...state.projectPage,
 });
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  openMixModal: () => {
-    dispatch({ type: "OPEN_ADD_MIX_MODAL" });
+  openMixModal: ({ defaultMixNum }) => {
+    dispatch({ type: "OPEN_ADD_MIX_MODAL", defaultMixNum });
   },
   closeMixModal: () => dispatch({ type: "CLOSE_ADD_MIX_MODAL" }),
   editMixModalField: ({ field, value }) => {

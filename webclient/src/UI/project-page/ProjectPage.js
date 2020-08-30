@@ -27,7 +27,7 @@ const ProjectPage = (props) => {
           <div className="col-4">
             <button
               className="btn btn-primary w-100 py-3"
-              onClick={openMixModal}
+              onClick={() => openMixModal({ defaultMixNum: mixes.length + 1 })}
             >
               <h3>Add Mix</h3>
             </button>
