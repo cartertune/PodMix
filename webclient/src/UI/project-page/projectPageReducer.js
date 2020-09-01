@@ -4,6 +4,9 @@ const defaultState = {
   isMixModalOpen: false,
   mixModalData: {
     title: "",
+    tempAudio: null,
+    audioToUpload: null,
+    fileName: "",
   },
 };
 

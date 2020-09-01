@@ -10,14 +10,14 @@ const CreateProjectModal = (props) => {
 
   return (
     <Modal header="Create Project" show={show} onClose={closeModal}>
-      <div className="mt-4">
+      <div className="mt-5">
         <Input
           value={title}
           onChange={(value) => onEditField({ field: "title", value })}
           placeholder="Project Title*"
         />
       </div>
-      <div className="mt-3 d-flex justify-content-center">
+      <div className="mt-5 d-flex justify-content-center">
         <button
           className="btn btn-primary px-4 py-3"
           onClick={() => onCreate({ title })}

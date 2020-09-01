@@ -6,6 +6,15 @@
   }
 }
 
+.container {
+  overflow: hidden;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 100vh;
+}
+
 h1 {
   font-family: $font-family-primary;
   font-size: 28px;
@@ -18,7 +27,9 @@ h3 {
   margin: 0;
   font-family: $font-family-secondary;
   font-size: 16px;
+  line-height: 1;
   font-weight: 600;
+  color: #f6f6f6;
 }
 
 p,
@@ -33,6 +44,11 @@ p,
   border: none;
   border-radius: 8px;
   box-shadow: none !important;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
 
   &:hover,
   &:focus {
@@ -61,6 +77,18 @@ p,
   //       color: white;
   //     }
   //   }
+}
+
+.btn-upload {
+  min-height: 48px;
+  border-style: dashed;
+  border-color: $pm-green;
+  border-radius: 8px;
+  border-width: 2px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
 }
 
 .form-control {

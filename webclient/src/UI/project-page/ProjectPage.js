@@ -62,7 +62,7 @@ const ProjectPage = (props) => {
         </div>
         {mixSelect()}
         <div>
-          <div className="comment-section row mt-4">Comment Section</div>
+          <div className="comment-section mt-4">Comment Section</div>
           <div className="media-section">Media Section</div>
         </div>
       </div>

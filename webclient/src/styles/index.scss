@@ -3,7 +3,7 @@
 @import "./bootstrap_overrides.scss";
 @import "./components.scss";
 @import "./header.scss";
-@import "./login_splash.scss";
+@import "./home_page.scss";
 @import "./project_page.scss";
 body {
   overflow: hidden;
@@ -16,9 +16,4 @@ body {
 
 #app {
   overflow: hidden;
-  padding-top: 30px;
-  padding-bottom: 30px;
-  padding-left: 20px;
-  padding-right: 20px;
-  height: 100vh;
 }
