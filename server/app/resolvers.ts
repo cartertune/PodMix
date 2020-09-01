@@ -4,6 +4,7 @@ import UserService from "./services/UserService";
 import ProjectService from "./services/ProjectService";
 import { User } from "./models/user";
 import { Project, Comment, Mix } from "./models/project";
+import S3Service from "./services/S3Service";
 
 export interface Context {
   validatedUser: User;
@@ -67,7 +68,6 @@ const resolvers = {
         comment
       );
     },
-
     addCollaborator: (
       obj: any,
       args: {
@@ -78,6 +78,9 @@ const resolvers = {
     ): Promise<Document> => {
       const { projectId, email } = args;
       return ProjectService.addCollaborator(projectId, email);
+    },
+    signS3Url: (obj: any, args: { fileType: string }, ctx: Context): any => {
+      return S3Service.signURL(args.fileType);
     },
   },
   User: {

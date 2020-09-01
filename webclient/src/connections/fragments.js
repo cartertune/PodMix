@@ -26,6 +26,7 @@ Fragments.project = {
         id
         title
         fileUrl
+        fileName
         comments {
           id
           time {

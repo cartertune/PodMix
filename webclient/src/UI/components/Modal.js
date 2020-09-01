@@ -1,14 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
-import H2 from "../components/H2";
+import classnames from "classnames";
 import { FiX } from "react-icons/fi";
 
 const Modal = (props) => {
-  const { show, header, onClose, notClosable, children } = props;
+  const { show, header, onClose, notClosable, className, children } = props;
+  const modalClassname = classnames("pm-modal", className);
 
   if (show) {
     return (
-      <div className="pm-modal" role="dialog" tabIndex="-1">
+      <div className={modalClassname} role="dialog" tabIndex="-1">
         <div className="pm-modal-dialog col-md-5 col-sm-10">
           {!notClosable && (
             <button className="close-icon" onClick={() => onClose()}>

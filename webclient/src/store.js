@@ -3,6 +3,7 @@ import { persistStore, persistCombineReducers } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import authReducer from "./auth/authReducer";
 import homePageReducer from "./UI/home-page/homePageReducer";
+import projectPageReducer from "./UI/project-page/projectPageReducer";
 
 const persistConfig = {
   key: "root",
@@ -11,6 +12,7 @@ const persistConfig = {
 const persistedReducer = persistCombineReducers(persistConfig, {
   auth: authReducer,
   homePage: homePageReducer,
+  projectPage: projectPageReducer,
 });
 
 export const store = createStore(

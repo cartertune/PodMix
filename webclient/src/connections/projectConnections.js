@@ -13,9 +13,11 @@ export const GET_PROJECT_QUERY = gql`
 `;
 
 export const getProject = graphql(GET_PROJECT_QUERY, {
-  options: (props) => ({
-    variables: { id: _.get(props, "match.params.id") },
-  }),
+  options: (props) => {
+    return {
+      variables: { id: _.get(props, "match.params.id") },
+    };
+  },
   props: ({ data: { loading, error, refetch, project } }) => ({
     loading,
     error,
@@ -38,6 +40,25 @@ export const createProject = graphql(CREATE_PROJECT_MUTATION, {
     createProject: (project) => {
       return mutate({
         variables: { project },
+      });
+    },
+  }),
+});
+
+const ADD_MIX_MUTATION = gql`
+  mutation addMix($projectId: ID!, $mix: MixInput!) {
+    addMix(projectId: $projectId, mix: $mix) {
+      ...FullProject
+    }
+  }
+  ${Fragments.project.full}
+`;
+
+export const addMix = graphql(ADD_MIX_MUTATION, {
+  props: ({ mutate }) => ({
+    addMix: (projectId, mix) => {
+      return mutate({
+        variables: { projectId, mix },
       });
     },
   }),

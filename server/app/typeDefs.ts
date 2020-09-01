@@ -27,12 +27,14 @@ const typeDefs = gql`
   type Mix {
     id: ID
     fileUrl: String
+    fileName: String
     title: String
     comments: [Comment]
   }
   input MixInput {
     title: String!
     fileUrl: String!
+    fileName: String
   }
   type Comment {
     id: ID
@@ -49,6 +51,10 @@ const typeDefs = gql`
     minute: Int!
     second: Int!
   }
+  type S3Response {
+    signedRequest: String
+    url: String
+  }
   input SongTimeInput {
     minute: Int!
     second: Int!
@@ -59,6 +65,7 @@ const typeDefs = gql`
     addMix(projectId: ID!, mix: MixInput!): Project
     addComment(projectId: ID!, mixId: ID!, comment: CommentInput!): Project
     addCollaborator(projectId: ID!, email: String!): Project
+    signS3Url(fileType: String!): S3Response
     #completeComment(projectId: ID!, mixId: ID!, commentId: ID!)
   }
   type Query {

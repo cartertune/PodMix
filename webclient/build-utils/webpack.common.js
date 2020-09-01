@@ -1,43 +1,53 @@
+const webpack = require("webpack");
+
 module.exports = {
   entry: ["./src/index.js", "./src/styles/index.scss"],
+  plugins: [
+    new webpack.ProvidePlugin({
+      WaveSurfer: "wavesurfer.js",
+    }),
+  ],
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: ["babel-loader"]
+        use: ["babel-loader"],
       },
       {
         test: /\.scss$/,
         use: [
           {
-            loader: "style-loader"
+            loader: "style-loader",
           },
           {
-            loader: "css-loader"
+            loader: "css-loader",
           },
           {
-            loader: "sass-loader"
-          }
-        ]
+            loader: "sass-loader",
+          },
+        ],
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
-        use: ["file-loader"]
-      }
-    ]
+        use: ["file-loader"],
+      },
+    ],
   },
   resolve: {
-    extensions: ["*", ".js", ".jsx"]
+    extensions: ["*", ".js", ".jsx"],
+    alias: {
+      wavesurfer: require.resolve("wavesurfer.js"),
+    },
   },
   output: {
     path: __dirname + "./../dist",
     publicPath: "/",
-    filename: "bundle.js"
+    filename: "bundle.js",
   },
   devServer: {
     contentBase: "./dist",
     publicPath: "/",
-    historyApiFallback: true
-  }
+    historyApiFallback: true,
+  },
 };
