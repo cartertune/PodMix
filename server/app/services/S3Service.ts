@@ -4,7 +4,7 @@ import _ from "lodash";
 class S3Service {
   constructor() {}
 
-  signURL = async () => {
+  signURL = async (fileType: string) => {
     const region = process.env.AWS_REGION;
     const bucket = process.env.S3_BUCKET_NAME;
 
@@ -23,7 +23,7 @@ class S3Service {
       Bucket: bucket,
       Key: `${uniqueValue}`,
       Expires: 60,
-      ContentType: "audio",
+      ContentType: fileType,
       ACL: "public-read",
     };
 

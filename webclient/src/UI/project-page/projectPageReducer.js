@@ -6,7 +6,7 @@ const defaultState = {
     title: "",
     tempAudio: null,
     audioToUpload: null,
-    fileName: "",
+    file: null,
   },
 };
 

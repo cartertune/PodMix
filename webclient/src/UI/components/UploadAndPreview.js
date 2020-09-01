@@ -1,7 +1,7 @@
 import React from "react";
+import _ from "lodash";
 import Waveform from "./Waveform";
 import Dropzone from "react-dropzone";
-import PlayPauseButton from "./PlayPauseButton";
 import { FiX } from "react-icons/fi";
 
 const AudioUpload = (props) => {
@@ -25,13 +25,13 @@ const AudioUpload = (props) => {
 };
 
 const Preview = (props) => {
-  const { audioFile, fileName, onRemove } = props;
+  const { audioFile, file, onRemove } = props;
 
   return (
     <div className="preview">
       <Waveform audioFile={audioFile} nonPlayable />
       <div className="d-flex align-items-center justify-content-end">
-        <h3 className="mt-1">{fileName}</h3>
+        <h3 className="mt-1">{_.get(file, "name")}</h3>
         <button className="delete-icon" onClick={onRemove}>
           <FiX />
         </button>
@@ -41,15 +41,11 @@ const Preview = (props) => {
 };
 
 const UploadAndPreview = (props) => {
-  const { audioFile, fileName, onDrop, onRemove } = props;
+  const { audioFile, file, onDrop, onRemove } = props;
   return (
     <React.Fragment>
-      {audioFile ? (
-        <Preview
-          audioFile={audioFile}
-          fileName={fileName}
-          onRemove={onRemove}
-        />
+      {file ? (
+        <Preview audioFile={audioFile} file={file} onRemove={onRemove} />
       ) : (
         <AudioUpload onDrop={onDrop} />
       )}

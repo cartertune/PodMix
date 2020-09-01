@@ -7,10 +7,9 @@ import UploadAndPreview from "../components/UploadAndPreview";
 
 const AddMixModal = (props) => {
   const { modalData, show, closeModal, onEditField, onAddMix } = props;
-  const { title, tempAudio, fileName } = modalData;
+  const { title, tempAudio, file } = modalData;
 
   const handleAudioUpload = (file) => {
-    console.log(file);
     const reader = new FileReader();
     reader.onabort = () => console.log("file reading was aborted");
     reader.onerror = () => console.log("file reading has failed");
@@ -18,7 +17,7 @@ const AddMixModal = (props) => {
       // Do whatever you want with the file contents
       const base64Audio = reader.result;
       onEditField({ field: "tempAudio", value: base64Audio });
-      onEditField({ field: "fileName", value: file.name });
+      onEditField({ field: "file", value: file });
     };
     reader.readAsDataURL(file);
   };
@@ -40,15 +39,15 @@ const AddMixModal = (props) => {
       <div className="mt-3 d-flex justify-content-center">
         <UploadAndPreview
           audioFile={tempAudio}
-          fileName={fileName}
+          file={file}
           onDrop={(files) => handleAudioUpload(files[0])}
         />
       </div>
-      {tempAudio && fileName ? (
+      {tempAudio && file ? (
         <div className="mt-4 d-flex justify-content-center">
           <button
             className="btn btn-primary px-4 py-3"
-            onClick={() => onAddMix()}
+            onClick={() => onAddMix({ title, file })}
           >
             <h3>Add Mix</h3>
           </button>

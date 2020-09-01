@@ -13,8 +13,9 @@ class ProjectService extends AModelService {
     projectId: string,
     mix: Mix
   ): Promise<Document> {
+    console.log(validatedUserId, mix, projectId);
     return this.findOneAndUpdate(
-      { _id: projectId, creatorId: validatedUserId },
+      { _id: projectId, ownerId: validatedUserId },
       {
         $push: { mixes: mix },
       }

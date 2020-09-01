@@ -1,13 +1,11 @@
 import _ from "lodash";
 import { connect } from "react-redux";
 import { compose } from "react-apollo";
-import {
-  getProject,
-  addMix,
-  addComment,
-} from "../../connections/projectConnections";
+import { signS3Url } from "../../connections/miscConnections";
+import { addMix, getProject } from "../../connections/projectConnections";
 import { withRouter } from "react-router-dom";
 import ProjectPage from "./ProjectPage";
+import { uploadBase64ToS3 } from "../../util/util";
 
 const mapStateToProps = (state, ownProps) => ({
   ...state.projectPage,
@@ -22,12 +20,47 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   },
 
   // TODO: NOT DONE
-  addMix: ({ title }) => {
-    const { addMix, project } = ownProps;
+  addMix: ({ title, file }) => {
+    const { addMix, signS3Url, project } = ownProps;
+    console.log(project);
     dispatch({ type: "ADDING_MIX" });
-    addMix({ title, fileUrl }).then((res) => {
-      dispatch({ type: "CREATE_PROJECT_SUCCESS" });
-    });
+    signS3Url(file.type)
+      .then(({ data }) => {
+        const signedUrl = _.get(data, "signS3Url.url");
+        const signedRequest = _.get(data, "signS3Url.signedRequest");
+
+        const mix = {
+          title,
+          fileUrl: signedUrl,
+          fileName: file.name,
+        };
+
+        // Save the URL of photo to this event.
+        uploadBase64ToS3(signedRequest, file)
+          // Success!!
+          .then((res) => {
+            addMix(project.id, mix).then((res) => {
+              dispatch({
+                type: "ADD_MIX_SUCCESS",
+              });
+              dispatch({
+                type: "CLOSE_ADD_MIX_MODAL",
+              });
+            });
+          })
+          .catch((err) => {
+            console.log("Error: uploadToS3");
+            console.log(err);
+          });
+      })
+      .catch((err) => {
+        console.log("signS3Url");
+        console.log(err);
+      });
+    // Save the URL of photo to this event.
+    // addMix({ title, fileUrl }).then((res) => {
+    //   dispatch({ type: "CREATE_PROJECT_SUCCESS" });
+    // });
   },
   addComment: ({ mixId, text }) => {
     const { addComment, project } = ownProps;
@@ -39,7 +72,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 export default withRouter(
   compose(
     getProject,
-    // addMix,
+    signS3Url,
+    addMix,
     // addComment,
     connect(
       mapStateToProps,

@@ -44,3 +44,22 @@ export const createProject = graphql(CREATE_PROJECT_MUTATION, {
     },
   }),
 });
+
+const ADD_MIX_MUTATION = gql`
+  mutation addMix($projectId: ID!, $mix: MixInput!) {
+    addMix(projectId: $projectId, mix: $mix) {
+      ...FullProject
+    }
+  }
+  ${Fragments.project.full}
+`;
+
+export const addMix = graphql(ADD_MIX_MUTATION, {
+  props: ({ mutate }) => ({
+    addMix: (projectId, mix) => {
+      return mutate({
+        variables: { projectId, mix },
+      });
+    },
+  }),
+});

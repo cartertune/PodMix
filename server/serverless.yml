@@ -17,6 +17,10 @@ functions:
     environment:
       MONGO_DB_URI: ${file(./config.${self:provider.stage}.json):MONGO_DB_URI, ${self:provider.stage}}
       KEY_ISSUER: ${file(./config.${self:provider.stage}.json):KEY_ISSUER, ${self:provider.stage}}
+      AWS_REGION: ${file(./config.${self:provider.stage}.json):AWS_REGION, ${self:provider.stage}}
+      S3_BUCKET_NAME: ${file(./config.${self:provider.stage}.json):S3_BUCKET_NAME, ${self:provider.stage}}
+      AWS_KEY_ID: ${file(./config.${self:provider.stage}.json):AWS_KEY_ID, ${self:provider.stage}}
+      AWS_SECRET_KEY: ${file(./config.${self:provider.stage}.json):AWS_SECRET_KEY, ${self:provider.stage}}
     events:
       - http:
           path: graphql
