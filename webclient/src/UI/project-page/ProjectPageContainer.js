@@ -22,7 +22,6 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   // TODO: NOT DONE
   addMix: ({ title, file }) => {
     const { addMix, signS3Url, project } = ownProps;
-    console.log(project);
     dispatch({ type: "ADDING_MIX" });
     signS3Url(file.type)
       .then(({ data }) => {

@@ -38,6 +38,7 @@ const AddMixModal = (props) => {
       </div>
       <div className="mt-3 d-flex justify-content-center">
         <UploadAndPreview
+          onRemove={() => onEditField({ field: "file", value: null })}
           audioFile={tempAudio}
           file={file}
           onDrop={(files) => handleAudioUpload(files[0])}
