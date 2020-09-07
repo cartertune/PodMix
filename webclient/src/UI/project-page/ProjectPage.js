@@ -2,6 +2,7 @@ import React from "react";
 import _ from "lodash";
 import AddMixModal from "./AddMixModal";
 import { LoadingScreen } from "../components/Loading";
+import MediaSection from "./MediaSection";
 
 const ProjectPage = (props) => {
   const {
@@ -11,6 +12,10 @@ const ProjectPage = (props) => {
     editMixModalField,
     closeMixModal,
     addMix,
+    selectedMix,
+    handleSelectMix,
+    currentTimestamp,
+    isPlaying,
     project,
   } = props;
 
@@ -36,12 +41,29 @@ const ProjectPage = (props) => {
       );
     }
 
+    if (selectedMix == "") {
+      handleSelectMix(mixes[0].id);
+    }
+
     return (
       <div className="mix-share-section row d-flex justify-content-center">
         <div className="col-4">
-          <select className="form-control" id="exampleFormControlSelect1">
-            {(_.map(mixes), (mix) => <option key={mix.id}>{mix.title}</option>)}
-            <option>5</option>
+          <select
+            className="form-control"
+            value={selectedMix}
+            onChange={(evt) =>
+              handleSelectMix({
+                value: evt.target.value,
+                defaultMixNum: mixes.length + 1,
+              })
+            }
+          >
+            {_.map(mixes, (mix) => (
+              <option key={mix.id} value={mix.id}>
+                {mix.title}
+              </option>
+            ))}
+            <option value="NEW_MIX">Add New Mix</option>
           </select>
         </div>
         <div className="col-4">
@@ -60,7 +82,10 @@ const ProjectPage = (props) => {
         {mixSelect()}
         <div>
           <div className="comment-section mt-4">Comment Section</div>
-          <div className="media-section">Media Section</div>
+          <MediaSection
+            isPlaying={isPlaying}
+            currentTimestamp={currentTimestamp}
+          />
         </div>
       </div>
       <AddMixModal

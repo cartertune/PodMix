@@ -18,7 +18,13 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   editMixModalField: ({ field, value }) => {
     dispatch({ type: "EDIT_ADD_MIX_MODAL_FIELD", field, value });
   },
-
+  handleSelectMix: ({ value, defaultMixNum }) => {
+    if (value === "NEW_MIX") {
+      dispatch({ type: "OPEN_ADD_MIX_MODAL", defaultMixNum });
+    } else {
+      dispatch({ type: "SELECT_MIX", mixId: value });
+    }
+  },
   // TODO: NOT DONE
   addMix: ({ title, file }) => {
     const { addMix, signS3Url, project } = ownProps;
@@ -41,6 +47,11 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
             addMix(project.id, mix).then((res) => {
               dispatch({
                 type: "ADD_MIX_SUCCESS",
+              });
+              const newMixId = _.last(_.get(res, "data.addMix.mixes")).id;
+              dispatch({
+                type: "SELECT_MIX",
+                mixId: newMixId,
               });
               dispatch({
                 type: "CLOSE_ADD_MIX_MODAL",

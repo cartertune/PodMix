@@ -2,6 +2,7 @@ import _ from "lodash";
 
 const defaultState = {
   isMixModalOpen: false,
+  selectedMix: "",
   mixModalData: {
     title: "",
     tempAudio: null,
@@ -13,6 +14,9 @@ const defaultState = {
 const projectPageReducer = (state = defaultState, action) => {
   const newState = _.cloneDeep(state);
   switch (action.type) {
+    case "SELECT_MIX":
+      newState.selectedMix = action.mixId;
+      break;
     case "OPEN_ADD_MIX_MODAL":
       newState.isMixModalOpen = true;
       newState.mixModalData.title = "Mix " + action.defaultMixNum;
