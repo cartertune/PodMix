@@ -29,7 +29,7 @@ const Preview = (props) => {
 
   return (
     <div className="preview">
-      <Waveform audioFile={audioFile} nonPlayable />
+      <Waveform audioFile={audioFile} nonPlayable hideCursor />
       <div className="d-flex align-items-center justify-content-end">
         <h3 className="mt-1">{_.get(file, "name")}</h3>
         <button className="delete-icon" onClick={onRemove}>

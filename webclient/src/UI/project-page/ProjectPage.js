@@ -1,6 +1,7 @@
 import React from "react";
 import _ from "lodash";
 import AddMixModal from "./AddMixModal";
+import AddCommentModal from "./AddCommentModal";
 import { LoadingScreen } from "../components/Loading";
 import MediaSection from "./MediaSection";
 
@@ -12,10 +13,19 @@ const ProjectPage = (props) => {
     editMixModalField,
     closeMixModal,
     addMix,
-    selectedMix,
+    openCommentModal,
+    commentModalData,
+    isCommentModalOpen,
+    editCommentModalField,
+    closeCommentModal,
+    addComment,
+    selectedMixId,
     handleSelectMix,
     currentTimestamp,
     isPlaying,
+    audioPosition,
+    handleTogglePlay,
+    handlePosChange,
     project,
   } = props;
 
@@ -41,16 +51,16 @@ const ProjectPage = (props) => {
       );
     }
 
-    if (selectedMix == "") {
-      handleSelectMix(mixes[0].id);
+    if (selectedMixId == "") {
+      handleSelectMix({ value: mixes[0].id });
     }
 
     return (
       <div className="mix-share-section row d-flex justify-content-center">
         <div className="col-4">
           <select
-            className="form-control"
-            value={selectedMix}
+            className="form-control mix-select"
+            value={selectedMixId}
             onChange={(evt) =>
               handleSelectMix({
                 value: evt.target.value,
@@ -67,12 +77,15 @@ const ProjectPage = (props) => {
           </select>
         </div>
         <div className="col-4">
-          <button className="btn btn-primary w-100 h-100">Share</button>
+          <button className="btn btn-primary w-100 h-100">
+            <h3>Share</h3>
+          </button>
         </div>
       </div>
     );
   };
 
+  const selectedMix = _.find(mixes, (m) => m.id == selectedMixId) || {};
   return (
     <React.Fragment>
       <div className="project-page">
@@ -80,13 +93,19 @@ const ProjectPage = (props) => {
           <h1>{title}</h1>
         </div>
         {mixSelect()}
-        <div>
-          <div className="comment-section mt-4">Comment Section</div>
-          <MediaSection
-            isPlaying={isPlaying}
-            currentTimestamp={currentTimestamp}
-          />
-        </div>
+        {selectedMix && !isCommentModalOpen ? (
+          <div>
+            <div className="comment-section mt-4">Comment Section</div>
+            <MediaSection
+              audioUrl={selectedMix.fileUrl}
+              isPlaying={isPlaying}
+              audioPosition={audioPosition}
+              handleTogglePlay={handleTogglePlay}
+              handlePosChange={handlePosChange}
+              onCommentButtonPress={openCommentModal}
+            />
+          </div>
+        ) : null}
       </div>
       <AddMixModal
         modalData={mixModalData}
@@ -94,6 +113,16 @@ const ProjectPage = (props) => {
         onEditField={editMixModalField}
         closeModal={closeMixModal}
         onAddMix={addMix}
+      />
+      <AddCommentModal
+        modalData={commentModalData}
+        show={isCommentModalOpen}
+        onEditField={editCommentModalField}
+        closeModal={closeCommentModal}
+        onAddComment={addComment}
+        audioUrl={selectedMix.fileUrl}
+        audioPosition={audioPosition}
+        handlePosChange={handlePosChange}
       />
     </React.Fragment>
   );

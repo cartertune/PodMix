@@ -18,6 +18,13 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   editMixModalField: ({ field, value }) => {
     dispatch({ type: "EDIT_ADD_MIX_MODAL_FIELD", field, value });
   },
+  openCommentModal: () => {
+    dispatch({ type: "OPEN_ADD_COMMENT_MODAL" });
+  },
+  closeCommentModal: () => dispatch({ type: "CLOSE_ADD_COMMENT_MODAL" }),
+  editCommentModalField: ({ field, value }) => {
+    dispatch({ type: "EDIT_ADD_COMMENT_MODAL_FIELD", field, value });
+  },
   handleSelectMix: ({ value, defaultMixNum }) => {
     if (value === "NEW_MIX") {
       dispatch({ type: "OPEN_ADD_MIX_MODAL", defaultMixNum });
@@ -25,7 +32,12 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
       dispatch({ type: "SELECT_MIX", mixId: value });
     }
   },
-  // TODO: NOT DONE
+  handleTogglePlay: () => {
+    dispatch({ type: "TOGGLE_PLAY_PAUSE" });
+  },
+  handlePosChange: (pos) => {
+    dispatch({ type: "SET_AUDIO_POSITION", pos });
+  },
   addMix: ({ title, file }) => {
     const { addMix, signS3Url, project } = ownProps;
     dispatch({ type: "ADDING_MIX" });
@@ -67,12 +79,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
         console.log("signS3Url");
         console.log(err);
       });
-    // Save the URL of photo to this event.
-    // addMix({ title, fileUrl }).then((res) => {
-    //   dispatch({ type: "CREATE_PROJECT_SUCCESS" });
-    // });
   },
-  addComment: ({ mixId, text }) => {
+  addComment: ({ mixId, text, audioPosition }) => {
     const { addComment, project } = ownProps;
     dispatch({ type: "ADDING_COMMENT" });
     addComment({ text });

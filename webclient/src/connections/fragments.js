@@ -29,10 +29,7 @@ Fragments.project = {
         fileName
         comments {
           id
-          time {
-            minute
-            second
-          }
+          time
           text
           creator {
             id

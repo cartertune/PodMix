@@ -38,26 +38,18 @@ const typeDefs = gql`
   }
   type Comment {
     id: ID
-    time: SongTime # may need to rethink formatting
+    time: Int # time in seconds
     text: String
     # isComplete: Boolean
     creator: User
   }
   input CommentInput {
-    time: SongTimeInput!
+    time: Int!
     text: String!
-  }
-  type SongTime {
-    minute: Int!
-    second: Int!
   }
   type S3Response {
     signedRequest: String
     url: String
-  }
-  input SongTimeInput {
-    minute: Int!
-    second: Int!
   }
   type Mutation {
     login: User

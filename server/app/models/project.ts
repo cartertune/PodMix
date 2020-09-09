@@ -1,14 +1,9 @@
 import { Document, Schema, model } from "mongoose";
 import { ObjectID } from "bson";
 
-export interface SongTime {
-  minute: number;
-  second: number;
-}
-
 export interface Comment {
   _id: string;
-  time: SongTime;
+  time: number;
   text: string;
   creatorId: string;
 }
@@ -28,14 +23,9 @@ export interface Project extends Document {
   collaboratorEmails: [string];
 }
 
-const SongTimeSchema: Schema = new Schema({
-  minute: { type: Number, required: true },
-  second: { type: Number, required: true },
-});
-
 const CommentSchema: Schema = new Schema(
   {
-    time: { type: SongTimeSchema, required: true },
+    time: { type: Number, required: true },
     text: { type: String, required: true },
     creatorId: { type: ObjectID, ref: "User", index: true },
   },

@@ -2,6 +2,9 @@
   height: 100vh;
   padding-bottom: 30px;
 
+  .mix-select {
+    font-weight: 600;
+  }
   .comment-section {
     background: $pm-muted-white;
     border-radius: 8px;
@@ -12,20 +15,21 @@
     bottom: 30px;
     left: 20px;
     right: 20px;
-    background: $pm-muted-white;
-    height: 200px;
-    border-radius: 8px;
+  }
+
+  .comment-button {
+    height: 46px;
+    width: 46px;
+    border-radius: 23px;
+    font-size: 2em;
+
+    svg {
+      stroke-width: 3px;
+    }
   }
 }
 
 .add-mix-modal {
-  .play-pause-button {
-    height: 52px;
-    width: 52px;
-    border-radius: 26px;
-    border: none;
-  }
-
   .preview {
     width: 100%;
 

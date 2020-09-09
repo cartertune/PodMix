@@ -2,53 +2,43 @@ require("wavesurfer.js/dist/plugin/wavesurfer.minimap.min.js");
 import React from "react";
 import Wavesurfer from "react-wavesurfer";
 
-const green = "#329d92";
 const purple = "#5032e8";
+const progressPurple = "rgba(0, 0, 0, 0.5)";
 const black = "#181a1e";
 
 class Waveform extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      playing: false,
-      pos: 0,
-    };
-    this.handleTogglePlay = this.handleTogglePlay.bind(this);
     this.handlePosChange = this.handlePosChange.bind(this);
-  }
-  handleTogglePlay() {
-    this.setState({
-      playing: !this.state.playing,
-    });
   }
 
   handlePosChange(e) {
-    const { nonPlayable } = this.props;
-    if (nonPlayable) {
-      return null;
-    }
-
-    this.setState({
-      pos: e.originalArgs[0],
-    });
+    const { handlePosChange } = this.props;
+    handlePosChange(e.originalArgs[0]);
   }
   render() {
-    const { audioFile, nonPlayable } = this.props;
-    const { pos, playing } = this.state;
+    const {
+      audioPosition,
+      audioFile,
+      isPlaying,
+      onFinish,
+      hideCursor,
+    } = this.props;
     return (
       <div className="waveform">
         <audio src={audioFile} />
         <Wavesurfer
           id="#wave"
           audioFile={audioFile}
-          pos={pos}
-          onPosChange={this.handlePosChange}
-          playing={playing}
+          pos={audioPosition}
+          onPosChange={(e) => this.handlePosChange(e)}
+          onFinish={(e) => onFinish()}
+          playing={isPlaying}
           options={{
-            waveColor: nonPlayable ? purple : green,
-            progressColor: purple,
-            cursorColor: nonPlayable ? "transparent" : black,
+            waveColor: purple,
+            progressColor: hideCursor ? purple : progressPurple,
+            cursorColor: hideCursor ? "transparent" : black,
           }}
         />
       </div>

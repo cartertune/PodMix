@@ -50,6 +50,10 @@ p,
   text-align: center;
   justify-content: center;
 
+  &:disabled {
+    background-color: $pm-muted-green;
+  }
+
   &:hover,
   &:focus {
     background-color: $pm-green !important;
