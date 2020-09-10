@@ -1,7 +1,7 @@
 import React from "react";
 import Waveform from "../components/Waveform";
 import PlayPauseButton from "../components/PlayPauseButton";
-import { FiMessageSquare } from "react-icons/fi";
+import AddCommentButton from "../components/AddCommentButton";
 
 const MediaSection = (props) => {
   const {
@@ -20,9 +20,7 @@ const MediaSection = (props) => {
           <PlayPauseButton isPlaying={isPlaying} onPress={handleTogglePlay} />
         </div>
         <div className="col-2 d-flex flex-column justify-content-center">
-          <button className="btn btn-primary comment-button">
-            <FiMessageSquare onClick={onCommentButtonPress} />
-          </button>
+          <AddCommentButton onClick={onCommentButtonPress} />
         </div>
       </div>
       <div className="sound-timeline w-100">

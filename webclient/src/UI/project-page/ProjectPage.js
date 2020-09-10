@@ -115,6 +115,7 @@ const ProjectPage = (props) => {
         onAddMix={addMix}
       />
       <AddCommentModal
+        selectedMixId={selectedMixId}
         modalData={commentModalData}
         show={isCommentModalOpen}
         onEditField={editCommentModalField}

@@ -2,7 +2,11 @@ import _ from "lodash";
 import { connect } from "react-redux";
 import { compose } from "react-apollo";
 import { signS3Url } from "../../connections/miscConnections";
-import { addMix, getProject } from "../../connections/projectConnections";
+import {
+  addMix,
+  addComment,
+  getProject,
+} from "../../connections/projectConnections";
 import { withRouter } from "react-router-dom";
 import ProjectPage from "./ProjectPage";
 import { uploadBase64ToS3 } from "../../util/util";
@@ -83,7 +87,14 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   addComment: ({ mixId, text, audioPosition }) => {
     const { addComment, project } = ownProps;
     dispatch({ type: "ADDING_COMMENT" });
-    addComment({ text });
+    const comment = {
+      time: _.floor(audioPosition),
+      text,
+    };
+    console.log(comment, mixId, project.id);
+    addComment({ comment, mixId, projectId: project.id }).then(() => {
+      dispatch({ type: "CLOSE_ADD_COMMENT_MODAL" });
+    });
   },
 });
 
@@ -92,7 +103,7 @@ export default withRouter(
     getProject,
     signS3Url,
     addMix,
-    // addComment,
+    addComment,
     connect(
       mapStateToProps,
       mapDispatchToProps

@@ -4,9 +4,12 @@ import PropTypes from "prop-types";
 import Modal from "../components/Modal";
 import Textarea from "../components/Textarea";
 import Waveform from "../components/Waveform";
+import { secondsToTimestamp } from "../../util/util";
+import AddCommentButton from "../components/AddCommentButton";
 
 const AddCommentModal = (props) => {
   const {
+    selectedMixId,
     modalData,
     show,
     closeModal,
@@ -32,22 +35,24 @@ const AddCommentModal = (props) => {
           handlePosChange={handlePosChange}
         />
       </div>
-      <div className="mt-4">
-        <Textarea
-          value={text}
-          onChange={(value) => onEditField({ field: "text", value })}
-          placeholder="Add comment here..."
-        />
-      </div>
+      <div className="row mt-3">
+        <div className="col-10">
+          <Textarea
+            timestamp={secondsToTimestamp(audioPosition)}
+            value={text}
+            onChange={(value) => onEditField({ field: "text", value })}
+            placeholder="Add comment here..."
+          />
+        </div>
 
-      <div className="mt-4 d-flex justify-content-center">
-        <button
-          className="btn btn-primary px-4 py-3"
-          disabled={text.length == 0}
-          onClick={() => onAddComment({ selectedMixId, text, audioPosition })}
-        >
-          <h3>Add Comment</h3>
-        </button>
+        <div className="col-2 d-flex flex-column justify-content-center">
+          <AddCommentButton
+            onClick={() =>
+              onAddComment({ mixId: selectedMixId, text, audioPosition })
+            }
+            disabled={text == ""}
+          />
+        </div>
       </div>
     </Modal>
   );

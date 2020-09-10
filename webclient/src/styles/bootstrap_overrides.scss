@@ -37,6 +37,8 @@ p,
   font-family: $font-family-secondary;
   font-size: 16px;
   font-weight: normal;
+  color: $pm-white;
+  margin: 0;
 }
 
 .btn-primary {
@@ -106,6 +108,22 @@ p,
     color: $pm-white;
     background-color: $pm-muted-white;
     box-shadow: 0 0 0 0.2rem $pm-muted-green;
+  }
+}
+
+.timestamp-container {
+  position: absolute;
+  bottom: 0;
+  left: 12px;
+  top: 0;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.textbox {
+  &.withtimestamp {
+    padding-left: 66px;
   }
 }
 
