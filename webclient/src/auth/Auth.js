@@ -60,7 +60,6 @@ class Auth {
 
   isLoggedIn() {
     const userId = _.get(this.getAuthState(), "user.id");
-    console.log(userId);
     return !!userId;
   }
 

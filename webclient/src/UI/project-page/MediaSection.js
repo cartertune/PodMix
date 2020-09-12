@@ -12,6 +12,11 @@ const MediaSection = (props) => {
     handlePosChange,
     onCommentButtonPress,
   } = props;
+
+  if (!audioUrl) {
+    return null;
+  }
+
   return (
     <div className="media-section">
       <div className="media-button-section row">

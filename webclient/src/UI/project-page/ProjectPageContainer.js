@@ -40,7 +40,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     dispatch({ type: "TOGGLE_PLAY_PAUSE" });
   },
   handlePosChange: (pos) => {
-    dispatch({ type: "SET_AUDIO_POSITION", pos });
+    dispatch({ type: "SET_AUDIO_POSITION", pos: _.floor(pos, 1) });
   },
   addMix: ({ title, file }) => {
     const { addMix, signS3Url, project } = ownProps;

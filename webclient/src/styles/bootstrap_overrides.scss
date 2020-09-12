@@ -109,6 +109,10 @@ p,
     background-color: $pm-muted-white;
     box-shadow: 0 0 0 0.2rem $pm-muted-green;
   }
+
+  &.withtimestamp {
+    padding-left: 66px;
+  }
 }
 
 .timestamp-container {
@@ -119,12 +123,6 @@ p,
   justify-content: center;
   align-items: center;
   display: flex;
-}
-
-.textbox {
-  &.withtimestamp {
-    padding-left: 66px;
-  }
 }
 
 .spinner-border {

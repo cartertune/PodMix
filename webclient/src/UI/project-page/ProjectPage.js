@@ -4,6 +4,7 @@ import AddMixModal from "./AddMixModal";
 import AddCommentModal from "./AddCommentModal";
 import { LoadingScreen } from "../components/Loading";
 import MediaSection from "./MediaSection";
+import Comment from "./Comment";
 
 const ProjectPage = (props) => {
   const {
@@ -35,7 +36,7 @@ const ProjectPage = (props) => {
 
   const { id, title, owner, mixes } = project;
 
-  const mixSelect = () => {
+  const renderProjectButtons = () => {
     if (_.isEmpty(mixes)) {
       return (
         <div className="mix-share-section row d-flex justify-content-center mt-4">
@@ -92,10 +93,18 @@ const ProjectPage = (props) => {
         <div className="header-section text-center">
           <h1>{title}</h1>
         </div>
-        {mixSelect()}
-        {selectedMix && !isCommentModalOpen ? (
+        {renderProjectButtons()}
+        {selectedMix != {} && !isCommentModalOpen ? (
           <div>
-            <div className="comment-section mt-4">Comment Section</div>
+            <div className="comment-section mt-4">
+              {_.map(selectedMix.comments, (comment) => (
+                <Comment
+                  key={comment.id}
+                  comment={comment}
+                  onClick={() => handlePosChange(comment.time)}
+                />
+              ))}
+            </div>
             <MediaSection
               audioUrl={selectedMix.fileUrl}
               isPlaying={isPlaying}
