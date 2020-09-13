@@ -17,8 +17,8 @@ const typeDefs = gql`
     id: ID
     title: String
     owner: User
-    collaboratorEmails: [String]
     collaborators: [User]
+    collaboratorEmails: [String]
     mixes: [Mix]
   }
   input ProjectInput {

@@ -20,21 +20,26 @@ const ProjectPage = (props) => {
     editCommentModalField,
     closeCommentModal,
     addComment,
+    openCollaboratorModal,
+    collaboratorModalData,
+    isCollaboratorModalOpen,
+    editCollaboratorModalField,
+    closeCollaboratorModal,
     selectedMixId,
     handleSelectMix,
-    currentTimestamp,
     isPlaying,
     audioPosition,
     handleTogglePlay,
     handlePosChange,
     project,
+    onAddCollaborator,
   } = props;
 
   if (!project) {
     return <LoadingScreen />;
   }
 
-  const { id, title, owner, mixes } = project;
+  const { id, title, owner, mixes, collaborators } = project;
 
   const renderProjectButtons = () => {
     if (_.isEmpty(mixes)) {
@@ -78,7 +83,10 @@ const ProjectPage = (props) => {
           </select>
         </div>
         <div className="col-4">
-          <button className="btn btn-primary w-100 h-100">
+          <button
+            className="btn btn-primary w-100 h-100"
+            onClick={openCollaboratorModal}
+          >
             <h3>Share</h3>
           </button>
         </div>
@@ -133,6 +141,25 @@ const ProjectPage = (props) => {
         audioUrl={selectedMix.fileUrl}
         audioPosition={audioPosition}
         handlePosChange={handlePosChange}
+      />
+      <AddCommentModal
+        selectedMixId={selectedMixId}
+        modalData={commentModalData}
+        show={isCommentModalOpen}
+        onEditField={editCommentModalField}
+        closeModal={closeCommentModal}
+        onAddComment={addComment}
+        audioUrl={selectedMix.fileUrl}
+        audioPosition={audioPosition}
+        handlePosChange={handlePosChange}
+      />
+      <AddCollaboratorsModal
+        modalData={collaboratorModalData}
+        show={isCollaboratorModalOpen}
+        onEditField={editCollaboratorModalField}
+        closeModal={closeCollaboratorModal}
+        onAddCollaborator={onAddCollaborator}
+        collaborators={collaborators}
       />
     </React.Fragment>
   );

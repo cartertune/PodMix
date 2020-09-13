@@ -5,6 +5,7 @@ import { signS3Url } from "../../connections/miscConnections";
 import {
   addMix,
   addComment,
+  addCollaborator,
   getProject,
 } from "../../connections/projectConnections";
 import { withRouter } from "react-router-dom";
@@ -28,6 +29,14 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   closeCommentModal: () => dispatch({ type: "CLOSE_ADD_COMMENT_MODAL" }),
   editCommentModalField: ({ field, value }) => {
     dispatch({ type: "EDIT_ADD_COMMENT_MODAL_FIELD", field, value });
+  },
+  openCollaboratorModal: () => {
+    dispatch({ type: "OPEN_ADD_COLLABORATOR_MODAL" });
+  },
+  closeCollaboratorModal: () =>
+    dispatch({ type: "CLOSE_ADD_COLLABORATOR_MODAL" }),
+  editCollaboratorModalField: ({ field, value }) => {
+    dispatch({ type: "EDIT_ADD_COLLABORATOR_MODAL_FIELD", field, value });
   },
   handleSelectMix: ({ value, defaultMixNum }) => {
     if (value === "NEW_MIX") {
@@ -91,9 +100,15 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
       time: _.floor(audioPosition),
       text,
     };
-    console.log(comment, mixId, project.id);
     addComment({ comment, mixId, projectId: project.id }).then(() => {
       dispatch({ type: "CLOSE_ADD_COMMENT_MODAL" });
+    });
+  },
+  addCollaborator: ({ email }) => {
+    const { addCollaborator, project } = ownProps;
+    dispatch({ type: "ADDING_COLLABORATOR" });
+    addCollaborator({ email }).then(() => {
+      dispatch({ type: "CLOSE_ADD_COLLABORATOR_MODAL" });
     });
   },
 });
@@ -104,6 +119,7 @@ export default withRouter(
     signS3Url,
     addMix,
     addComment,
+    addCollaborator,
     connect(
       mapStateToProps,
       mapDispatchToProps

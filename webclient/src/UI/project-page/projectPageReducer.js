@@ -2,6 +2,8 @@ import _ from "lodash";
 
 const defaultState = {
   isMixModalOpen: false,
+  isCommentModalOpen: false,
+  isCollaboratorModalOpen: false,
   selectedMixId: "",
   mixModalData: {
     title: "",
@@ -11,6 +13,9 @@ const defaultState = {
   },
   commentModalData: {
     text: "",
+  },
+  collaboratorModalData: {
+    email: "",
   },
   isPlaying: false,
   audioPosition: 0,
@@ -48,6 +53,16 @@ const projectPageReducer = (state = defaultState, action) => {
       break;
     case "EDIT_ADD_COMMENT_MODAL_FIELD":
       newState.commentModalData[action.field] = action.value;
+      break;
+    case "OPEN_ADD_COLLABORATOR_MODAL":
+      newState.isCollaboratorModalOpen = true;
+      break;
+    case "CLOSE_ADD_COLLABORATOR_MODAL":
+      newState.isCollaboratorModalOpen = false;
+      newState.collaboratorModalData = defaultState.collaboratorModalData;
+      break;
+    case "EDIT_ADD_COLLABORATOR_MODAL_FIELD":
+      newState.collaboratorModalData[action.field] = action.value;
       break;
     default:
   }

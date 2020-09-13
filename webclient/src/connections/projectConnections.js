@@ -82,3 +82,22 @@ export const addComment = graphql(ADD_COMMENT_MUTATION, {
     },
   }),
 });
+
+const ADD_COLLABORATOR_MUTATION = gql`
+  mutation addCollaborator($projectId: ID!, $email: String!) {
+    addCollaborator(projectId: $projectId, email: $email) {
+      ...FullProject
+    }
+  }
+  ${Fragments.project.full}
+`;
+
+export const addCollaborator = graphql(ADD_COLLABORATOR_MUTATION, {
+  props: ({ mutate }) => ({
+    addCollaborator: (projectId, email) => {
+      return mutate({
+        variables: { projectId, email },
+      });
+    },
+  }),
+});
