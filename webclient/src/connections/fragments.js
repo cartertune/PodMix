@@ -52,8 +52,8 @@ Fragments.user = {
       name
       avatarUrl
       email
-      project {
-        ...Project
+      projects {
+        ...FullProject
       }
       __typename
     }

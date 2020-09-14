@@ -2,6 +2,7 @@ import React from "react";
 import _ from "lodash";
 import AddMixModal from "./AddMixModal";
 import AddCommentModal from "./AddCommentModal";
+import AddCollaboratorsModal from "./AddCollaboratorsModal";
 import { LoadingScreen } from "../components/Loading";
 import MediaSection from "./MediaSection";
 import Comment from "./Comment";
@@ -25,6 +26,7 @@ const ProjectPage = (props) => {
     isCollaboratorModalOpen,
     editCollaboratorModalField,
     closeCollaboratorModal,
+    addCollaborator,
     selectedMixId,
     handleSelectMix,
     isPlaying,
@@ -32,7 +34,6 @@ const ProjectPage = (props) => {
     handleTogglePlay,
     handlePosChange,
     project,
-    onAddCollaborator,
   } = props;
 
   if (!project) {
@@ -106,11 +107,12 @@ const ProjectPage = (props) => {
           <div>
             <div className="comment-section mt-4">
               {_.map(selectedMix.comments, (comment) => (
-                <Comment
-                  key={comment.id}
-                  comment={comment}
-                  onClick={() => handlePosChange(comment.time)}
-                />
+                <div key={comment.id} className="mb-2">
+                  <Comment
+                    comment={comment}
+                    onClick={() => handlePosChange(comment.time)}
+                  />
+                </div>
               ))}
             </div>
             <MediaSection
@@ -158,7 +160,7 @@ const ProjectPage = (props) => {
         show={isCollaboratorModalOpen}
         onEditField={editCollaboratorModalField}
         closeModal={closeCollaboratorModal}
-        onAddCollaborator={onAddCollaborator}
+        onAddCollaborator={addCollaborator}
         collaborators={collaborators}
       />
     </React.Fragment>

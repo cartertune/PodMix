@@ -61,7 +61,7 @@ const typeDefs = gql`
     #completeComment(projectId: ID!, mixId: ID!, commentId: ID!)
   }
   type Query {
-    currentUser(id: ID!): User
+    currentUser: User
     project(id: ID!): Project
   }
 `;

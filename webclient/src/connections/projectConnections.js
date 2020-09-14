@@ -94,7 +94,7 @@ const ADD_COLLABORATOR_MUTATION = gql`
 
 export const addCollaborator = graphql(ADD_COLLABORATOR_MUTATION, {
   props: ({ mutate }) => ({
-    addCollaborator: (projectId, email) => {
+    addCollaborator: ({ projectId, email }) => {
       return mutate({
         variables: { projectId, email },
       });

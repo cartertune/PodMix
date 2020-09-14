@@ -64,6 +64,9 @@ const projectPageReducer = (state = defaultState, action) => {
     case "EDIT_ADD_COLLABORATOR_MODAL_FIELD":
       newState.collaboratorModalData[action.field] = action.value;
       break;
+    case "ADDING_COLLABORATOR":
+      newState.collaboratorModalData = defaultState.collaboratorModalData;
+      break;
     default:
   }
   return newState;

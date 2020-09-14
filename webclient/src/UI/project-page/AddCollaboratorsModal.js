@@ -32,19 +32,19 @@ const AddCollaboratorsModal = (props) => {
         </div>
         <div className="col-4">
           <button
-            className="btn btn-primary px-4 py-3"
+            className="btn btn-primary px-4 py-3 w-100"
             onClick={() => onAddCollaborator({ email })}
           >
             <h3>Share</h3>
           </button>
         </div>
-        <div classname="row mt-4">
+      </div>
+      <div className="mt-2 row">
+        <div className="col-12">
           {_.map(collaborators, (c) => {
             return (
-              <div className="col-12" key={c.email}>
-                <div className="form-control">
-                  <p>{c.email}</p>
-                </div>
+              <div className="form-control mt-2" key={c.email}>
+                <p>{c.email}</p>
               </div>
             );
           })}

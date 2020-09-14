@@ -4,6 +4,7 @@ import { compose } from "react-apollo";
 import { createProject } from "../../connections/projectConnections";
 import { withRouter } from "react-router-dom";
 import HomePage from "../home-page/HomePage";
+import { getCurrentUser } from "../../connections/userConnections";
 
 const mapStateToProps = (state, ownProps) => ({
   ...state.homePage,
@@ -29,6 +30,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 
 export default withRouter(
   compose(
+    getCurrentUser,
     createProject,
     connect(
       mapStateToProps,

@@ -46,7 +46,7 @@ p,
   border: none;
   border-radius: 8px;
   box-shadow: none !important;
-  min-height: 48px;
+  min-height: 52px;
   display: flex;
   align-items: center;
   text-align: center;
@@ -97,12 +97,17 @@ p,
   justify-content: center;
 }
 
+.textbox {
+  padding-top: 10%;
+}
+
 .form-control {
   color: $pm-white;
   background-color: $pm-muted-white;
   border: none;
-  line-height: 48px;
-  min-height: 48px;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
 
   &:focus {
     color: $pm-white;

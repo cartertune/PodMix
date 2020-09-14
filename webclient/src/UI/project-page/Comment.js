@@ -6,9 +6,14 @@ const Comment = (props) => {
   const { time, text } = comment;
 
   return (
-    <div className="form-control position-relative" onClick={onClick}>
+    <div className="position-relative">
       <div className="timestamp-container">
         <p>{secondsToTimestamp(time)}</p>
+      </div>
+      <div
+        className="form-control position-relative withtimestamp"
+        onClick={onClick}
+      >
         <p>{text}</p>
       </div>
     </div>

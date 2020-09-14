@@ -49,6 +49,9 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     dispatch({ type: "TOGGLE_PLAY_PAUSE" });
   },
   handlePosChange: (pos) => {
+    dispatch({ type: "SET_AUDIO_POSITION", pos });
+  },
+  handleCommentClick: (pos) => {
     dispatch({ type: "SET_AUDIO_POSITION", pos: _.floor(pos, 1) });
   },
   addMix: ({ title, file }) => {
@@ -107,9 +110,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   addCollaborator: ({ email }) => {
     const { addCollaborator, project } = ownProps;
     dispatch({ type: "ADDING_COLLABORATOR" });
-    addCollaborator({ email }).then(() => {
-      dispatch({ type: "CLOSE_ADD_COLLABORATOR_MODAL" });
-    });
+    addCollaborator({ projectId: project.id, email });
   },
 });
 
