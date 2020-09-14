@@ -70,8 +70,13 @@
 }
 
 .header-logo {
-  height: 40px;
-  margin-right: 52px !important;
+  position: absolute;
+  height: 48px;
+  width: 48px;
+  margin-top: -10px;
+
+  top: 0;
+  left: 0;
 
   img {
     height: 100%;

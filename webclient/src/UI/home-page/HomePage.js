@@ -4,6 +4,7 @@ import Auth from "../../auth/Auth";
 import LoginSplashPage from "./LoginSplashPage";
 import CreateProjectModal from "./CreateProjectModal";
 import ProjectItem from "./ProjectItem";
+import { LoadingScreen } from "../components/Loading";
 
 const HomePage = (props) => {
   const {
@@ -16,8 +17,12 @@ const HomePage = (props) => {
     currentUser,
   } = props;
 
-  if (!Auth.isLoggedIn() || !currentUser) {
+  if (!Auth.isLoggedIn()) {
     return <LoginSplashPage {...props} />;
+  }
+
+  if (!currentUser) {
+    return <LoadingScreen />;
   }
 
   return (

@@ -11,10 +11,17 @@ const AddCollaboratorsModal = (props) => {
     closeModal,
     onEditField,
     onAddCollaborator,
-    collaborators,
+    project,
   } = props;
   const { email } = modalData;
 
+  const getCollaborators = () => {
+    const { collaborators, collaboratorEmails } = project;
+    const e = _.map(collaboratorEmails, (email) => ({
+      email,
+    }));
+    return _.unionBy(collaborators, e, "email");
+  };
   return (
     <Modal
       header="Share"
@@ -41,7 +48,7 @@ const AddCollaboratorsModal = (props) => {
       </div>
       <div className="mt-2 row">
         <div className="col-12">
-          {_.map(collaborators, (c) => {
+          {_.map(getCollaborators(), (c) => {
             return (
               <div className="form-control mt-2" key={c.email}>
                 <p>{c.email}</p>

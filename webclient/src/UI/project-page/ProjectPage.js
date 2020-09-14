@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import _ from "lodash";
 import AddMixModal from "./AddMixModal";
 import AddCommentModal from "./AddCommentModal";
@@ -6,6 +7,7 @@ import AddCollaboratorsModal from "./AddCollaboratorsModal";
 import { LoadingScreen } from "../components/Loading";
 import MediaSection from "./MediaSection";
 import Comment from "./Comment";
+import logo from "../../resources/Logo.png";
 
 const ProjectPage = (props) => {
   const {
@@ -99,7 +101,10 @@ const ProjectPage = (props) => {
   return (
     <React.Fragment>
       <div className="project-page">
-        <div className="header-section text-center">
+        <div className="header-section text-center position-relative">
+          <Link className="header-logo" to="/">
+            <img src={logo} />
+          </Link>
           <h1>{title}</h1>
         </div>
         {renderProjectButtons()}
@@ -161,7 +166,7 @@ const ProjectPage = (props) => {
         onEditField={editCollaboratorModalField}
         closeModal={closeCollaboratorModal}
         onAddCollaborator={addCollaborator}
-        collaborators={collaborators}
+        project={project}
       />
     </React.Fragment>
   );
