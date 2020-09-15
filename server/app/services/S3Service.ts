@@ -5,12 +5,12 @@ class S3Service {
   constructor() {}
 
   signURL = async (fileType: string) => {
-    const region = process.env.AWS_REGION;
+    const region = process.env.PM_AWS_REGION;
     const bucket = process.env.S3_BUCKET_NAME;
 
     const s3 = new AWS.S3({
-      accessKeyId: process.env.AWS_KEY_ID,
-      secretAccessKey: process.env.AWS_SECRET_KEY,
+      accessKeyId: process.env.PM_AWS_KEY_ID,
+      secretAccessKey: process.env.PM_AWS_SECRET_KEY,
       signatureVersion: "v4",
       region,
     });
