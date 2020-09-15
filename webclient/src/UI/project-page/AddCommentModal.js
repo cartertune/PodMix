@@ -18,6 +18,7 @@ const AddCommentModal = (props) => {
     audioUrl,
     audioPosition,
     handlePosChange,
+    isAddingComment,
   } = props;
   const { text } = modalData;
 
@@ -50,6 +51,7 @@ const AddCommentModal = (props) => {
             onClick={() =>
               onAddComment({ mixId: selectedMixId, text, audioPosition })
             }
+            isLoading={isAddingComment}
             disabled={text == ""}
           />
         </div>

@@ -4,6 +4,9 @@ const defaultState = {
   isMixModalOpen: false,
   isCommentModalOpen: false,
   isCollaboratorModalOpen: false,
+  isAddingMix: false,
+  isAddingComment: false,
+  isAddingCollaborator: false,
   selectedMixId: "",
   mixModalData: {
     title: "",
@@ -44,6 +47,9 @@ const projectPageReducer = (state = defaultState, action) => {
     case "EDIT_ADD_MIX_MODAL_FIELD":
       newState.mixModalData[action.field] = action.value;
       break;
+    case "ADDING_MIX":
+      newState.isAddingMix = true;
+      break;
     case "OPEN_ADD_COMMENT_MODAL":
       newState.isCommentModalOpen = true;
       break;
@@ -53,6 +59,9 @@ const projectPageReducer = (state = defaultState, action) => {
       break;
     case "EDIT_ADD_COMMENT_MODAL_FIELD":
       newState.commentModalData[action.field] = action.value;
+      break;
+    case "ADDING_COMMENT":
+      newState.isAddingComment = true;
       break;
     case "OPEN_ADD_COLLABORATOR_MODAL":
       newState.isCollaboratorModalOpen = true;
@@ -66,6 +75,10 @@ const projectPageReducer = (state = defaultState, action) => {
       break;
     case "ADDING_COLLABORATOR":
       newState.collaboratorModalData = defaultState.collaboratorModalData;
+      newState.isAddingCollaborator = true;
+      break;
+    case "ADD_COLLABORATOR_SUCCESS":
+      newState.isAddingCollaborator = false;
       break;
     default:
   }

@@ -3,6 +3,7 @@ import _ from "lodash";
 import PropTypes from "prop-types";
 import Modal from "../components/Modal";
 import Input from "../components/Input";
+import Button from "../components/Button";
 
 const AddCollaboratorsModal = (props) => {
   const {
@@ -12,6 +13,7 @@ const AddCollaboratorsModal = (props) => {
     onEditField,
     onAddCollaborator,
     project,
+    isAddingCollaborator,
   } = props;
   const { email } = modalData;
 
@@ -38,12 +40,13 @@ const AddCollaboratorsModal = (props) => {
           />
         </div>
         <div className="col-4">
-          <button
+          <Button
             className="btn btn-primary px-4 py-3 w-100"
             onClick={() => onAddCollaborator({ email })}
+            isLoading={isAddingCollaborator}
           >
             <h3>Share</h3>
-          </button>
+          </Button>
         </div>
       </div>
       <div className="mt-2 row">

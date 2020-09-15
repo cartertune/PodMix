@@ -11,24 +11,34 @@ import logo from "../../resources/Logo.png";
 
 const ProjectPage = (props) => {
   const {
+    // Mix Modal Props
     openMixModal,
     mixModalData,
     isMixModalOpen,
     editMixModalField,
     closeMixModal,
     addMix,
+    isAddingMix,
+
+    // Comment Modal Props
     openCommentModal,
     commentModalData,
     isCommentModalOpen,
     editCommentModalField,
     closeCommentModal,
     addComment,
+    isAddingComment,
+
+    //Collaborator Modal Props
     openCollaboratorModal,
     collaboratorModalData,
     isCollaboratorModalOpen,
     editCollaboratorModalField,
     closeCollaboratorModal,
     addCollaborator,
+    isAddingCollaborator,
+
+    // Project Page Props
     selectedMixId,
     handleSelectMix,
     isPlaying,
@@ -137,6 +147,7 @@ const ProjectPage = (props) => {
         onEditField={editMixModalField}
         closeModal={closeMixModal}
         onAddMix={addMix}
+        isAddingMix={isAddingMix}
       />
       <AddCommentModal
         selectedMixId={selectedMixId}
@@ -148,17 +159,7 @@ const ProjectPage = (props) => {
         audioUrl={selectedMix.fileUrl}
         audioPosition={audioPosition}
         handlePosChange={handlePosChange}
-      />
-      <AddCommentModal
-        selectedMixId={selectedMixId}
-        modalData={commentModalData}
-        show={isCommentModalOpen}
-        onEditField={editCommentModalField}
-        closeModal={closeCommentModal}
-        onAddComment={addComment}
-        audioUrl={selectedMix.fileUrl}
-        audioPosition={audioPosition}
-        handlePosChange={handlePosChange}
+        isAddingComment={isAddingComment}
       />
       <AddCollaboratorsModal
         modalData={collaboratorModalData}
@@ -166,6 +167,7 @@ const ProjectPage = (props) => {
         onEditField={editCollaboratorModalField}
         closeModal={closeCollaboratorModal}
         onAddCollaborator={addCollaborator}
+        isAddingCollaborator={isAddingCollaborator}
         project={project}
       />
     </React.Fragment>

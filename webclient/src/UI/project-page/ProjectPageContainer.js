@@ -67,7 +67,6 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
           fileUrl: signedUrl,
           fileName: file.name,
         };
-
         // Save the URL of photo to this event.
         uploadBase64ToS3(signedRequest, file)
           // Success!!
@@ -104,13 +103,16 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
       text,
     };
     addComment({ comment, mixId, projectId: project.id }).then(() => {
+      dispatch({ type: "ADD_COMMENT_SUCCESS" });
       dispatch({ type: "CLOSE_ADD_COMMENT_MODAL" });
     });
   },
   addCollaborator: ({ email }) => {
     const { addCollaborator, project } = ownProps;
     dispatch({ type: "ADDING_COLLABORATOR" });
-    addCollaborator({ projectId: project.id, email });
+    addCollaborator({ projectId: project.id, email }).then((project) =>
+      dispatch({ type: "ADD_COLLABORATOR_SUCCESS" })
+    );
   },
 });
 
