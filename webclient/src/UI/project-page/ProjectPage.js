@@ -6,8 +6,9 @@ import AddCommentModal from "./AddCommentModal";
 import AddCollaboratorsModal from "./AddCollaboratorsModal";
 import { LoadingScreen } from "../components/Loading";
 import MediaSection from "./MediaSection";
-import Comment from "./Comment";
+import LoginRequiredModal from "../components/LoginRequiredModal";
 import logo from "../../resources/Logo.png";
+import CommentSection from "./CommentSection";
 
 const ProjectPage = (props) => {
   const {
@@ -46,6 +47,7 @@ const ProjectPage = (props) => {
     handleTogglePlay,
     handlePosChange,
     project,
+    user,
   } = props;
 
   if (!project) {
@@ -120,16 +122,10 @@ const ProjectPage = (props) => {
         {renderProjectButtons()}
         {selectedMix != {} && !isCommentModalOpen ? (
           <div>
-            <div className="comment-section mt-4">
-              {_.map(selectedMix.comments, (comment) => (
-                <div key={comment.id} className="mb-2">
-                  <Comment
-                    comment={comment}
-                    onClick={() => handlePosChange(comment.time)}
-                  />
-                </div>
-              ))}
-            </div>
+            <CommentSection
+              mix={selectedMix}
+              handlePosChange={handlePosChange}
+            />
             <MediaSection
               audioUrl={selectedMix.fileUrl}
               isPlaying={isPlaying}
@@ -141,6 +137,10 @@ const ProjectPage = (props) => {
           </div>
         ) : null}
       </div>
+      <LoginRequiredModal
+        show={!_.get(user, "id")}
+        currentLocation={`/projects/${id}`}
+      />
       <AddMixModal
         modalData={mixModalData}
         show={isMixModalOpen}

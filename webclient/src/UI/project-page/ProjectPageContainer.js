@@ -14,6 +14,7 @@ import { uploadBase64ToS3 } from "../../util/util";
 
 const mapStateToProps = (state, ownProps) => ({
   ...state.projectPage,
+  ...state.auth,
 });
 const mapDispatchToProps = (dispatch, ownProps) => ({
   openMixModal: ({ defaultMixNum }) => {

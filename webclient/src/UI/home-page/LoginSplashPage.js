@@ -1,5 +1,6 @@
 import React from "react";
 import Auth from "../../auth/Auth";
+import logo from "../../resources/BigLogo.png";
 
 const LoginSplashPage = (props) => {
   const { currentLocation } = props;
@@ -8,7 +9,7 @@ const LoginSplashPage = (props) => {
       <div className="logo-section row">
         <div className="col-2" />
         <div className="logo col-8 pt-100">
-          <h1>Logo</h1>
+          <img src={logo} />
         </div>
         <div className="col-2" />
       </div>

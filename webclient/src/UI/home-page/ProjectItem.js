@@ -8,7 +8,7 @@ const ProjectItem = (props) => {
   return (
     <Link to={`/projects/${id}`}>
       <div className="form-control d-flex align-items-center">
-        <h3>{title}</h3>
+        <p>{title}</p>
       </div>
     </Link>
   );

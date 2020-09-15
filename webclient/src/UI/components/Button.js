@@ -2,8 +2,12 @@ import React from "react";
 import { LoadingIcon } from "./Loading";
 
 const Button = (props) => {
-  const { isLoading, children } = props;
-  return <button {...props}>{isLoading ? <LoadingIcon /> : children}</button>;
+  const { isLoading, className, onClick, disabled, children } = props;
+  return (
+    <button className={className} onClick={onClick} disabled={disabled}>
+      {isLoading ? <LoadingIcon /> : children}
+    </button>
+  );
 };
 
 export default Button;

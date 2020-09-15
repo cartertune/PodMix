@@ -23,6 +23,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     dispatch({ type: "CREATING_PROJECT", title });
     createProject({ title }).then((res) => {
       dispatch({ type: "CREATE_PROJECT_SUCCESS" });
+      dispatch({ type: "CLOSE_CREATE_MODAL" });
       history.push("/projects/" + _.get(res, "data.createProject.id"));
     });
   },

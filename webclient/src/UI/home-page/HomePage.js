@@ -14,11 +14,18 @@ const HomePage = (props) => {
     createProject,
     closeCreateModal,
     openCreateModal,
+    isCreatingProject,
     currentUser,
+    loadingUser,
+    refetchUser,
   } = props;
 
   if (!Auth.isLoggedIn()) {
     return <LoginSplashPage {...props} />;
+  }
+
+  if (!loadingUser) {
+    refetchUser();
   }
 
   if (!currentUser) {
@@ -55,6 +62,7 @@ const HomePage = (props) => {
         onEditField={editCreateModalField}
         closeModal={closeCreateModal}
         onCreate={createProject}
+        isCreatingProject={isCreatingProject}
       />
     </React.Fragment>
   );

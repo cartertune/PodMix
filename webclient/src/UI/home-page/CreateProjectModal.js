@@ -6,7 +6,14 @@ import Input from "../components/Input";
 import Button from "../components/Button";
 
 const CreateProjectModal = (props) => {
-  const { modalData, show, closeModal, onEditField, onCreate } = props;
+  const {
+    modalData,
+    show,
+    closeModal,
+    onEditField,
+    onCreate,
+    isCreatingProject,
+  } = props;
   const { title } = modalData;
 
   return (

@@ -26,10 +26,11 @@ const CURRENT_USER_QUERY = gql`
 `;
 
 export const getCurrentUser = graphql(CURRENT_USER_QUERY, {
-  props: ({ data: { loading, error, currentUser } }) => ({
-    loading,
+  props: ({ data: { loading, error, currentUser, refetch } }) => ({
+    loadingUser: loading,
     error,
     currentUser,
+    refetchUser: refetch,
   }),
 });
 

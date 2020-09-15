@@ -43,6 +43,7 @@ const projectPageReducer = (state = defaultState, action) => {
     case "CLOSE_ADD_MIX_MODAL":
       newState.isMixModalOpen = false;
       newState.mixModalData = defaultState.mixModalData;
+      newState.isAddingMix = false;
       break;
     case "EDIT_ADD_MIX_MODAL_FIELD":
       newState.mixModalData[action.field] = action.value;
@@ -56,6 +57,7 @@ const projectPageReducer = (state = defaultState, action) => {
     case "CLOSE_ADD_COMMENT_MODAL":
       newState.isCommentModalOpen = false;
       newState.commentModalData = defaultState.commentModalData;
+      newState.isAddingComment = false;
       break;
     case "EDIT_ADD_COMMENT_MODAL_FIELD":
       newState.commentModalData[action.field] = action.value;
