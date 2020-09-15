@@ -1,16 +1,11 @@
 import React from "react";
-import classnames from "classnames";
 import { FiPause, FiPlay } from "react-icons/fi";
 
 const PlayPauseButton = (props) => {
-  const { isPlaying, small } = props;
-  const className = classnames("play-pause-button", {
-    small,
-  });
-
+  const { isPlaying, onPress } = props;
   return (
-    <button className={className}>
-      {isPlaying ? <FiPause /> : <FiPlay />}
+    <button className="play-pause-button" onClick={onPress}>
+      {isPlaying ? <FiPause className="pause" /> : <FiPlay />}
     </button>
   );
 };

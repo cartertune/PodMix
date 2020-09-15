@@ -2,11 +2,19 @@ import React from "react";
 import _ from "lodash";
 import PropTypes from "prop-types";
 import Modal from "../components/Modal";
+import Button from "../components/Button";
 import Input from "../components/Input";
 import UploadAndPreview from "../components/UploadAndPreview";
 
 const AddMixModal = (props) => {
-  const { modalData, show, closeModal, onEditField, onAddMix } = props;
+  const {
+    modalData,
+    show,
+    closeModal,
+    onEditField,
+    onAddMix,
+    isAddingMix,
+  } = props;
   const { title, tempAudio, file } = modalData;
 
   const handleAudioUpload = (file) => {
@@ -38,6 +46,7 @@ const AddMixModal = (props) => {
       </div>
       <div className="mt-3 d-flex justify-content-center">
         <UploadAndPreview
+          onRemove={() => onEditField({ field: "file", value: null })}
           audioFile={tempAudio}
           file={file}
           onDrop={(files) => handleAudioUpload(files[0])}
@@ -45,12 +54,13 @@ const AddMixModal = (props) => {
       </div>
       {tempAudio && file ? (
         <div className="mt-4 d-flex justify-content-center">
-          <button
+          <Button
+            isLoading={isAddingMix}
             className="btn btn-primary px-4 py-3"
             onClick={() => onAddMix({ title, file })}
           >
             <h3>Add Mix</h3>
-          </button>
+          </Button>
         </div>
       ) : null}
     </Modal>

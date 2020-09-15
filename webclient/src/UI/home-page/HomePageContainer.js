@@ -4,6 +4,7 @@ import { compose } from "react-apollo";
 import { createProject } from "../../connections/projectConnections";
 import { withRouter } from "react-router-dom";
 import HomePage from "../home-page/HomePage";
+import { getCurrentUser } from "../../connections/userConnections";
 
 const mapStateToProps = (state, ownProps) => ({
   ...state.homePage,
@@ -22,6 +23,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     dispatch({ type: "CREATING_PROJECT", title });
     createProject({ title }).then((res) => {
       dispatch({ type: "CREATE_PROJECT_SUCCESS" });
+      dispatch({ type: "CLOSE_CREATE_MODAL" });
       history.push("/projects/" + _.get(res, "data.createProject.id"));
     });
   },
@@ -29,6 +31,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 
 export default withRouter(
   compose(
+    getCurrentUser,
     createProject,
     connect(
       mapStateToProps,

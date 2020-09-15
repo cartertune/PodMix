@@ -3,9 +3,17 @@ import _ from "lodash";
 import PropTypes from "prop-types";
 import Modal from "../components/Modal";
 import Input from "../components/Input";
+import Button from "../components/Button";
 
 const CreateProjectModal = (props) => {
-  const { modalData, show, closeModal, onEditField, onCreate } = props;
+  const {
+    modalData,
+    show,
+    closeModal,
+    onEditField,
+    onCreate,
+    isCreatingProject,
+  } = props;
   const { title } = modalData;
 
   return (
@@ -18,12 +26,13 @@ const CreateProjectModal = (props) => {
         />
       </div>
       <div className="mt-5 d-flex justify-content-center">
-        <button
+        <Button
+          isLoading={isCreatingProject}
           className="btn btn-primary px-4 py-3"
           onClick={() => onCreate({ title })}
         >
           <h3>Create</h3>
-        </button>
+        </Button>
       </div>
     </Modal>
   );

@@ -17,8 +17,8 @@ const typeDefs = gql`
     id: ID
     title: String
     owner: User
-    collaboratorEmails: [String]
     collaborators: [User]
+    collaboratorEmails: [String]
     mixes: [Mix]
   }
   input ProjectInput {
@@ -38,26 +38,18 @@ const typeDefs = gql`
   }
   type Comment {
     id: ID
-    time: SongTime # may need to rethink formatting
+    time: Int # time in seconds
     text: String
     # isComplete: Boolean
     creator: User
   }
   input CommentInput {
-    time: SongTimeInput!
+    time: Int!
     text: String!
-  }
-  type SongTime {
-    minute: Int!
-    second: Int!
   }
   type S3Response {
     signedRequest: String
     url: String
-  }
-  input SongTimeInput {
-    minute: Int!
-    second: Int!
   }
   type Mutation {
     login: User
@@ -69,7 +61,7 @@ const typeDefs = gql`
     #completeComment(projectId: ID!, mixId: ID!, commentId: ID!)
   }
   type Query {
-    currentUser(id: ID!): User
+    currentUser: User
     project(id: ID!): Project
   }
 `;

@@ -20,6 +20,13 @@
   }
 }
 
+.loading-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+}
+
 .pm-modal-dialog {
   padding: 36px 20px;
   height: 100vh;
@@ -31,6 +38,18 @@
   );
 }
 
+.comment-button {
+  height: 46px;
+  min-height: 46px !important;
+  width: 46px;
+  border-radius: 23px;
+  font-size: 2em;
+
+  svg {
+    stroke-width: 3px;
+  }
+}
+
 .waveform {
   audio {
     width: 100%;
@@ -40,10 +59,23 @@
 
 .play-pause-button {
   background: $pm-muted-white;
-  font-size: 2em;
+  font-size: 3em;
   color: $pm-white;
   height: 92px;
   width: 92px;
   border-radius: 46px;
   border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none !important;
+
+  .pause {
+    margin: 0;
+    stroke-width: 1.5px;
+  }
+
+  svg {
+    margin-left: 6px;
+  }
 }

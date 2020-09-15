@@ -63,3 +63,41 @@ export const addMix = graphql(ADD_MIX_MUTATION, {
     },
   }),
 });
+
+const ADD_COMMENT_MUTATION = gql`
+  mutation addComment($projectId: ID!, $mixId: ID!, $comment: CommentInput!) {
+    addComment(projectId: $projectId, mixId: $mixId, comment: $comment) {
+      ...FullProject
+    }
+  }
+  ${Fragments.project.full}
+`;
+
+export const addComment = graphql(ADD_COMMENT_MUTATION, {
+  props: ({ mutate }) => ({
+    addComment: ({ projectId, mixId, comment }) => {
+      return mutate({
+        variables: { projectId, mixId, comment },
+      });
+    },
+  }),
+});
+
+const ADD_COLLABORATOR_MUTATION = gql`
+  mutation addCollaborator($projectId: ID!, $email: String!) {
+    addCollaborator(projectId: $projectId, email: $email) {
+      ...FullProject
+    }
+  }
+  ${Fragments.project.full}
+`;
+
+export const addCollaborator = graphql(ADD_COLLABORATOR_MUTATION, {
+  props: ({ mutate }) => ({
+    addCollaborator: ({ projectId, email }) => {
+      return mutate({
+        variables: { projectId, email },
+      });
+    },
+  }),
+});

@@ -35,7 +35,7 @@ const resolvers = {
     ): Promise<Document> => {
       const p: Project = args.project;
       p.ownerId = _.get(ctx, "validatedUser.id");
-      console.log("user id", p.ownerId);
+      p.collaboratorEmails = [_.get(ctx, "validatedUser.email")];
       return ProjectService.create(p);
     },
     addMix: (
@@ -89,7 +89,7 @@ const resolvers = {
     },
     projects: (user: User, args: any, ctx: Context): Promise<Document[]> => {
       return ProjectService.find({
-        _id: { $in: _.get(user, "projectIds", []) },
+        ownerId: user.id,
       });
     },
   },

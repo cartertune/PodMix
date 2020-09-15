@@ -2,13 +2,19 @@ import _ from "lodash";
 import { connect } from "react-redux";
 import { compose } from "react-apollo";
 import { signS3Url } from "../../connections/miscConnections";
-import { addMix, getProject } from "../../connections/projectConnections";
+import {
+  addMix,
+  addComment,
+  addCollaborator,
+  getProject,
+} from "../../connections/projectConnections";
 import { withRouter } from "react-router-dom";
 import ProjectPage from "./ProjectPage";
 import { uploadBase64ToS3 } from "../../util/util";
 
 const mapStateToProps = (state, ownProps) => ({
   ...state.projectPage,
+  ...state.auth,
 });
 const mapDispatchToProps = (dispatch, ownProps) => ({
   openMixModal: ({ defaultMixNum }) => {
@@ -18,11 +24,39 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   editMixModalField: ({ field, value }) => {
     dispatch({ type: "EDIT_ADD_MIX_MODAL_FIELD", field, value });
   },
-
-  // TODO: NOT DONE
+  openCommentModal: () => {
+    dispatch({ type: "OPEN_ADD_COMMENT_MODAL" });
+  },
+  closeCommentModal: () => dispatch({ type: "CLOSE_ADD_COMMENT_MODAL" }),
+  editCommentModalField: ({ field, value }) => {
+    dispatch({ type: "EDIT_ADD_COMMENT_MODAL_FIELD", field, value });
+  },
+  openCollaboratorModal: () => {
+    dispatch({ type: "OPEN_ADD_COLLABORATOR_MODAL" });
+  },
+  closeCollaboratorModal: () =>
+    dispatch({ type: "CLOSE_ADD_COLLABORATOR_MODAL" }),
+  editCollaboratorModalField: ({ field, value }) => {
+    dispatch({ type: "EDIT_ADD_COLLABORATOR_MODAL_FIELD", field, value });
+  },
+  handleSelectMix: ({ value, defaultMixNum }) => {
+    if (value === "NEW_MIX") {
+      dispatch({ type: "OPEN_ADD_MIX_MODAL", defaultMixNum });
+    } else {
+      dispatch({ type: "SELECT_MIX", mixId: value });
+    }
+  },
+  handleTogglePlay: () => {
+    dispatch({ type: "TOGGLE_PLAY_PAUSE" });
+  },
+  handlePosChange: (pos) => {
+    dispatch({ type: "SET_AUDIO_POSITION", pos });
+  },
+  handleCommentClick: (pos) => {
+    dispatch({ type: "SET_AUDIO_POSITION", pos: _.floor(pos, 1) });
+  },
   addMix: ({ title, file }) => {
     const { addMix, signS3Url, project } = ownProps;
-    console.log(project);
     dispatch({ type: "ADDING_MIX" });
     signS3Url(file.type)
       .then(({ data }) => {
@@ -34,7 +68,6 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
           fileUrl: signedUrl,
           fileName: file.name,
         };
-
         // Save the URL of photo to this event.
         uploadBase64ToS3(signedRequest, file)
           // Success!!
@@ -42,6 +75,11 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
             addMix(project.id, mix).then((res) => {
               dispatch({
                 type: "ADD_MIX_SUCCESS",
+              });
+              const newMixId = _.last(_.get(res, "data.addMix.mixes")).id;
+              dispatch({
+                type: "SELECT_MIX",
+                mixId: newMixId,
               });
               dispatch({
                 type: "CLOSE_ADD_MIX_MODAL",
@@ -57,15 +95,25 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
         console.log("signS3Url");
         console.log(err);
       });
-    // Save the URL of photo to this event.
-    // addMix({ title, fileUrl }).then((res) => {
-    //   dispatch({ type: "CREATE_PROJECT_SUCCESS" });
-    // });
   },
-  addComment: ({ mixId, text }) => {
+  addComment: ({ mixId, text, audioPosition }) => {
     const { addComment, project } = ownProps;
     dispatch({ type: "ADDING_COMMENT" });
-    addComment({ text });
+    const comment = {
+      time: _.floor(audioPosition),
+      text,
+    };
+    addComment({ comment, mixId, projectId: project.id }).then(() => {
+      dispatch({ type: "ADD_COMMENT_SUCCESS" });
+      dispatch({ type: "CLOSE_ADD_COMMENT_MODAL" });
+    });
+  },
+  addCollaborator: ({ email }) => {
+    const { addCollaborator, project } = ownProps;
+    dispatch({ type: "ADDING_COLLABORATOR" });
+    addCollaborator({ projectId: project.id, email }).then((project) =>
+      dispatch({ type: "ADD_COLLABORATOR_SUCCESS" })
+    );
   },
 });
 
@@ -74,7 +122,8 @@ export default withRouter(
     getProject,
     signS3Url,
     addMix,
-    // addComment,
+    addComment,
+    addCollaborator,
     connect(
       mapStateToProps,
       mapDispatchToProps

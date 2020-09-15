@@ -29,10 +29,7 @@ Fragments.project = {
         fileName
         comments {
           id
-          time {
-            minute
-            second
-          }
+          time
           text
           creator {
             id
@@ -55,8 +52,8 @@ Fragments.user = {
       name
       avatarUrl
       email
-      project {
-        ...Project
+      projects {
+        ...FullProject
       }
       __typename
     }

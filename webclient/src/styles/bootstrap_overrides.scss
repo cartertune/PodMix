@@ -37,6 +37,8 @@ p,
   font-family: $font-family-secondary;
   font-size: 16px;
   font-weight: normal;
+  color: $pm-white;
+  margin: 0;
 }
 
 .btn-primary {
@@ -44,11 +46,15 @@ p,
   border: none;
   border-radius: 8px;
   box-shadow: none !important;
-  min-height: 48px;
+  min-height: 52px;
   display: flex;
   align-items: center;
   text-align: center;
   justify-content: center;
+
+  &:disabled {
+    background-color: $pm-muted-green;
+  }
 
   &:hover,
   &:focus {
@@ -91,16 +97,42 @@ p,
   justify-content: center;
 }
 
+.textbox {
+  padding-top: 10%;
+}
+
 .form-control {
   color: $pm-white;
   background-color: $pm-muted-white;
   border: none;
-  line-height: 48px;
-  min-height: 48px;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
 
   &:focus {
     color: $pm-white;
     background-color: $pm-muted-white;
     box-shadow: 0 0 0 0.2rem $pm-muted-green;
+  }
+
+  &.withtimestamp {
+    padding-left: 66px;
+  }
+}
+
+.timestamp-container {
+  position: absolute;
+  bottom: 0;
+  left: 12px;
+  top: 0;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.spinner-border {
+  &.large {
+    height: 4rem;
+    width: 4rem;
   }
 }
