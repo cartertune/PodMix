@@ -31,6 +31,8 @@
   },
   "scripts": {
     "start": "webpack-dev-server --config build-utils/webpack.config.js --env.env=dev",
+    "build-staging": "webpack --config build-utils/webpack.config.js --env.env=staging",
+    "build-prod": "webpack --config build-utils/webpack.config.js --env.env=prod",
     "deploy-staging": "webpack --config build-utils/webpack.config.js --env.env=staging && aws s3 sync dist/ s3://staging.bifocl.com --acl public-read",
     "deploy-prod": "webpack --config build-utils/webpack.config.js --env.env=prod && aws s3 sync dist/ s3://app.bifocl.com --acl public-read"
   },

@@ -8,6 +8,7 @@ import projectPageReducer from "./UI/project-page/projectPageReducer";
 const persistConfig = {
   key: "root",
   storage,
+  blacklist: ["projectPage"],
 };
 const persistedReducer = persistCombineReducers(persistConfig, {
   auth: authReducer,
