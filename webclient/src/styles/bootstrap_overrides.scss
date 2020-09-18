@@ -108,6 +108,9 @@ p,
   min-height: 52px;
   display: flex;
   align-items: center;
+  -webkit-user-select: auto;
+  -moz-appearance: none;
+  -webkit-appearance: none;
 
   &:focus {
     color: $pm-white;

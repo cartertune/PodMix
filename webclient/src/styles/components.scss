@@ -79,3 +79,15 @@
     margin-left: 6px;
   }
 }
+
+.select-container {
+  .chevron-icon {
+    pointer-events: none;
+    right: 12px;
+    top: 12px;
+    svg {
+      font-size: 24px;
+      color: $pm-white;
+    }
+  }
+}

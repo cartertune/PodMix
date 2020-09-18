@@ -35,6 +35,8 @@ const projectPageReducer = (state = defaultState, action) => {
       break;
     case "SELECT_MIX":
       newState.selectedMixId = action.mixId;
+      newState.audioPosition = 0;
+      newState.isPlaying = false;
       break;
     case "OPEN_ADD_MIX_MODAL":
       newState.isMixModalOpen = true;

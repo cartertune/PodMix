@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import _ from "lodash";
 import AddMixModal from "./AddMixModal";
@@ -9,6 +9,7 @@ import MediaSection from "./MediaSection";
 import LoginRequiredModal from "../components/LoginRequiredModal";
 import logo from "../../resources/Logo.png";
 import CommentSection from "./CommentSection";
+import Select from "../components/Select";
 
 const ProjectPage = (props) => {
   const {
@@ -56,6 +57,11 @@ const ProjectPage = (props) => {
 
   const { id, title, owner, mixes, collaborators } = project;
 
+  const selectedMix = _.find(mixes, (m) => m.id == selectedMixId) || {};
+  if (selectedMix.id == null && !_.isEmpty(mixes)) {
+    handleSelectMix({ value: mixes[0].id });
+  }
+
   const renderProjectButtons = () => {
     if (_.isEmpty(mixes)) {
       return (
@@ -72,30 +78,19 @@ const ProjectPage = (props) => {
       );
     }
 
-    if (selectedMixId == "") {
-      handleSelectMix({ value: mixes[0].id });
-    }
-
     return (
       <div className="mix-share-section row d-flex justify-content-center">
         <div className="col-4">
-          <select
-            className="form-control mix-select"
+          <Select
             value={selectedMixId}
-            onChange={(evt) =>
+            options={_.map(mixes, (m) => ({ value: m.id, label: m.title }))}
+            onChange={(value) => {
               handleSelectMix({
-                value: evt.target.value,
+                value,
                 defaultMixNum: mixes.length + 1,
-              })
-            }
-          >
-            {_.map(mixes, (mix) => (
-              <option key={mix.id} value={mix.id}>
-                {mix.title}
-              </option>
-            ))}
-            <option value="NEW_MIX">Add New Mix</option>
-          </select>
+              });
+            }}
+          />
         </div>
         <div className="col-4">
           <button
@@ -109,7 +104,6 @@ const ProjectPage = (props) => {
     );
   };
 
-  const selectedMix = _.find(mixes, (m) => m.id == selectedMixId) || {};
   return (
     <React.Fragment>
       <div className="project-page">
