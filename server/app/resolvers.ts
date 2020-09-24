@@ -89,7 +89,7 @@ const resolvers = {
     },
     projects: (user: User, args: any, ctx: Context): Promise<Document[]> => {
       return ProjectService.find({
-        ownerId: user.id,
+        collaboratorEmails: user.email,
       });
     },
   },
