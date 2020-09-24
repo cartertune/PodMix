@@ -1,16 +1,19 @@
 .project-page {
-  height: 100vh;
-  padding-bottom: 30px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
 
   .mix-select {
     font-weight: 600;
   }
 
-  .media-section {
-    position: fixed;
-    bottom: 30px;
-    left: 20px;
-    right: 20px;
+  .comment-section {
+    display: flex;
+    overflow: scroll;
+    flex-direction: column;
+    flex-grow: 1;
   }
 }
 

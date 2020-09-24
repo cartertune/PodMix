@@ -78,12 +78,14 @@ const ProjectPage = (props) => {
       );
     }
 
+    const options = _.map(mixes, (m) => ({ value: m.id, label: m.title }));
+    options.push({ value: "NEW_MIX", label: "Add New Mix" });
     return (
       <div className="mix-share-section row d-flex justify-content-center">
         <div className="col-4">
           <Select
             value={selectedMixId}
-            options={_.map(mixes, (m) => ({ value: m.id, label: m.title }))}
+            options={options}
             onChange={(value) => {
               handleSelectMix({
                 value,
@@ -112,10 +114,10 @@ const ProjectPage = (props) => {
             <img src={logo} />
           </Link>
           <h1>{title}</h1>
+          {renderProjectButtons()}
         </div>
-        {renderProjectButtons()}
         {selectedMix != {} && !isCommentModalOpen ? (
-          <div>
+          <React.Fragment>
             <CommentSection
               mix={selectedMix}
               handlePosChange={handlePosChange}
@@ -128,7 +130,7 @@ const ProjectPage = (props) => {
               handlePosChange={handlePosChange}
               onCommentButtonPress={openCommentModal}
             />
-          </div>
+          </React.Fragment>
         ) : null}
       </div>
       <LoginRequiredModal

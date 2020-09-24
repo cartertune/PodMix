@@ -48,6 +48,12 @@
   svg {
     stroke-width: 3px;
   }
+
+  .spinner-border {
+    height: 1rem;
+    width: 1rem;
+    font-size: 1em;
+  }
 }
 
 .waveform {
@@ -59,15 +65,13 @@
 
 .play-pause-button {
   background: $pm-muted-white;
+  position: relative;
   font-size: 3em;
   color: $pm-white;
   height: 92px;
   width: 92px;
   border-radius: 46px;
   border: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   outline: none !important;
 
   .pause {
@@ -76,7 +80,9 @@
   }
 
   svg {
-    margin-left: 6px;
+    position: absolute;
+    top: 25%;
+    left: 28%;
   }
 }
 
@@ -89,5 +95,26 @@
       font-size: 24px;
       color: $pm-white;
     }
+  }
+}
+
+.logo-header {
+  position: relative;
+
+  .header-logo {
+    position: relative;
+  }
+}
+
+.header-logo {
+  position: absolute;
+  height: 42px;
+  width: 42px;
+
+  top: 0;
+  left: 0;
+
+  img {
+    height: 100%;
   }
 }
