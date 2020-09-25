@@ -118,3 +118,18 @@
     height: 100%;
   }
 }
+
+.avatar {
+  position: relative;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  border: 1px solid $pm-green;
+
+  img {
+    position: absolute;
+    top: 0;
+    border-radius: 50%;
+    height: 100%;
+  }
+}

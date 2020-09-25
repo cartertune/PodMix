@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import Modal from "../components/Modal";
 import Input from "../components/Input";
 import Button from "../components/Button";
+import Avatar from "../components/Avatar";
 
 const AddCollaboratorsModal = (props) => {
   const {
@@ -53,8 +54,12 @@ const AddCollaboratorsModal = (props) => {
         <div className="col-12">
           {_.map(getCollaborators(), (c) => {
             return (
-              <div className="form-control mt-2" key={c.email}>
+              <div
+                className="form-control mt-2 d-flex justify-content-between"
+                key={c.email}
+              >
                 <p>{c.email}</p>
+                <Avatar avatarUrl={c.avatarUrl} />
               </div>
             );
           })}
