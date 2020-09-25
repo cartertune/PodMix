@@ -81,7 +81,7 @@ const ProjectPage = (props) => {
     const options = _.map(mixes, (m) => ({ value: m.id, label: m.title }));
     options.push({ value: "NEW_MIX", label: "Add New Mix" });
     return (
-      <div className="mix-share-section row d-flex justify-content-center">
+      <div className="mix-share-section row d-flex justify-content-center mt-2">
         <div className="col-4">
           <Select
             value={selectedMixId}

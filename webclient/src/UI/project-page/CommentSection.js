@@ -7,7 +7,7 @@ const CommentSection = (props) => {
   const { mix, handlePosChange } = props;
   const { comments } = mix;
   return (
-    <div className="comment-section mt-4">
+    <div className="comment-section mt-3">
       {_.isEmpty(comments) ? (
         <div className="w-100 text-center pt-5">
           <p>No Comments yet</p>

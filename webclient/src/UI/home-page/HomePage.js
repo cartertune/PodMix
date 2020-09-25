@@ -53,7 +53,7 @@ const HomePage = (props) => {
               })}
             </div>
           ) : null}
-          <div className="row justify-content-center pt-4">
+          <div className="row justify-content-center pt-4 pb-3">
             <button
               className="btn btn-primary col-8 py-4"
               onClick={openCreateModal}
