@@ -5,7 +5,7 @@ const PlayPauseButton = (props) => {
   const { isPlaying, onPress } = props;
   return (
     <button className="play-pause-button" onClick={onPress}>
-      {isPlaying ? <FiPause className="pause" /> : <FiPlay />}
+      {isPlaying ? <FiPause className="pause" /> : <FiPlay className="play" />}
     </button>
   );
 };

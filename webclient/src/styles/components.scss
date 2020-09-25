@@ -79,10 +79,15 @@
     stroke-width: 1.5px;
   }
 
+  .play {
+    margin-left: 5px;
+  }
+
   svg {
     position: absolute;
-    top: 25%;
-    left: 28%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 }
 
