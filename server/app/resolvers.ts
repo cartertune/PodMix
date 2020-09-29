@@ -77,7 +77,11 @@ const resolvers = {
       ctx: Context
     ): Promise<Document> => {
       const { projectId, email } = args;
-      return ProjectService.addCollaborator(projectId, email);
+      return ProjectService.addCollaborator(
+        ctx.validatedUser,
+        projectId,
+        email
+      );
     },
     signS3Url: (obj: any, args: { fileType: string }, ctx: Context): any => {
       return S3Service.signURL(args.fileType);
@@ -85,7 +89,7 @@ const resolvers = {
   },
   User: {
     name: (user: User): string => {
-      return `${user.firstName} ${user.lastName}`;
+      return UserService.getName(user);
     },
     projects: (user: User, args: any, ctx: Context): Promise<Document[]> => {
       return ProjectService.find({

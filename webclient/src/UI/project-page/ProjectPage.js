@@ -116,7 +116,10 @@ const ProjectPage = (props) => {
           <h1>{title}</h1>
           {renderProjectButtons()}
         </div>
-        {selectedMix != {} && !isCommentModalOpen ? (
+        {selectedMix != {} &&
+        !isCommentModalOpen &&
+        !isCollaboratorModalOpen &&
+        !isMixModalOpen ? (
           <React.Fragment>
             <CommentSection
               mix={selectedMix}
