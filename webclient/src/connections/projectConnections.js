@@ -83,6 +83,25 @@ export const addComment = graphql(ADD_COMMENT_MUTATION, {
   }),
 });
 
+const DELETE_COMMENT_MUTATION = gql`
+  mutation deleteComment($projectId: ID!, $mixId: ID!, $commentId: ID!) {
+    deleteComment(projectId: $projectId, mixId: $mixId, commentId: $commentId) {
+      ...FullProject
+    }
+  }
+  ${Fragments.project.full}
+`;
+
+export const deleteComment = graphql(DELETE_COMMENT_MUTATION, {
+  props: ({ mutate }) => ({
+    deleteComment: ({ projectId, mixId, commentId }) => {
+      return mutate({
+        variables: { projectId, mixId, commentId },
+      });
+    },
+  }),
+});
+
 const ADD_COLLABORATOR_MUTATION = gql`
   mutation addCollaborator($projectId: ID!, $email: String!) {
     addCollaborator(projectId: $projectId, email: $email) {

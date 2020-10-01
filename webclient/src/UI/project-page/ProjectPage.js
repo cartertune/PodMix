@@ -10,6 +10,7 @@ import LoginRequiredModal from "../components/LoginRequiredModal";
 import logo from "../../resources/Logo.png";
 import CommentSection from "./CommentSection";
 import Select from "../components/Select";
+import { deleteComment } from "../../connections/projectConnections";
 
 const ProjectPage = (props) => {
   const {
@@ -47,6 +48,7 @@ const ProjectPage = (props) => {
     audioPosition,
     handleTogglePlay,
     handlePosChange,
+    deleteComment,
     project,
     user,
   } = props;
@@ -123,6 +125,7 @@ const ProjectPage = (props) => {
           <React.Fragment>
             <CommentSection
               mix={selectedMix}
+              onDeleteComment={deleteComment}
               handlePosChange={handlePosChange}
             />
             <MediaSection

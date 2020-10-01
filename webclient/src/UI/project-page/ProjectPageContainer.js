@@ -7,6 +7,7 @@ import {
   addComment,
   addCollaborator,
   getProject,
+  deleteComment,
 } from "../../connections/projectConnections";
 import { withRouter } from "react-router-dom";
 import ProjectPage from "./ProjectPage";
@@ -108,6 +109,17 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
       dispatch({ type: "CLOSE_ADD_COMMENT_MODAL" });
     });
   },
+  deleteComment: ({ mixId, commentId }) => {
+    const { deleteComment, project } = ownProps;
+
+    if (
+      confirm(
+        "Are you sure you want to delete this comment? It cannot be undone."
+      )
+    ) {
+      deleteComment({ projectId: project.id, commentId, mixId });
+    }
+  },
   addCollaborator: ({ email }) => {
     const { addCollaborator, project } = ownProps;
     dispatch({ type: "ADDING_COLLABORATOR" });
@@ -123,6 +135,7 @@ export default withRouter(
     signS3Url,
     addMix,
     addComment,
+    deleteComment,
     addCollaborator,
     connect(
       mapStateToProps,

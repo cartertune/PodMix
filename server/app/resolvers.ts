@@ -86,6 +86,19 @@ const resolvers = {
     signS3Url: (obj: any, args: { fileType: string }, ctx: Context): any => {
       return S3Service.signURL(args.fileType);
     },
+    deleteComment: (
+      obj: any,
+      args: { projectId: string; mixId: string; commentId: string },
+      ctx: Context
+    ): Promise<Document> => {
+      const { projectId, mixId, commentId } = args;
+      return ProjectService.deleteComment(
+        ctx.validatedUser,
+        projectId,
+        mixId,
+        commentId
+      );
+    },
   },
   User: {
     name: (user: User): string => {

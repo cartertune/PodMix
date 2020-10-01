@@ -1,10 +1,13 @@
 import React from "react";
 import { secondsToTimestamp } from "../../util/util";
 import Avatar from "../components/Avatar";
+import Auth from "../../auth/Auth";
+import { FiX } from "react-icons/fi";
 
 const Comment = (props) => {
-  const { comment, onClick } = props;
-  const { time, text } = comment;
+  const { comment, onClick, onDelete } = props;
+  const { time, text, creator } = comment;
+  const user = Auth.getUser();
 
   return (
     <div className="position-relative">
@@ -17,7 +20,11 @@ const Comment = (props) => {
       >
         <p>{text}</p>
         <div className="avatar-container">
-          <Avatar avatarUrl={_.get(comment, "creator.avatarUrl")} />
+          {creator.email == _.get(user, "email") ? (
+            <FiX onClick={() => onDelete()} />
+          ) : (
+            <Avatar avatarUrl={_.get(comment, "creator.avatarUrl")} />
+          )}
         </div>
       </div>
     </div>

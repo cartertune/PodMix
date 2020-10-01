@@ -59,6 +59,24 @@ class ProjectService extends AModelService {
       }
     );
   }
+
+  deleteComment(
+    validatedUser: User,
+    projectId: string,
+    mixId: string,
+    commentId: string
+  ): Promise<Document> {
+    return this.findOneAndUpdate(
+      {
+        _id: projectId,
+        "mixes._id": mixId,
+        collaboratorEmails: validatedUser.email,
+      },
+      {
+        $pull: { "mixes.$.comments": { _id: commentId } },
+      }
+    );
+  }
 }
 
 export default new ProjectService();
