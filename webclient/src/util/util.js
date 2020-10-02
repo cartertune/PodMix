@@ -27,5 +27,5 @@ export const secondsToTimestamp = (seconds) => {
   const s = rSeconds % 60;
   const m = _.floor(rSeconds / 60);
 
-  return `${m}:${s.toString().padStart(2, "0")} -`;
+  return `${m}:${s.toString().padStart(2, "0")}`;
 };

@@ -3,7 +3,6 @@ import { gql } from "apollo-server-lambda";
 const typeDefs = gql`
   type User {
     id: ID
-    sub: string
     name: String
     avatarUrl: String
     email: String

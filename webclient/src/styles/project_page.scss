@@ -11,7 +11,7 @@
 
   .comment-section {
     display: flex;
-    overflow-y: scroll;
+    overflow-y: auto;
     flex-direction: column;
     flex-grow: 1;
   }

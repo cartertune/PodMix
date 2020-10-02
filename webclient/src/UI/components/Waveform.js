@@ -1,6 +1,7 @@
 require("wavesurfer.js/dist/plugin/wavesurfer.minimap.min.js");
 import React from "react";
 import Wavesurfer from "react-wavesurfer";
+import { secondsToTimestamp } from "../../util/util";
 
 const purple = "#5032e8";
 const progressPurple = "rgba(0, 0, 0, 0.5)";
@@ -15,6 +16,12 @@ class Waveform extends React.Component {
     this.handlePosChange = this.handlePosChange.bind(this);
   }
 
+  setDuration(e) {
+    const { audioFile } = this.props;
+    const duration = document.getElementById(audioFile).duration;
+    this.setState({ duration });
+  }
+
   handleOnLoad(e) {
     const perc = e.originalArgs[0];
     this.setState({ loadingPerc: perc });
@@ -22,10 +29,16 @@ class Waveform extends React.Component {
 
   handlePosChange(e) {
     const { handlePosChange } = this.props;
+    const { duration } = this.state;
+
+    if (!duration) {
+      this.setDuration();
+    }
     handlePosChange(e.originalArgs[0]);
   }
+
   renderLoadingBar() {
-    const { loadingPerc } = this.state;
+    const { loadingPerc, duration } = this.state;
 
     if (loadingPerc < 100) {
       return (
@@ -53,9 +66,10 @@ class Waveform extends React.Component {
       onFinish,
       hideCursor,
     } = this.props;
+    const { duration } = this.state;
     return (
       <div className="waveform">
-        <audio src={audioFile} />
+        <audio src={audioFile} id={audioFile} />
         {this.renderLoadingBar()}
         <Wavesurfer
           id="#wave"
@@ -65,12 +79,23 @@ class Waveform extends React.Component {
           onFinish={(e) => onFinish()}
           playing={isPlaying}
           onLoading={(e) => this.handleOnLoad(e)}
+          onReady={(e) => this.setDuration(e)}
           options={{
             waveColor: purple,
             progressColor: hideCursor ? purple : progressPurple,
             cursorColor: hideCursor ? "transparent" : black,
           }}
         />
+        {hideCursor || isNaN(duration) ? null : (
+          <React.Fragment>
+            <div className="timestamp left">
+              <p>{secondsToTimestamp(audioPosition)}</p>
+            </div>
+            <div className="timestamp right">
+              <p>{secondsToTimestamp(duration)}</p>
+            </div>
+          </React.Fragment>
+        )}
       </div>
     );
   }

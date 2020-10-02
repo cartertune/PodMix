@@ -10,9 +10,9 @@ const Comment = (props) => {
   const user = Auth.getUser();
 
   return (
-    <div className="position-relative">
+    <div className="comment position-relative">
       <div className="timestamp-container">
-        <p>{secondsToTimestamp(time)}</p>
+        <p>{`${secondsToTimestamp(time)} -`}</p>
       </div>
       <div
         className="form-control position-relative withtimestamp d-flex justify-content-between"
@@ -21,7 +21,7 @@ const Comment = (props) => {
         <p>{text}</p>
         <div className="avatar-container">
           {creator.email == _.get(user, "email") ? (
-            <FiX onClick={() => onDelete()} />
+            <FiX className="delete-button" onClick={() => onDelete()} />
           ) : (
             <Avatar avatarUrl={_.get(comment, "creator.avatarUrl")} />
           )}

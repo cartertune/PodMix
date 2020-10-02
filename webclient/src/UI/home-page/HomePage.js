@@ -18,6 +18,7 @@ const HomePage = (props) => {
     currentUser,
     loadingUser,
     refetchUser,
+    logout,
   } = props;
 
   if (!Auth.isLoggedIn()) {
@@ -35,8 +36,11 @@ const HomePage = (props) => {
   return (
     <React.Fragment>
       <div className="home-page">
-        <div className="d-flex justify-content-center">
+        <div className="d-flex justify-content-center position-relative">
           <LogoHeader />
+          <div className="logout-button">
+            <p onClick={() => logout()}>logout</p>
+          </div>
         </div>
         <div className="d-flex flex-column justify-content-between h-100">
           {currentUser.projects.length != 0 ? (
