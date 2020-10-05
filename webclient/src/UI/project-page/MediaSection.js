@@ -18,7 +18,7 @@ const MediaSection = (props) => {
   }
 
   return (
-    <div className="media-section">
+    <div className="media-section mt-4">
       <div className="media-button-section row">
         <div className="col-4" />
         <div className="col-4">

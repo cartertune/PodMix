@@ -9,13 +9,14 @@
 .container {
   overflow: hidden;
   padding-top: 30px;
-  padding-bottom: 30px;
+  padding-bottom: 42px;
   padding-left: 20px;
   padding-right: 20px;
   height: 100vh;
 }
 
 h1 {
+  margin: 0;
   font-family: $font-family-primary;
   font-size: 28px;
   line-height: 38px;
@@ -98,7 +99,7 @@ p,
 }
 
 .textbox {
-  padding-top: 10%;
+  padding-top: 5%;
 }
 
 .form-control {
@@ -108,6 +109,9 @@ p,
   min-height: 52px;
   display: flex;
   align-items: center;
+  -webkit-user-select: auto;
+  -moz-appearance: none;
+  -webkit-appearance: none;
 
   &:focus {
     color: $pm-white;

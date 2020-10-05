@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import _ from "lodash";
 import AddMixModal from "./AddMixModal";
@@ -9,6 +9,8 @@ import MediaSection from "./MediaSection";
 import LoginRequiredModal from "../components/LoginRequiredModal";
 import logo from "../../resources/Logo.png";
 import CommentSection from "./CommentSection";
+import Select from "../components/Select";
+import { deleteComment } from "../../connections/projectConnections";
 
 const ProjectPage = (props) => {
   const {
@@ -46,6 +48,7 @@ const ProjectPage = (props) => {
     audioPosition,
     handleTogglePlay,
     handlePosChange,
+    deleteComment,
     project,
     user,
   } = props;
@@ -55,6 +58,11 @@ const ProjectPage = (props) => {
   }
 
   const { id, title, owner, mixes, collaborators } = project;
+
+  const selectedMix = _.find(mixes, (m) => m.id == selectedMixId) || {};
+  if (selectedMix.id == null && !_.isEmpty(mixes)) {
+    handleSelectMix({ value: mixes[0].id });
+  }
 
   const renderProjectButtons = () => {
     if (_.isEmpty(mixes)) {
@@ -72,30 +80,21 @@ const ProjectPage = (props) => {
       );
     }
 
-    if (selectedMixId == "") {
-      handleSelectMix({ value: mixes[0].id });
-    }
-
+    const options = _.map(mixes, (m) => ({ value: m.id, label: m.title }));
+    options.push({ value: "NEW_MIX", label: "Add New Mix" });
     return (
-      <div className="mix-share-section row d-flex justify-content-center">
+      <div className="mix-share-section row d-flex justify-content-center mt-2">
         <div className="col-4">
-          <select
-            className="form-control mix-select"
+          <Select
             value={selectedMixId}
-            onChange={(evt) =>
+            options={options}
+            onChange={(value) => {
               handleSelectMix({
-                value: evt.target.value,
+                value,
                 defaultMixNum: mixes.length + 1,
-              })
-            }
-          >
-            {_.map(mixes, (mix) => (
-              <option key={mix.id} value={mix.id}>
-                {mix.title}
-              </option>
-            ))}
-            <option value="NEW_MIX">Add New Mix</option>
-          </select>
+              });
+            }}
+          />
         </div>
         <div className="col-4">
           <button
@@ -109,7 +108,6 @@ const ProjectPage = (props) => {
     );
   };
 
-  const selectedMix = _.find(mixes, (m) => m.id == selectedMixId) || {};
   return (
     <React.Fragment>
       <div className="project-page">
@@ -118,12 +116,16 @@ const ProjectPage = (props) => {
             <img src={logo} />
           </Link>
           <h1>{title}</h1>
+          {renderProjectButtons()}
         </div>
-        {renderProjectButtons()}
-        {selectedMix != {} && !isCommentModalOpen ? (
-          <div>
+        {selectedMix != {} &&
+        !isCommentModalOpen &&
+        !isCollaboratorModalOpen &&
+        !isMixModalOpen ? (
+          <React.Fragment>
             <CommentSection
               mix={selectedMix}
+              onDeleteComment={deleteComment}
               handlePosChange={handlePosChange}
             />
             <MediaSection
@@ -134,7 +136,7 @@ const ProjectPage = (props) => {
               handlePosChange={handlePosChange}
               onCommentButtonPress={openCommentModal}
             />
-          </div>
+          </React.Fragment>
         ) : null}
       </div>
       <LoginRequiredModal

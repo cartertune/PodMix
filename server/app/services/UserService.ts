@@ -2,6 +2,7 @@ import AModelService from "../interfaces/AbstractModelService";
 import { Document } from "mongoose";
 import { User } from "../models/user";
 import Auth0Service from "./Auth0Service";
+import { first } from "lodash";
 
 class UserService extends AModelService {
   constructor() {
@@ -43,6 +44,15 @@ class UserService extends AModelService {
     user.email = email;
 
     return this.create(user);
+  }
+  getName(user: User): string {
+    const { firstName, lastName, email } = user;
+
+    if (firstName && lastName) {
+      return `${firstName} ${lastName}`;
+    } else {
+      return email.split("@")[0];
+    }
   }
 }
 

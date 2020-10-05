@@ -77,19 +77,36 @@ const resolvers = {
       ctx: Context
     ): Promise<Document> => {
       const { projectId, email } = args;
-      return ProjectService.addCollaborator(projectId, email);
+      return ProjectService.addCollaborator(
+        ctx.validatedUser,
+        projectId,
+        email
+      );
     },
     signS3Url: (obj: any, args: { fileType: string }, ctx: Context): any => {
       return S3Service.signURL(args.fileType);
     },
+    deleteComment: (
+      obj: any,
+      args: { projectId: string; mixId: string; commentId: string },
+      ctx: Context
+    ): Promise<Document> => {
+      const { projectId, mixId, commentId } = args;
+      return ProjectService.deleteComment(
+        ctx.validatedUser,
+        projectId,
+        mixId,
+        commentId
+      );
+    },
   },
   User: {
     name: (user: User): string => {
-      return `${user.firstName} ${user.lastName}`;
+      return UserService.getName(user);
     },
     projects: (user: User, args: any, ctx: Context): Promise<Document[]> => {
       return ProjectService.find({
-        ownerId: user.id,
+        collaboratorEmails: user.email,
       });
     },
   },

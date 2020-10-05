@@ -58,7 +58,7 @@ const typeDefs = gql`
     addComment(projectId: ID!, mixId: ID!, comment: CommentInput!): Project
     addCollaborator(projectId: ID!, email: String!): Project
     signS3Url(fileType: String!): S3Response
-    #completeComment(projectId: ID!, mixId: ID!, commentId: ID!)
+    deleteComment(projectId: ID!, mixId: ID!, commentId: ID!): Project
   }
   type Query {
     currentUser: User

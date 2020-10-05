@@ -27,6 +27,9 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
       history.push("/projects/" + _.get(res, "data.createProject.id"));
     });
   },
+  logout: () => {
+    dispatch({ type: "LOGOUT" });
+  },
 });
 
 export default withRouter(

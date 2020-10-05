@@ -2,6 +2,9 @@ import AModelService from "../interfaces/AbstractModelService";
 import { Document } from "mongoose";
 import { Mix, Project, Comment } from "../models/project";
 import _ from "lodash";
+import EmailNotificationService from "./EmailNotificationService";
+import { User } from "../models/user";
+import UserService from "./UserService";
 
 class ProjectService extends AModelService {
   constructor() {
@@ -22,13 +25,24 @@ class ProjectService extends AModelService {
     );
   }
 
-  addCollaborator(projectId: string, email: string): Promise<Document> {
+  addCollaborator(
+    validatedUser: User,
+    projectId: string,
+    email: string
+  ): Promise<Document> {
     return this.findOneAndUpdate(
       { _id: projectId },
       {
         $addToSet: { collaboratorEmails: email },
       }
-    );
+    ).then((project) => {
+      console.log(project);
+      EmailNotificationService.onAddCollaboratorEmail(
+        email,
+        UserService.getName(validatedUser),
+        project as Project
+      );
+    }) as Promise<Document>;
   }
 
   addComment(
@@ -42,6 +56,24 @@ class ProjectService extends AModelService {
       { _id: projectId, "mixes._id": mixId },
       {
         $push: { "mixes.$.comments": comment },
+      }
+    );
+  }
+
+  deleteComment(
+    validatedUser: User,
+    projectId: string,
+    mixId: string,
+    commentId: string
+  ): Promise<Document> {
+    return this.findOneAndUpdate(
+      {
+        _id: projectId,
+        "mixes._id": mixId,
+        collaboratorEmails: validatedUser.email,
+      },
+      {
+        $pull: { "mixes.$.comments": { _id: commentId } },
       }
     );
   }
