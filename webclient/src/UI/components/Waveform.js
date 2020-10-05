@@ -38,7 +38,7 @@ class Waveform extends React.Component {
   }
 
   renderLoadingBar() {
-    const { loadingPerc, duration } = this.state;
+    const { loadingPerc } = this.state;
 
     if (loadingPerc < 100) {
       return (
@@ -63,10 +63,11 @@ class Waveform extends React.Component {
       audioPosition,
       audioFile,
       isPlaying,
-      onFinish,
+      togglePlay,
       hideCursor,
     } = this.props;
     const { duration } = this.state;
+
     return (
       <div className="waveform">
         <audio src={audioFile} id={audioFile} />
@@ -76,10 +77,12 @@ class Waveform extends React.Component {
           audioFile={audioFile}
           pos={audioPosition}
           onPosChange={(e) => this.handlePosChange(e)}
-          onFinish={(e) => onFinish()}
+          onFinish={(e) => togglePlay()}
           playing={isPlaying}
           onLoading={(e) => this.handleOnLoad(e)}
-          onReady={(e) => this.setDuration(e)}
+          onReady={(e) => {
+            this.setDuration(e);
+          }}
           options={{
             waveColor: purple,
             progressColor: hideCursor ? purple : progressPurple,
