@@ -87,7 +87,7 @@
 }
 
 .comment {
-  filter: drop-shadow(0px 2px 4px $pm-muted-black);
+  cursor: pointer;
   .delete-button {
     cursor: pointer;
   }
