@@ -33,7 +33,7 @@ class ProjectService extends AModelService {
     return this.findOneAndUpdate(
       { _id: projectId },
       {
-        $addToSet: { collaboratorEmails: email },
+        $addToSet: { collaboratorEmails: _.lowerCase(email) },
       }
     ).then((project) => {
       console.log(project);

@@ -59,7 +59,7 @@ const AddCollaboratorsModal = (props) => {
                 key={c.email}
               >
                 <p>{c.email}</p>
-                <Avatar avatarUrl={c.avatarUrl} />
+                {c.avatarUrl ? <Avatar avatarUrl={c.avatarUrl} /> : null}
               </div>
             );
           })}
