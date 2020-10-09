@@ -30,7 +30,6 @@ h3 {
   font-size: 16px;
   line-height: 1;
   font-weight: 600;
-  color: #f6f6f6;
 }
 
 p,
@@ -43,30 +42,42 @@ p,
 }
 
 .btn-primary {
-  background-color: $pm-green;
-  border: none;
+  background-color: $pm-white;
+  border: 1px solid $pm-white;
   border-radius: 8px;
   box-shadow: none !important;
+  color: $pm-black;
   min-height: 52px;
   display: flex;
   align-items: center;
   text-align: center;
   justify-content: center;
 
+  h3 {
+    color: $pm-black;
+  }
+
   &:disabled {
-    background-color: $pm-muted-green;
+    background-color: $pm-muted-white;
   }
 
   &:hover,
   &:focus {
-    background-color: $pm-green !important;
-    border: none;
+    background-color: $pm-black !important;
+    border: 1px solid $pm-white;
     box-shadow: none;
+    h3 {
+      color: $pm-white;
+    }
   }
 
   &:active {
-    background-color: $pm-muted-green !important;
+    background-color: $pm-black !important;
     border-color: $pm-white !important;
+
+    h3 {
+      color: $pm-white;
+    }
 
     &:focus {
       box-shadow: none;
@@ -89,13 +100,17 @@ p,
 .btn-upload {
   min-height: 48px;
   border-style: dashed;
-  border-color: $pm-green;
+  border-color: $pm-white;
   border-radius: 8px;
   border-width: 2px;
   display: flex;
   align-items: center;
   text-align: center;
   justify-content: center;
+
+  h3 {
+    color: $pm-white;
+  }
 }
 
 .textbox {
@@ -106,6 +121,7 @@ p,
   color: $pm-white;
   background-color: $pm-muted-white;
   border: none;
+  border-radius: 8px;
   min-height: 52px;
   display: flex;
   align-items: center;
@@ -116,7 +132,7 @@ p,
   &:focus {
     color: $pm-white;
     background-color: $pm-muted-white;
-    box-shadow: 0 0 0 0.2rem $pm-muted-green;
+    box-shadow: 0 0 0 0.1rem $pm-white;
   }
 
   &.withtimestamp {

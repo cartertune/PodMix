@@ -46,7 +46,7 @@ const HomePage = (props) => {
           {currentUser.projects.length != 0 ? (
             <div className="mt-4">
               <div className="d-flex mt-2 pl-2">
-                <h3>Your Projects</h3>
+                <h3 className="white">Your Projects</h3>
               </div>
               {_.map(currentUser.projects, (p) => {
                 return (

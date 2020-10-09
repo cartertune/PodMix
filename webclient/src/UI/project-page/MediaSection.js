@@ -19,20 +19,20 @@ const MediaSection = (props) => {
   }
 
   return (
-    <div className="media-section mt-4">
+    <div className="media-section mt-1">
       <div className="media-button-section row">
         <div className="col-2" />
-        <div className="col-2 d-flex flex-column justify-content-center">
+        <div className="col-2 d-flex flex-column justify-content-center align-items-end">
           <SkipBackButton
             onClick={() => {
               handlePosChange(0.0);
             }}
           />
         </div>
-        <div className="col-4">
+        <div className="col-4 d-flex justify-content-center">
           <PlayPauseButton isPlaying={isPlaying} onPress={handleTogglePlay} />
         </div>
-        <div className="col-2 d-flex flex-column justify-content-center">
+        <div className="col-2 d-flex flex-column justify-content-center align-items-start">
           <AddCommentButton onClick={onCommentButtonPress} />
         </div>
       </div>

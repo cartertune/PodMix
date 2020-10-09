@@ -7,7 +7,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.25);
+  background: rgba(0, 0, 0, 0.75);
 
   .close-icon {
     position: absolute;
@@ -20,21 +20,16 @@
   }
 }
 
-.loading-screen {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 50vh;
-}
-
 .pm-modal-dialog {
   padding: 36px 20px;
   box-shadow: 1px 9px 6px 2px rgba(0, 0, 0, 0.25);
-  background: linear-gradient(
-    20deg,
-    rgba(27, 43, 45, 1) 0%,
-    rgba(42, 32, 172, 1) 100%
-  );
+  background: $pm-black;
+  border: 1px solid $pm-white;
+  // background: linear-gradient(
+  //   20deg,
+  //   rgba(27, 43, 45, 1) 0%,
+  //   rgba(42, 32, 172, 1) 100%
+  // );
   border-radius: 8px;
   margin-top: 180px;
 
@@ -43,6 +38,13 @@
     height: 100vh;
     border-radius: 0;
   }
+}
+
+.loading-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
 }
 
 .comment-button {
@@ -68,12 +70,12 @@
   min-height: 46px !important;
   width: 46px;
   border-radius: 50%;
-  background-color: $pm-muted-white;
   font-size: 2em !important;
   color: $pm-white !important;
   outline: none !important;
-  border: none;
+  border: 1px solid $pm-white;
   box-shadow: none !important;
+  stroke-width: 1px;
 
   display: flex;
   justify-content: center;
@@ -111,22 +113,23 @@
 }
 
 .play-pause-button {
-  background: $pm-muted-white;
+  background: transparent;
   position: relative;
   font-size: 3em;
   color: $pm-white;
   height: 92px;
   width: 92px;
   border-radius: 46px;
-  border: none;
+  border: 1px solid $pm-white;
   outline: none !important;
 
   .pause {
     margin: 0;
-    stroke-width: 1.5px;
+    stroke-width: 1px;
   }
 
   .play {
+    stroke-width: 1px;
     margin-left: 5px;
   }
 
@@ -147,6 +150,11 @@
       font-size: 24px;
       color: $pm-white;
     }
+  }
+
+  .form-control {
+    background: none;
+    border: 1px solid $pm-white;
   }
 }
 

@@ -1,5 +1,6 @@
 @import "~bootstrap/scss/bootstrap";
 @import "./constants.scss";
+@import "./modifiers.scss";
 @import "./bootstrap_overrides.scss";
 @import "./components.scss";
 @import "./header.scss";
@@ -7,11 +8,12 @@
 @import "./project_page.scss";
 body {
   overflow: hidden;
-  background: linear-gradient(
-    20deg,
-    rgba(27, 43, 45, 1) 0%,
-    rgba(42, 32, 172, 1) 100%
-  );
+  background: $pm-black;
+  // background: linear-gradient(
+  //   20deg,
+  //   rgba(27, 43, 45, 1) 0%,
+  //   rgba(42, 32, 172, 1) 100%
+  // );
 }
 
 #app {

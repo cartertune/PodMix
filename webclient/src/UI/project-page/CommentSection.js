@@ -7,13 +7,13 @@ const CommentSection = (props) => {
   const { mix, handlePosChange, onDeleteComment } = props;
   const { comments } = mix;
   return (
-    <div className="comment-section mt-3">
+    <div className="comment-section mt-3 pb-3">
       {_.isEmpty(comments) ? (
         <div className="w-100 text-center pt-5">
           <p>No Comments yet</p>
         </div>
       ) : (
-        _.map(comments, (comment) => (
+        _.map(_.sortBy(comments, "time"), (comment) => (
           <div key={comment.id} className="mb-2">
             <Comment
               comment={comment}

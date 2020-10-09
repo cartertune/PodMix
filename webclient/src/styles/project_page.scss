@@ -14,6 +14,9 @@
     overflow-y: auto;
     flex-direction: column;
     flex-grow: 1;
+
+    -webkit-mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
   }
 }
 

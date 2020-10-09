@@ -7,7 +7,7 @@ const LogoHeader = (props) => {
       <div className="header-logo mr-1">
         <img src={logo} />
       </div>
-      <h1>PodMix</h1>
+      <h1>PosseMix</h1>
     </div>
   );
 };
