@@ -33,10 +33,9 @@ class ProjectService extends AModelService {
     return this.findOneAndUpdate(
       { _id: projectId },
       {
-        $addToSet: { collaboratorEmails: _.lowerCase(email) },
+        $addToSet: { collaboratorEmails: email.toLowerCase() },
       }
     ).then((project) => {
-      console.log(project);
       EmailNotificationService.onAddCollaboratorEmail(
         email,
         UserService.getName(validatedUser),

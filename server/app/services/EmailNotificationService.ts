@@ -51,6 +51,7 @@ class EmailNotificationService {
       projectUrl
     );
     const subject: string = `You are invited to collab on ${title}`;
+    console.log(emailAddress);
 
     this.sendEmail({ emailAddress, subject, html });
   }
