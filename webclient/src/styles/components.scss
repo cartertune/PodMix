@@ -107,6 +107,10 @@
 
 .comment {
   cursor: pointer;
+  height: fit-content;
+  .form-control {
+    height: fit-content;
+  }
   .delete-button {
     cursor: pointer;
   }

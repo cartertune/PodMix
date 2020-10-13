@@ -7,15 +7,15 @@ const LoginSplashPage = (props) => {
   return (
     <div className="login-splash-page">
       <div className="logo-section row">
-        <div className="col-2 col-lg-3" />
-        <div className="logo col-8 col-lg-6 pt-100">
+        <div className="col-3" />
+        <div className="logo col-6 pt-100">
           <img src={logo} />
         </div>
-        <div className="col-2 col-lg-3" />
+        <div className="col-3" />
       </div>
       <div className="bottom-section row justify-content-center mt-4">
         <button
-          className="btn btn-primary col-8 py-4"
+          className="btn btn-primary col-6 py-4"
           onClick={() => {
             Auth.login({ callbackLink: "/" });
           }}
