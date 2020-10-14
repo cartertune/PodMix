@@ -33,7 +33,7 @@
   border-radius: 8px;
   margin-top: 180px;
 
-  @media (max-width: 768px) {
+  @media (max-width: $mobile-bp) {
     margin: 0;
     height: 100vh;
     border-radius: 0;
@@ -111,6 +111,7 @@
   height: fit-content;
   .form-control {
     height: fit-content;
+    padding-right: 18px;
   }
   .delete-button {
     cursor: pointer;
@@ -124,7 +125,7 @@
   color: $pm-white;
   height: 92px;
   width: 92px;
-  border-radius: 46px;
+  border-radius: 50%;
   border: 1px solid $pm-white;
   outline: none !important;
 
@@ -176,7 +177,6 @@
   height: 42px;
   width: 42px;
 
-  top: 0;
   left: 0;
 
   img {

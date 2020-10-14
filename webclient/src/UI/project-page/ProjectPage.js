@@ -48,6 +48,7 @@ const ProjectPage = (props) => {
     audioPosition,
     handleTogglePlay,
     handlePosChange,
+    handleCommentClick,
     deleteComment,
     project,
     user,
@@ -112,10 +113,15 @@ const ProjectPage = (props) => {
     <React.Fragment>
       <div className="project-page">
         <div className="header-section text-center position-relative">
-          <Link className="header-logo" to="/">
-            <img src={logo} />
-          </Link>
-          <h1>{title}</h1>
+          <div className="d-flex justify-content-center align-items-center">
+            <Link className="header-logo" to="/">
+              <img src={logo} />
+            </Link>
+            <div>
+              <h1>{title}</h1>
+              <h4>{`proj. owner: ${owner.name}`}</h4>
+            </div>
+          </div>
           {renderProjectButtons()}
         </div>
         {selectedMix != {} &&
@@ -127,6 +133,7 @@ const ProjectPage = (props) => {
               mix={selectedMix}
               onDeleteComment={deleteComment}
               handlePosChange={handlePosChange}
+              onCommentSelected={handleCommentClick}
             />
             <MediaSection
               audioUrl={selectedMix.fileUrl}

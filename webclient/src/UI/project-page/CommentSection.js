@@ -4,7 +4,7 @@ import _ from "lodash";
 import Comment from "./Comment";
 
 const CommentSection = (props) => {
-  const { mix, handlePosChange, onDeleteComment } = props;
+  const { mix, handlePosChange, onDeleteComment, onCommentSelected } = props;
   const { comments } = mix;
   return (
     <div className="comment-section mt-3 pb-3">
@@ -17,7 +17,7 @@ const CommentSection = (props) => {
           <div key={comment.id} className="mb-2">
             <Comment
               comment={comment}
-              onClick={() => handlePosChange(comment.time)}
+              onClick={() => onCommentSelected(comment)}
               onDelete={() =>
                 onDeleteComment({ mixId: mix.id, commentId: comment.id })
               }

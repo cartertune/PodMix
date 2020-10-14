@@ -53,8 +53,10 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   handlePosChange: (pos) => {
     dispatch({ type: "SET_AUDIO_POSITION", pos });
   },
-  handleCommentClick: (pos) => {
-    dispatch({ type: "SET_AUDIO_POSITION", pos: _.floor(pos, 1) });
+  handleCommentClick: (comment) => {
+    const { time, id } = comment;
+    dispatch({type: "SELECT_COMMENT", commentId: id})
+    dispatch({ type: "SET_AUDIO_POSITION", pos: _.floor(time, 1) });
   },
   addMix: ({ title, file }) => {
     const { addMix, signS3Url, project } = ownProps;
