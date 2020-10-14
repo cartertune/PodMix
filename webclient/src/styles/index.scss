@@ -6,7 +6,11 @@
 @import "./header.scss";
 @import "./home_page.scss";
 @import "./project_page.scss";
+html {
+  height: 100%;
+}
 body {
+  height: 100%;
   overflow: hidden;
   background: $pm-black;
   // background: linear-gradient(
@@ -17,5 +21,10 @@ body {
 }
 
 #app {
+  height: 100%;
   overflow: hidden;
+}
+
+.skeleton {
+  height: 100%;
 }
