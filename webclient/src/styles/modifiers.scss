@@ -1,3 +1,15 @@
 .white {
   color: $pm-white;
 }
+
+.mobile {
+  @media (min-width: $mobile-bp) {
+    display: none !important;
+  }
+}
+
+.web {
+  @media (max-width: $mobile-bp) {
+    display: none !important;
+  }
+}
