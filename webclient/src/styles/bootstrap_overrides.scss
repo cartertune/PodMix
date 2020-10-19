@@ -8,8 +8,12 @@
 
 .container {
   overflow: hidden;
-  padding: 18px;
+  padding: 40px;
   height: 100%;
+
+  @media (max-width: $mobile-bp) {
+    padding: 18px;
+  }
 }
 
 h1 {
@@ -27,6 +31,14 @@ h3 {
   font-size: 16px;
   line-height: 1;
   font-weight: 600;
+}
+
+h4 {
+  font-family: $font-family-secondary;
+  color: $pm-white;
+  line-height: 1;
+  font-weight: 300;
+  font-size: 11px;
 }
 
 p,
@@ -56,6 +68,7 @@ p,
 
   &:disabled {
     background-color: $pm-muted-white;
+    border: none !important;
   }
 
   &:hover,

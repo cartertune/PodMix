@@ -460,7 +460,7 @@ body{background-color:#f0f0f0}.logo a:hover,.logo a:focus{color:#859bb1 !importa
         <div class="header" style="Margin: 0 auto;max-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px);" id="emb-email-header-container">
         <!--[if (mso)|(IE)]><table align="center" class="header" cellpadding="0" cellspacing="0" role="presentation"><tr><td style="width: 600px"><![endif]-->
           <div class="logo emb-logo-margin-box" style="font-size: 26px;line-height: 32px;Margin-top: 6px;Margin-bottom: 20px;color: #c3ced9;font-family: Roboto,Tahoma,sans-serif;Margin-left: 20px;Margin-right: 20px;" align="center">
-            <div class="logo-center" align="center" id="emb-email-header"><img style="display: block;height: auto;width: 100%;border: 0;max-width: 142px;" src="http://peopleonotherpeoplesmix.com/615bcab4ce8454c76738a3e63380aee4.png" alt="" width="142" /></div>
+            <div class="logo-center" align="center" id="emb-email-header"><img style="display: block;height: auto;width: 100%;border: 0;max-width: 142px;" src="https://possemix.com/9e1496ec61d488e1ba159b03fb51924a.png" alt="" width="142" /></div>
           </div>
         <!--[if (mso)|(IE)]></td></tr></table><![endif]-->
         </div>
