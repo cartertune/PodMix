@@ -3,6 +3,8 @@ import { secondsToTimestamp } from "../../util/util";
 import Avatar from "../components/Avatar";
 import Auth from "../../auth/Auth";
 import { FiX } from "react-icons/fi";
+import Interactable from 'react-interactable/noNative'
+
 
 const Comment = (props) => {
   const { comment, onClick, onDelete } = props;
@@ -10,6 +12,7 @@ const Comment = (props) => {
   const user = Auth.getUser();
 
   return (
+    <Interactable.View>
     <div className="comment position-relative">
       <div className="timestamp-container">
         <p>{`${secondsToTimestamp(time)} -`}</p>
@@ -28,6 +31,7 @@ const Comment = (props) => {
         </div>
       </div>
     </div>
+</Interactable.View>
   );
 };
 

@@ -1057,6 +1057,14 @@ amdefine@>=0.0.4:
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
   integrity sha1-SlKCrBZHKek2Gbz9OtFR+BfOkfU=
 
+animated@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/animated/-/animated-0.2.2.tgz#04af7846ad0b9b8d1f0472cc53d82b8efeb4a751"
+  integrity sha512-7pMzS0Sk2lA6/JT6he+apuy3GnDWUWVCurHMrpsbT9ugeLe80kpDQWjZQvkFiU9o7LsPGydPnoZpJsmt1HPPMA==
+  dependencies:
+    invariant "^2.2.0"
+    normalize-css-color "^1.0.1"
+
 ansi-align@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ansi-align/-/ansi-align-2.0.0.tgz#c36aeccba563b89ceb556f3690f0b1d9e3547f7f"
@@ -4009,7 +4017,7 @@ interpret@^1.1.0:
   resolved "https://registry.yarnpkg.com/interpret/-/interpret-1.2.0.tgz#d5061a6224be58e8083985f5014d844359576296"
   integrity sha512-mT34yGKMNceBQUoVn7iCDKDntA7SC6gycMAWzGx1z/CMCTV7b2AAtXlo3nRyHZ1FelRkQbQjprHSYGwzLtkVbw==
 
-invariant@^2.2.2, invariant@^2.2.4:
+invariant@^2.2.0, invariant@^2.2.2, invariant@^2.2.4:
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/invariant/-/invariant-2.2.4.tgz#610f3c92c9359ce1db616e538008d23ff35158e6"
   integrity sha512-phJfQVBuaJM5raOpJjSfkiD6BpbCE4Ns//LaXl6wGYtUBY83nWS6Rf9tXm2e8VaK60JEjYldbPif/A2B1C2gNA==
@@ -5259,6 +5267,11 @@ nopt@^4.0.1:
     abbrev "1"
     osenv "^0.1.4"
 
+normalize-css-color@^1.0.1:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/normalize-css-color/-/normalize-css-color-1.0.2.tgz#02991e97cccec6623fe573afbbf0de6a1f3e9f8d"
+  integrity sha1-Apkel8zOxmI/5XOvu/Deah8+n40=
+
 normalize-package-data@^2.3.2, normalize-package-data@^2.3.4:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/normalize-package-data/-/normalize-package-data-2.5.0.tgz#e66db1838b200c1dfc233225d12cb36520e234a8"
@@ -6001,7 +6014,7 @@ promise-inflight@^1.0.1:
   resolved "https://registry.yarnpkg.com/promise-inflight/-/promise-inflight-1.0.1.tgz#98472870bf228132fcbdd868129bad12c3c029e3"
   integrity sha1-mEcocL8igTL8vdhoEputEsPAKeM=
 
-prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
+prop-types@^15.5.7, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -6216,6 +6229,13 @@ react-input-autosize@^2.2.1:
   dependencies:
     prop-types "^15.5.8"
 
+react-interactable@^0.6.4:
+  version "0.6.4"
+  resolved "https://registry.yarnpkg.com/react-interactable/-/react-interactable-0.6.4.tgz#808377b387b9f0b4b30232336135e8d5c555d8d0"
+  integrity sha512-x7JQujvwC+bA2SvEs/LYLg47laBLuoYR/VHr4lY2G2OCxAWw1/Qt8TViZe5BoRSHrQmRHhdvqD4M/yJwnhiFog==
+  dependencies:
+    prop-types "^15.5.7"
+
 react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.6:
   version "16.8.6"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.8.6.tgz#5bbc1e2d29141c9fbdfed456343fe2bc430a6a16"
@@ -6225,6 +6245,11 @@ react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
+
+react-panresponder-web@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/react-panresponder-web/-/react-panresponder-web-1.0.2.tgz#6d19c6bd33724b77d2c762fec302e0eeff9475e6"
+  integrity sha512-kUfNinxTavO7PY/s/khqRnJgtp8czpCG+inZlKRw/wFaLAARxewXlE28XmGeK0LWpKBuhEm+YKPN0nruT/urrg==
 
 react-redux@^7.1.0:
   version "7.1.0"
