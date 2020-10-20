@@ -15,7 +15,7 @@ const LoginSplashPage = (props) => {
               <div className="logo-combo">
                 <img src={textLogoCombo} />
               </div>
-              <div className="w-75">
+              <div className="slogan w-75">
                 <h2>Take your music seriously, not yourself</h2>
               </div>
             </div>
@@ -30,9 +30,9 @@ const LoginSplashPage = (props) => {
               </button>
             </div>
             <div className="section">
-              <p>- This is one cool thing</p>
-              <p>- This is a second</p>
-              <p>- And cant foget about this one</p>
+              <p>- Keep your project collaboration organized</p>
+              <p>- Upload all your mixes to one location</p>
+              <p>- Keep the feedback process quick & easy </p>
             </div>
           </div>
         </div>
