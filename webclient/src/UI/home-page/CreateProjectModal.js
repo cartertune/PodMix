@@ -23,6 +23,7 @@ const CreateProjectModal = (props) => {
           value={title}
           onChange={(value) => onEditField({ field: "title", value })}
           placeholder="Project Title*"
+          onEnterPressed={() => onCreate({ title })}
         />
       </div>
       <div className="mt-5 d-flex justify-content-center">

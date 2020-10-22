@@ -22,6 +22,8 @@ const AddCommentModal = (props) => {
   } = props;
   const { text } = modalData;
 
+  const isDisabled = text == "";
+
   return (
     <Modal
       header="Add Comment"
@@ -43,6 +45,10 @@ const AddCommentModal = (props) => {
             value={text}
             onChange={(value) => onEditField({ field: "text", value })}
             placeholder="Add comment here..."
+            onEnterPressed={() =>
+              !isDisabled &&
+              onAddComment({ mixId: selectedMixId, text, audioPosition })
+            }
           />
         </div>
 
@@ -52,7 +58,7 @@ const AddCommentModal = (props) => {
               onAddComment({ mixId: selectedMixId, text, audioPosition })
             }
             isLoading={isAddingComment}
-            disabled={text == ""}
+            disabled={isDisabled}
           />
         </div>
       </div>
