@@ -4,7 +4,13 @@ import _ from "lodash";
 import Comment from "./Comment";
 
 const CommentSection = (props) => {
-  const { mix, handlePosChange, onDeleteComment, onCommentSelected } = props;
+  const {
+    mix,
+    handlePosChange,
+    onDeleteComment,
+    onCommentSelected,
+    currentAudioPosition,
+  } = props;
   const { comments } = mix;
   return (
     <div className="comment-section mt-3 pb-3">
@@ -21,6 +27,11 @@ const CommentSection = (props) => {
               onDelete={() =>
                 onDeleteComment({ mixId: mix.id, commentId: comment.id })
               }
+              isHighlighted={_.inRange(
+                currentAudioPosition,
+                comment.time,
+                comment.time + 3
+              )}
             />
           </div>
         ))

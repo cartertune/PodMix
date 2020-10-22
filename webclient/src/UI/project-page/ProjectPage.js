@@ -134,6 +134,7 @@ const ProjectPage = (props) => {
               onDeleteComment={deleteComment}
               handlePosChange={handlePosChange}
               onCommentSelected={handleCommentClick}
+              currentAudioPosition={audioPosition}
             />
             <MediaSection
               audioUrl={selectedMix.fileUrl}

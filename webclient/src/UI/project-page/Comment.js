@@ -5,7 +5,7 @@ import Auth from "../../auth/Auth";
 import { FiX } from "react-icons/fi";
 
 const Comment = (props) => {
-  const { comment, onClick, onDelete } = props;
+  const { comment, onClick, onDelete, isHighlighted } = props;
   const { time, text, creator } = comment;
   const user = Auth.getUser();
 
@@ -15,7 +15,9 @@ const Comment = (props) => {
         <p>{`${secondsToTimestamp(time)} -`}</p>
       </div>
       <div
-        className="form-control position-relative withtimestamp d-flex justify-content-between"
+        className={`form-control position-relative withtimestamp d-flex justify-content-between ${
+          isHighlighted ? "highlighted" : ""
+        }`}
         onClick={onClick}
       >
         <p>{text}</p>
