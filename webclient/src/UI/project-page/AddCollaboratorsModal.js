@@ -38,6 +38,7 @@ const AddCollaboratorsModal = (props) => {
             value={email}
             onChange={(value) => onEditField({ field: "email", value })}
             placeholder="Add people to project"
+            onEnterPressed={() => onAddCollaborator({ email })}
           />
         </div>
         <div className="col-4">
