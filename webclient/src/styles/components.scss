@@ -113,6 +113,11 @@
     height: fit-content;
     padding-right: 18px;
   }
+  .highlighted {
+    box-shadow: 0px 0px 8px 3px rgba(80, 50, 232, 1);
+    -webkit-box-shadow: 0px 0px 8px 3px rgba(80, 50, 232, 1);
+    -moz-box-shadow: 0px 0px 8px 3px rgba(80, 50, 232, 1);
+  }
   .delete-button {
     cursor: pointer;
   }
