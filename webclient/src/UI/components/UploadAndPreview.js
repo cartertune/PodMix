@@ -13,8 +13,8 @@ const AudioUpload = (props) => {
       accept="audio/*"
     >
       {({ getRootProps, getInputProps }) => (
-        <section className="h-100">
-          <div className="btn btn-upload h-100 px-4" {...getRootProps()}>
+        <section className="h-100 pt-2">
+          <div className="btn btn-upload h-100 px-5" {...getRootProps()}>
             <input {...getInputProps()} />
             <h3>Upload</h3>
           </div>
@@ -31,7 +31,7 @@ const Preview = (props) => {
     <div className="preview">
       <Waveform audioFile={audioFile} nonPlayable hideCursor />
       <div className="d-flex align-items-center justify-content-end">
-        <h3 className="mt-1">{_.get(file, "name")}</h3>
+        <h3 className="white mt-1">{_.get(file, "name")}</h3>
         <button className="delete-icon" onClick={onRemove}>
           <FiX />
         </button>

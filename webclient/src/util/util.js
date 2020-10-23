@@ -1,25 +1,23 @@
 import axios from "axios";
 import _ from "lodash";
 
-export const uploadBase64ToS3 = async (signedRequest, file) => {
-  try {
+export const uploadBase64ToS3 = async (signedRequest, file, onProgress) => {
     const options = {
       headers: {
         "Content-Type": file.type,
       },
+      onUploadProgress: evt => onProgress(evt.loaded / evt.total) 
     };
     const result = await axios
       .put(signedRequest, file, options)
       .then((result) => {
         console.log("Response from s3");
       })
-      .catch((error) => {
-        alert("ERROR " + JSON.stringify(error));
-      });
+      // .catch((error) => {
+      //   alert("ERROR " + JSON.stringify(error));
+      // });
     return result;
-  } catch (e) {
-    console.log("Error during base64 -> s3 upload: ", e);
-  }
+ 
 };
 
 export const secondsToTimestamp = (seconds) => {
@@ -29,3 +27,10 @@ export const secondsToTimestamp = (seconds) => {
 
   return `${m}:${s.toString().padStart(2, "0")}`;
 };
+
+// export const readFileFromLocalUrl = (localUrl, callback) => {
+//   const reader = new FileReader()
+
+//   reader.onloadend = () => callback(reader.result)
+//   reader.readAsDataURL(localUrl)
+// }

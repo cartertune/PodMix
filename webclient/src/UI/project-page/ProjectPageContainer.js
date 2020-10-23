@@ -61,6 +61,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   addMix: ({ title, file }) => {
     const { addMix, signS3Url, project } = ownProps;
     dispatch({ type: "ADDING_MIX" });
+    console.log(ownProps)
     signS3Url(file.type)
       .then(({ data }) => {
         const signedUrl = _.get(data, "signS3Url.url");
@@ -72,14 +73,14 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
           fileName: file.name,
         };
         // Save the URL of photo to this event.
-        uploadBase64ToS3(signedRequest, file)
+        uploadBase64ToS3(signedRequest, file, perc => dispatch({type: "UPLOAD_PERC", perc}))
           // Success!!
           .then((res) => {
-            addMix(project.id, mix).then((res) => {
+            addMix(project.id, mix).then((mixRes) => {
               dispatch({
                 type: "ADD_MIX_SUCCESS",
               });
-              const newMixId = _.last(_.get(res, "data.addMix.mixes")).id;
+              const newMixId = _.last(_.get(mixRes, "data.addMix.mixes")).id;
               dispatch({
                 type: "SELECT_MIX",
                 mixId: newMixId,
@@ -90,8 +91,14 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
             });
           })
           .catch((err) => {
+            alert(
+              "MIX UPLOAD FAILED: This large of a file needs to be uploaded on a faster network"
+            )
             console.log("Error: uploadToS3");
             console.log(err);
+            dispatch({
+              type: "CLOSE_ADD_MIX_MODAL",
+            });
           });
       })
       .catch((err) => {
