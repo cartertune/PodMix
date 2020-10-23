@@ -13,9 +13,6 @@ export const uploadBase64ToS3 = async (signedRequest, file, onProgress) => {
       .then((result) => {
         console.log("Response from s3");
       })
-      // .catch((error) => {
-      //   alert("ERROR " + JSON.stringify(error));
-      // });
     return result;
  
 };
@@ -27,10 +24,3 @@ export const secondsToTimestamp = (seconds) => {
 
   return `${m}:${s.toString().padStart(2, "0")}`;
 };
-
-// export const readFileFromLocalUrl = (localUrl, callback) => {
-//   const reader = new FileReader()
-
-//   reader.onloadend = () => callback(reader.result)
-//   reader.readAsDataURL(localUrl)
-// }
