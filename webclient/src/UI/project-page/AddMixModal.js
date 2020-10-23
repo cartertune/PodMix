@@ -5,6 +5,7 @@ import Modal from "../components/Modal";
 import Button from "../components/Button";
 import Input from "../components/Input";
 import UploadAndPreview from "../components/UploadAndPreview";
+import LoadingBar from "../components/LoadingBar";
 
 const AddMixModal = (props) => {
   const {
@@ -15,7 +16,7 @@ const AddMixModal = (props) => {
     onAddMix,
     isAddingMix,
   } = props;
-  const { title, tempAudio, file } = modalData;
+  const { title, tempAudioUrl, file, uploadPerc } = modalData;
 
   const handleAudioUpload = (file) => {
     const reader = new FileReader();
@@ -23,8 +24,7 @@ const AddMixModal = (props) => {
     reader.onerror = () => console.log("file reading has failed");
     reader.onload = () => {
       // Do whatever you want with the file contents
-      const base64Audio = reader.result;
-      onEditField({ field: "tempAudio", value: base64Audio });
+      onEditField({ field: "tempAudioUrl", value: window.URL.createObjectURL(file) });
       onEditField({ field: "file", value: file });
     };
     reader.readAsDataURL(file);
@@ -47,20 +47,23 @@ const AddMixModal = (props) => {
       <div className="mt-3 d-flex justify-content-center">
         <UploadAndPreview
           onRemove={() => onEditField({ field: "file", value: null })}
-          audioFile={tempAudio}
+          audioFile={tempAudioUrl}
           file={file}
           onDrop={(files) => handleAudioUpload(files[0])}
         />
       </div>
-      {tempAudio && file ? (
-        <div className="mt-4 d-flex justify-content-center">
-          <Button
-            isLoading={isAddingMix}
-            className="btn btn-primary px-4 py-3"
-            onClick={() => onAddMix({ title, file })}
-          >
-            <h3>Add Mix</h3>
-          </Button>
+      {tempAudioUrl && file ? (
+        <div className="mt-4 d-flex justify-content-center w-100">
+          {isAddingMix ? 
+            <LoadingBar percentage={uploadPerc}/> : 
+            <Button
+              isLoading={isAddingMix}
+              disabled={isAddingMix}
+              className="btn btn-primary px-4 py-3"
+              onClick={() => onAddMix({ title, file })}
+            >
+              <h3>Add Mix</h3>
+            </Button>}
         </div>
       ) : null}
     </Modal>

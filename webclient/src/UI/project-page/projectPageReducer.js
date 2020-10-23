@@ -10,9 +10,10 @@ const defaultState = {
   selectedMixId: "",
   mixModalData: {
     title: "",
-    tempAudio: null,
+    tempAudioUrl: null,
     audioToUpload: null,
     file: null,
+    uploadPerc: 0
   },
   commentModalData: {
     text: "",
@@ -83,6 +84,9 @@ const projectPageReducer = (state = defaultState, action) => {
       break;
     case "ADD_COLLABORATOR_SUCCESS":
       newState.isAddingCollaborator = false;
+      break;
+    case "UPLOAD_PERC":
+      newState.mixModalData.uploadPerc = action.perc * 100
       break;
     default:
   }

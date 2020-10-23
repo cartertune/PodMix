@@ -2,6 +2,7 @@ require("wavesurfer.js/dist/plugin/wavesurfer.minimap.min.js");
 import React from "react";
 import Wavesurfer from "react-wavesurfer";
 import { secondsToTimestamp } from "../../util/util";
+import LoadingBar from "./LoadingBar";
 
 const purple = "#5032e8";
 const progressPurple = "rgba(0, 0, 0, 0.5)";
@@ -34,28 +35,20 @@ class Waveform extends React.Component {
     if (!duration) {
       this.setDuration();
     }
-    handlePosChange(e.originalArgs[0]);
+    handlePosChange && handlePosChange(e.originalArgs[0]);
   }
 
   renderLoadingBar() {
-    const { loadingPerc } = this.state;
+    const {loadingPerc } = this.state
 
-    if (loadingPerc < 100) {
-      return (
-        <div className="pt-5 position-absolute w-100">
-          <div className="progress" style={{ backgroundColor: black }}>
-            <div
-              className="progress-bar"
-              role="progressbar"
-              aria-valuenow={`${loadingPerc}`}
-              style={{ width: `${loadingPerc}%`, backgroundColor: purple }}
-              aria-valuemin="0"
-              aria-valuemax="100"
-            />
-          </div>
-        </div>
-      );
+    if (loadingPerc >= 100) {
+      return null
     }
+    return (
+    <div className="pt-5 position-absolute w-100">
+      <LoadingBar percentage={loadingPerc}/>
+    </div>
+    )
   }
 
   render() {
