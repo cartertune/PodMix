@@ -6,6 +6,7 @@ import Button from "../components/Button";
 import Input from "../components/Input";
 import UploadAndPreview from "../components/UploadAndPreview";
 import LoadingBar from "../components/LoadingBar";
+import H3 from "../components/H3";
 
 const AddMixModal = (props) => {
   const {
@@ -24,7 +25,10 @@ const AddMixModal = (props) => {
     reader.onerror = () => console.log("file reading has failed");
     reader.onload = () => {
       // Do whatever you want with the file contents
-      onEditField({ field: "tempAudioUrl", value: window.URL.createObjectURL(file) });
+      onEditField({
+        field: "tempAudioUrl",
+        value: window.URL.createObjectURL(file),
+      });
       onEditField({ field: "file", value: file });
     };
     reader.readAsDataURL(file);
@@ -54,16 +58,18 @@ const AddMixModal = (props) => {
       </div>
       {tempAudioUrl && file ? (
         <div className="mt-4 d-flex justify-content-center w-100">
-          {isAddingMix ? 
-            <LoadingBar percentage={uploadPerc}/> : 
+          {isAddingMix ? (
+            <LoadingBar percentage={uploadPerc} />
+          ) : (
             <Button
               isLoading={isAddingMix}
               disabled={isAddingMix}
               className="btn btn-primary px-4 py-3"
               onClick={() => onAddMix({ title, file })}
             >
-              <h3>Add Mix</h3>
-            </Button>}
+              <H3>Add Mix</H3>
+            </Button>
+          )}
         </div>
       ) : null}
     </Modal>

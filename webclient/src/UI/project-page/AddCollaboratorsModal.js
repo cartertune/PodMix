@@ -5,6 +5,8 @@ import Modal from "../components/Modal";
 import Input from "../components/Input";
 import Button from "../components/Button";
 import Avatar from "../components/Avatar";
+import P from "../components/P";
+import H3 from "../components/H3";
 
 const AddCollaboratorsModal = (props) => {
   const {
@@ -47,7 +49,7 @@ const AddCollaboratorsModal = (props) => {
             onClick={() => onAddCollaborator({ email })}
             isLoading={isAddingCollaborator}
           >
-            <h3>Share</h3>
+            <H3>Share</H3>
           </Button>
         </div>
       </div>
@@ -59,7 +61,7 @@ const AddCollaboratorsModal = (props) => {
                 className="form-control mt-2 d-flex justify-content-between"
                 key={c.email}
               >
-                <p>{c.email}</p>
+                <P>{c.email}</P>
                 {c.avatarUrl ? <Avatar avatarUrl={c.avatarUrl} /> : null}
               </div>
             );

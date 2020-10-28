@@ -17,40 +17,6 @@
   }
 }
 
-h1 {
-  margin: 0;
-  font-family: $font-family-primary;
-  font-size: 28px;
-  line-height: 38px;
-  font-weight: 800;
-  color: #f6f6f6;
-}
-
-h3 {
-  margin: 0;
-  font-family: $font-family-secondary;
-  font-size: 16px;
-  line-height: 1;
-  font-weight: 600;
-}
-
-h4 {
-  font-family: $font-family-secondary;
-  color: $pm-white;
-  line-height: 1;
-  font-weight: 300;
-  font-size: 11px;
-}
-
-p,
-.form-control {
-  font-family: $font-family-secondary;
-  font-size: 16px;
-  font-weight: normal;
-  color: $pm-white;
-  margin: 0;
-}
-
 .btn-primary {
   background-color: $pm-white;
   border: 1px solid $pm-white;
@@ -94,18 +60,6 @@ p,
       box-shadow: none;
     }
   }
-
-  //   &:focus {
-  //     box-shadow: 0 0 0 0.15rem $bif-gold !important;
-  //   }
-
-  //   &:disabled {
-  //     background-color: $muted-bif-black;
-  //     border-color: white;
-  //     &:hover {
-  //       color: white;
-  //     }
-  //   }
 }
 
 .btn-upload {

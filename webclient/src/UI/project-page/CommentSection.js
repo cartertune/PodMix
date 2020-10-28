@@ -2,6 +2,7 @@ import React from "react";
 import _ from "lodash";
 
 import Comment from "./Comment";
+import P from "../components/P";
 
 const CommentSection = (props) => {
   const {
@@ -16,7 +17,7 @@ const CommentSection = (props) => {
     <div className="comment-section mt-3 pb-3">
       {_.isEmpty(comments) ? (
         <div className="w-100 text-center pt-5">
-          <p>No Comments yet</p>
+          <P>No Comments yet</P>
         </div>
       ) : (
         _.map(_.sortBy(comments, "time"), (comment) => (

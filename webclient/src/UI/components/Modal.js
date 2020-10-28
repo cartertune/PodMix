@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
 import { FiX } from "react-icons/fi";
+import H1 from "./H1";
 
 const Modal = (props) => {
   const { show, header, onClose, notClosable, className, children } = props;
@@ -17,7 +18,7 @@ const Modal = (props) => {
             </button>
           )}
           <div className="d-flex justify-content-center">
-            <h1>{header}</h1>
+            <H1>{header}</H1>
           </div>
           <div className="pm-modal-body">{children}</div>
         </div>

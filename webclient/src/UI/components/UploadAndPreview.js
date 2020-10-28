@@ -3,6 +3,7 @@ import _ from "lodash";
 import Waveform from "./Waveform";
 import Dropzone from "react-dropzone";
 import { FiX } from "react-icons/fi";
+import H3 from "./H3";
 
 const AudioUpload = (props) => {
   const { onDrop } = props;
@@ -16,7 +17,7 @@ const AudioUpload = (props) => {
         <section className="h-100 pt-2">
           <div className="btn btn-upload h-100 px-5" {...getRootProps()}>
             <input {...getInputProps()} />
-            <h3>Upload</h3>
+            <H3>Upload</H3>
           </div>
         </section>
       )}
@@ -31,7 +32,7 @@ const Preview = (props) => {
     <div className="preview">
       <Waveform audioFile={audioFile} nonPlayable hideCursor />
       <div className="d-flex align-items-center justify-content-end">
-        <h3 className="white mt-1">{_.get(file, "name")}</h3>
+        <H3 className="mt-1">{_.get(file, "name")}</H3>
         <button className="delete-icon" onClick={onRemove}>
           <FiX />
         </button>

@@ -1,0 +1,61 @@
+h1 {
+  margin: 0;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-family: $font-family-primary;
+  font-size: 28px;
+  line-height: 38px;
+  font-weight: 800;
+  color: #f6f6f6;
+}
+
+h3 {
+  color: $pm-white;
+  margin: 0;
+  font-family: $font-family-secondary;
+  font-size: 16px;
+  line-height: 1;
+  font-weight: 600;
+}
+
+h4 {
+  font-family: $font-family-secondary;
+  color: $pm-white;
+  line-height: 1;
+  font-weight: 300;
+  font-size: 11px;
+}
+
+p,
+.form-control {
+  font-family: $font-family-secondary;
+  font-size: 16px;
+  font-weight: normal;
+  color: $pm-white;
+  text-overflow: ellipsis;
+  margin: 0;
+}
+.marquee-container {
+  position: relative;
+  overflow: hidden;
+  height: 40px;
+  padding-right: 20px;
+}
+
+.marquee {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: inline-block;
+  white-space: nowrap;
+  animation: marquee-anim 4s infinite alternate;
+}
+
+@keyframes marquee-anim {
+  0% {
+    left: 0;
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}

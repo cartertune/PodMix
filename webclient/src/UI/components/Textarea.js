@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import classname from "classnames";
+import P from "./P";
 
 const Textarea = (props) => {
   const { onChange, value, placeholder, timestamp, onEnterPressed } = props;
@@ -21,7 +22,7 @@ const Textarea = (props) => {
     <div className="position-relative">
       {timestamp ? (
         <div className="timestamp-container">
-          <p>{timestamp}</p>
+          <P>{timestamp}</P>
         </div>
       ) : null}
       <textarea

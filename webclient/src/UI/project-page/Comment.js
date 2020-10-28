@@ -3,6 +3,7 @@ import { secondsToTimestamp } from "../../util/util";
 import Avatar from "../components/Avatar";
 import Auth from "../../auth/Auth";
 import { FiX } from "react-icons/fi";
+import P from "../components/P";
 
 const Comment = (props) => {
   const { comment, onClick, onDelete, isHighlighted } = props;
@@ -12,7 +13,7 @@ const Comment = (props) => {
   return (
     <div className="comment position-relative">
       <div className="timestamp-container">
-        <p>{`${secondsToTimestamp(time)} -`}</p>
+        <P>{`${secondsToTimestamp(time)} -`}</P>
       </div>
       <div
         className={`form-control position-relative withtimestamp d-flex justify-content-between ${
@@ -20,7 +21,7 @@ const Comment = (props) => {
         }`}
         onClick={onClick}
       >
-        <p>{text}</p>
+        <P>{text}</P>
         <div className="avatar-container">
           {creator.email == _.get(user, "email") ? (
             <FiX className="delete-button" onClick={() => onDelete()} />
