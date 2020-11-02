@@ -6,7 +6,7 @@ const H1 = (props) => {
   const { marquee, elementId, onLoad } = props;
   const className = classnames("H1", props.className, { marquee });
   return (
-    <h1 id={elementId || "NO_ID_SET"} className={className} onLoad={onLoad}>
+    <h1 id={elementId || "NO_ID_SET"} className={className}>
       {props.children}
     </h1>
   );
