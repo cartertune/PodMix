@@ -3,6 +3,7 @@ import React from "react";
 import Wavesurfer from "react-wavesurfer";
 import { secondsToTimestamp } from "../../util/util";
 import LoadingBar from "./LoadingBar";
+import P from "./P";
 
 const purple = "#5032e8";
 const progressPurple = "rgba(0, 0, 0, 0.5)";
@@ -39,16 +40,16 @@ class Waveform extends React.Component {
   }
 
   renderLoadingBar() {
-    const {loadingPerc } = this.state
+    const { loadingPerc } = this.state;
 
     if (loadingPerc >= 100) {
-      return null
+      return null;
     }
     return (
-    <div className="pt-5 position-absolute w-100">
-      <LoadingBar percentage={loadingPerc}/>
-    </div>
-    )
+      <div className="pt-5 position-absolute w-100">
+        <LoadingBar percentage={loadingPerc} />
+      </div>
+    );
   }
 
   render() {
@@ -85,10 +86,10 @@ class Waveform extends React.Component {
         {hideCursor || isNaN(duration) ? null : (
           <React.Fragment>
             <div className="timestamp left">
-              <p>{secondsToTimestamp(audioPosition)}</p>
+              <P>{secondsToTimestamp(audioPosition)}</P>
             </div>
             <div className="timestamp right">
-              <p>{secondsToTimestamp(duration)}</p>
+              <P>{secondsToTimestamp(duration)}</P>
             </div>
           </React.Fragment>
         )}

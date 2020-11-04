@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import Modal from "../components/Modal";
 import Input from "../components/Input";
 import Button from "../components/Button";
+import H3 from "../components/H3";
 
 const CreateProjectModal = (props) => {
   const {
@@ -32,7 +33,7 @@ const CreateProjectModal = (props) => {
           className="btn btn-primary px-4 py-3"
           onClick={() => onCreate({ title })}
         >
-          <h3>Create</h3>
+          <H3>Create</H3>
         </Button>
       </div>
     </Modal>

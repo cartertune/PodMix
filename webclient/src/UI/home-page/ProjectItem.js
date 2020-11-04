@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import P from "../components/P";
 
 const ProjectItem = (props) => {
   const { project } = props;
@@ -8,7 +9,7 @@ const ProjectItem = (props) => {
   return (
     <Link to={`/projects/${id}`}>
       <div className="form-control d-flex align-items-center">
-        <p>{title}</p>
+        <P>{title}</P>
       </div>
     </Link>
   );

@@ -10,7 +10,9 @@ import LoginRequiredModal from "../components/LoginRequiredModal";
 import logo from "../../resources/Logo.png";
 import CommentSection from "./CommentSection";
 import Select from "../components/Select";
-import { deleteComment } from "../../connections/projectConnections";
+import H1 from "../components/H1";
+import H3 from "../components/H3";
+import H4 from "../components/H4";
 
 const ProjectPage = (props) => {
   const {
@@ -74,7 +76,7 @@ const ProjectPage = (props) => {
               className="btn btn-primary w-100 py-3"
               onClick={() => openMixModal({ defaultMixNum: mixes.length + 1 })}
             >
-              <h3>Add Mix</h3>
+              <H3>Add Mix</H3>
             </button>
           </div>
         </div>
@@ -102,7 +104,7 @@ const ProjectPage = (props) => {
             className="btn btn-primary w-100 h-100"
             onClick={openCollaboratorModal}
           >
-            <h3>Share</h3>
+            <H3>Share</H3>
           </button>
         </div>
       </div>
@@ -117,9 +119,9 @@ const ProjectPage = (props) => {
             <Link className="header-logo" to="/">
               <img src={logo} />
             </Link>
-            <div>
-              <h1>{title}</h1>
-              <h4>{`proj. owner: ${owner.name}`}</h4>
+            <div className="w-75">
+              <H1 marquee>{title}</H1>
+              <H4>{`proj. owner: ${owner.name}`}</H4>
             </div>
           </div>
           {renderProjectButtons()}

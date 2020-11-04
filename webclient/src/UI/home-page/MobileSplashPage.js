@@ -1,6 +1,7 @@
 import React from "react";
 import logo from "../../resources/BigLogo.png";
 import Auth from "../../auth/Auth";
+import H3 from "../components/H3";
 
 const MobileSplashPage = (props) => {
   return (
@@ -19,7 +20,7 @@ const MobileSplashPage = (props) => {
             Auth.login({ callbackLink: "/" });
           }}
         >
-          <h3>Login / Sign-up</h3>
+          <H3>Login / Sign-up</H3>
         </button>
       </div>
     </div>

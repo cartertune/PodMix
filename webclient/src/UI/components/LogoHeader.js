@@ -1,5 +1,6 @@
 import React from "react";
 import logo from "../../resources/Logo.png";
+import H1 from "./H1";
 
 const LogoHeader = (props) => {
   return (
@@ -7,7 +8,7 @@ const LogoHeader = (props) => {
       <div className="header-logo mr-1">
         <img src={logo} />
       </div>
-      <h1>PosseMix</h1>
+      <H1>PosseMix</H1>
     </div>
   );
 };

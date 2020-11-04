@@ -5,6 +5,8 @@ import CreateProjectModal from "./CreateProjectModal";
 import ProjectItem from "./ProjectItem";
 import { LoadingScreen } from "../components/Loading";
 import LogoHeader from "../components/LogoHeader";
+import H3 from "../components/H3";
+import P from "../components/P";
 
 const HomePage = (props) => {
   const {
@@ -39,14 +41,14 @@ const HomePage = (props) => {
         <div className="d-flex justify-content-center position-relative">
           <LogoHeader />
           <div className="logout-button">
-            <p onClick={() => logout()}>logout</p>
+            <P onClick={() => logout()}>logout</P>
           </div>
         </div>
         <div className="d-flex flex-column justify-content-between h-100">
           {currentUser.projects.length != 0 ? (
             <div className="mt-4">
               <div className="d-flex mt-2 pl-2">
-                <h3 className="white">Your Projects</h3>
+                <H3>Your Projects</H3>
               </div>
               {_.map(currentUser.projects, (p) => {
                 return (
@@ -62,7 +64,7 @@ const HomePage = (props) => {
               className="btn btn-primary col-8 py-4"
               onClick={openCreateModal}
             >
-              <h3>Create New Project</h3>
+              <H3>Create New Project</H3>
             </button>
           </div>
         </div>
