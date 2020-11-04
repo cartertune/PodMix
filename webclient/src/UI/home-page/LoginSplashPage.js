@@ -1,7 +1,7 @@
 import React from "react";
 import Auth from "../../auth/Auth";
 import textLogoCombo from "../../resources/TextLogoComboBig.png";
-import screenshot from "../../resources/Screenshot_iphonexspacegrey_portrait.png";
+import explainerVid from "../../resources/smartmockups_kh3vi2w1.mp4";
 
 import MobileSplashPage from "./MobileSplashPage";
 import P from "../components/P";
@@ -41,11 +41,10 @@ const LoginSplashPage = (props) => {
         <div className="col-5 h-100">
           <div className="screenshot-section p-4">
             <div className="screenshot-container p-5">
-              <img src={screenshot} />
+              <video src={explainerVid} loop autoPlay muted />
             </div>
           </div>
         </div>
-        <div className="gray-block" />
       </div>
       <div className="mobile">
         <MobileSplashPage />

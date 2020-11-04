@@ -5,6 +5,7 @@ import screenshot from "../../resources/Screenshot_iphonexspacegrey_portrait.png
 import Auth from "../../auth/Auth";
 import H3 from "../components/H3";
 import P from "../components/P";
+import explainerVid from "../../resources/smartmockups_kh3vi2w1.mp4";
 
 const MobileSplashPage = (props) => {
   return (
@@ -17,7 +18,7 @@ const MobileSplashPage = (props) => {
           <h2>Take your music seriously, not yourself</h2>
         </div>
         <div className="screenshot-container">
-          <img src={screenshot} />
+          <video src={explainerVid} loop autoPlay muted />
         </div>
         <div className="px-2 d-flex justify-content-center my-5">
           <button
