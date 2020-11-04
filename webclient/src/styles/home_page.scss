@@ -89,22 +89,75 @@
 }
 
 .mobile-login-splash-page {
-  .logo {
-    position: absolute;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
 
+  .gray-block {
+    position: fixed;
+    z-index: -1;
     top: 0;
     left: 0;
+    right: 0;
+    width: 100%;
+    height: calc(100vh - 72px);
 
-    img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-    }
-    position: relative;
-    padding-top: 66.7%;
-    justify-content: center;
-    align-items: center;
+    background-color: $pm-soft-black;
+  }
+
+  .detail-section {
     text-align: center;
+    padding: 18px 0;
+  }
+
+  .top-section {
+    height: 100%;
+    .logo-combo {
+      margin-top: auto;
+      display: flex;
+      justify-content: center;
+      img {
+        width: 67%;
+      }
+    }
+
+    .slogan {
+      max-width: 500px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      h2 {
+        font-family: $font-family-splash-primary;
+        font-weight: 700;
+        font-size: 24px;
+        color: $pm-white;
+        width: 83%;
+      }
+    }
+  }
+  .screenshot-container {
+    height: 100%;
+    align-items: center;
+    display: flex;
+    max-height: 100%;
+    justify-content: center;
+    img {
+      width: 67%;
+      max-height: 100%;
+      max-width: 100%;
+    }
+  }
+  .signup-button {
+    filter: drop-shadow(6px 6px 0px rgba(246, 246, 246, 0.25));
+  }
+  p {
+    font-family: $font-family-splash-primary;
+    font-weight: 500;
+    color: $pm-white;
+    font-size: 22px;
   }
 }
