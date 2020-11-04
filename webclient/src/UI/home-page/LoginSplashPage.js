@@ -38,7 +38,7 @@ const LoginSplashPage = (props) => {
             </div>
           </div>
         </div>
-        <div className="col-5">
+        <div className="col-5 h-100">
           <div className="screenshot-section p-4">
             <div className="screenshot-container p-5">
               <img src={screenshot} />
