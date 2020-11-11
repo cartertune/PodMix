@@ -104,6 +104,17 @@
 .comment {
   cursor: pointer;
   height: fit-content;
+
+  &.is-complete {
+    text-decoration: line-through white;
+
+    color: $pm-muted-white;
+
+    .form-control {
+      background-color: rgba(246, 246, 246, 0.05);
+    }
+  }
+
   .form-control {
     height: fit-content;
     padding-right: 18px;
@@ -213,7 +224,7 @@
   right: 0;
   border-radius: 8px;
   transform: translateY(100%);
-  padding: 12px;
+  padding: 8px;
   z-index: 100;
   border: 1px solid $pm-white;
 
@@ -222,5 +233,13 @@
     justify-content: space-between;
     align-items: center;
     padding: 6px;
+  }
+
+  hr {
+    width: 33%;
+    margin-top: 0;
+    margin-bottom: 0;
+    border: none;
+    border-top: 1px solid white;
   }
 }

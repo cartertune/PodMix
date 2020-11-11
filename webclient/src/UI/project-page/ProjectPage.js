@@ -52,6 +52,7 @@ const ProjectPage = (props) => {
     handlePosChange,
     handleCommentClick,
     deleteComment,
+    completeComment,
     project,
     user,
   } = props;
@@ -134,6 +135,7 @@ const ProjectPage = (props) => {
             <CommentSection
               mix={selectedMix}
               onDeleteComment={deleteComment}
+              onCompleteComment={completeComment}
               handlePosChange={handlePosChange}
               onCommentSelected={handleCommentClick}
               currentAudioPosition={audioPosition}

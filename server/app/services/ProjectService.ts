@@ -76,6 +76,31 @@ class ProjectService extends AModelService {
       }
     );
   }
+
+  async completeComment(
+    validatedUser: User,
+    projectId: string,
+    mixId: string,
+    commentId: string
+  ): Promise<Document> {
+    const project: Project = (await this.findOne({
+      _id: projectId,
+      collaboratorEmails: validatedUser.email,
+    })) as Project;
+
+    _.forEach(project.mixes, (mix) => {
+      if (mix._id == mixId) {
+        console.log("found mix");
+        _.forEach(mix.comments, (comm) => {
+          if (comm._id == commentId) {
+            console.log("found comment");
+            comm.isComplete = !comm.isComplete;
+          }
+        });
+      }
+    });
+    return project.save();
+  }
 }
 
 export default new ProjectService();

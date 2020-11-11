@@ -13,12 +13,14 @@ const Comment = (props) => {
     onCompleteComment,
     isHighlighted,
   } = props;
-  const { time, text } = comment;
+  const { time, text, isComplete } = comment;
 
   const [showOptions, setShowOptions] = useState(false);
 
   return (
-    <div className="comment position-relative">
+    <div
+      className={`comment position-relative ${isComplete ? "is-complete" : ""}`}
+    >
       <div className="timestamp-container">
         <P>{`${secondsToTimestamp(time)} -`}</P>
       </div>
@@ -38,14 +40,31 @@ const Comment = (props) => {
               <FiMoreVertical onClick={() => setShowOptions(true)} />
             )}
             <Dropdown show={showOptions}>
-              <div onClick={() => onCompleteComment()}>
-                <div className="p-1">
-                  <FiCheck />
-                </div>
-                <P>Complete</P>
+              <div
+                onClick={() => {
+                  onCompleteComment();
+                  setShowOptions(false);
+                }}
+              >
+                {isComplete ? (
+                  <>
+                    <div className="pt-1 pr-2">
+                      <FiX />
+                    </div>
+                    <P>Uncomplete</P>
+                  </>
+                ) : (
+                  <>
+                    <div className="pt-1 pr-2">
+                      <FiCheck />
+                    </div>
+                    <P>Complete</P>
+                  </>
+                )}
               </div>
+              <hr />
               <div onClick={() => onDelete()}>
-                <div className="p-1">
+                <div className="pt-1 pr-2">
                   <FiTrash />
                 </div>
                 <P>Delete</P>

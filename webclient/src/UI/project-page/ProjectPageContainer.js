@@ -8,6 +8,7 @@ import {
   addCollaborator,
   getProject,
   deleteComment,
+  completeComment,
 } from "../../connections/projectConnections";
 import { withRouter } from "react-router-dom";
 import ProjectPage from "./ProjectPage";
@@ -55,13 +56,13 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   },
   handleCommentClick: (comment) => {
     const { time, id } = comment;
-    dispatch({type: "SELECT_COMMENT", commentId: id})
+    dispatch({ type: "SELECT_COMMENT", commentId: id });
     dispatch({ type: "SET_AUDIO_POSITION", pos: _.floor(time, 1) });
   },
   addMix: ({ title, file }) => {
     const { addMix, signS3Url, project } = ownProps;
     dispatch({ type: "ADDING_MIX" });
-    console.log(ownProps)
+    console.log(ownProps);
     signS3Url(file.type)
       .then(({ data }) => {
         const signedUrl = _.get(data, "signS3Url.url");
@@ -73,7 +74,9 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
           fileName: file.name,
         };
         // Save the URL of photo to this event.
-        uploadBase64ToS3(signedRequest, file, perc => dispatch({type: "UPLOAD_PERC", perc}))
+        uploadBase64ToS3(signedRequest, file, (perc) =>
+          dispatch({ type: "UPLOAD_PERC", perc })
+        )
           // Success!!
           .then((res) => {
             addMix(project.id, mix).then((mixRes) => {
@@ -93,7 +96,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
           .catch((err) => {
             alert(
               "MIX UPLOAD FAILED: This large of a file needs to be uploaded on a faster network"
-            )
+            );
             console.log("Error: uploadToS3");
             console.log(err);
             dispatch({
@@ -129,6 +132,12 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
       deleteComment({ projectId: project.id, commentId, mixId });
     }
   },
+  completeComment: ({ mixId, commentId }) => {
+    const { completeComment, project } = ownProps;
+
+    console.log(project.id, mixId, commentId);
+    completeComment({ projectId: project.id, commentId, mixId });
+  },
   addCollaborator: ({ email }) => {
     const { addCollaborator, project } = ownProps;
     dispatch({ type: "ADDING_COLLABORATOR" });
@@ -145,6 +154,7 @@ export default withRouter(
     addMix,
     addComment,
     deleteComment,
+    completeComment,
     addCollaborator,
     connect(
       mapStateToProps,
