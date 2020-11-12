@@ -37,6 +37,7 @@ Fragments.project = {
             email
             avatarUrl
           }
+          isComplete
         }
         __typename
       }

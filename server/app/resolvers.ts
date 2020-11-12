@@ -99,6 +99,19 @@ const resolvers = {
         commentId
       );
     },
+    completeComment: (
+      obj: any,
+      args: { projectId: string; mixId: string; commentId: string },
+      ctx: Context
+    ): Promise<Document> => {
+      const { projectId, mixId, commentId } = args;
+      return ProjectService.completeComment(
+        ctx.validatedUser,
+        projectId,
+        mixId,
+        commentId
+      );
+    },
   },
   User: {
     name: (user: User): string => {

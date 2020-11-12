@@ -9,6 +9,7 @@ const CommentSection = (props) => {
     mix,
     handlePosChange,
     onDeleteComment,
+    onCompleteComment,
     onCommentSelected,
     currentAudioPosition,
   } = props;
@@ -27,6 +28,9 @@ const CommentSection = (props) => {
               onClick={() => onCommentSelected(comment)}
               onDelete={() =>
                 onDeleteComment({ mixId: mix.id, commentId: comment.id })
+              }
+              onCompleteComment={() =>
+                onCompleteComment({ mixId: mix.id, commentId: comment.id })
               }
               isHighlighted={_.inRange(
                 currentAudioPosition,

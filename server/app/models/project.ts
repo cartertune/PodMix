@@ -6,6 +6,7 @@ export interface Comment {
   time: number;
   text: string;
   creatorId: string;
+  isComplete: boolean;
 }
 
 export interface Mix {
@@ -28,6 +29,7 @@ const CommentSchema: Schema = new Schema(
     time: { type: Number, required: true },
     text: { type: String, required: true },
     creatorId: { type: ObjectID, ref: "User", index: true },
+    isComplete: { type: Boolean },
   },
   { timestamps: true }
 );

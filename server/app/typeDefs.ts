@@ -40,7 +40,7 @@ const typeDefs = gql`
     id: ID
     time: Int # time in seconds
     text: String
-    # isComplete: Boolean
+    isComplete: Boolean
     creator: User
   }
   input CommentInput {
@@ -59,6 +59,7 @@ const typeDefs = gql`
     addCollaborator(projectId: ID!, email: String!): Project
     signS3Url(fileType: String!): S3Response
     deleteComment(projectId: ID!, mixId: ID!, commentId: ID!): Project
+    completeComment(projectId: ID!, mixId: ID!, commentId: ID!): Project
   }
   type Query {
     currentUser: User
