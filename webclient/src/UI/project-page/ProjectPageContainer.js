@@ -62,7 +62,6 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   addMix: ({ title, file }) => {
     const { addMix, signS3Url, project } = ownProps;
     dispatch({ type: "ADDING_MIX" });
-    console.log(ownProps);
     signS3Url(file.type)
       .then(({ data }) => {
         const signedUrl = _.get(data, "signS3Url.url");
@@ -135,7 +134,6 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   completeComment: ({ mixId, commentId }) => {
     const { completeComment, project } = ownProps;
 
-    console.log(project.id, mixId, commentId);
     completeComment({ projectId: project.id, commentId, mixId });
   },
   addCollaborator: ({ email }) => {

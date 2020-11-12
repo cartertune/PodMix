@@ -90,10 +90,8 @@ class ProjectService extends AModelService {
 
     _.forEach(project.mixes, (mix) => {
       if (mix._id == mixId) {
-        console.log("found mix");
         _.forEach(mix.comments, (comm) => {
           if (comm._id == commentId) {
-            console.log("found comment");
             comm.isComplete = !comm.isComplete;
           }
         });
