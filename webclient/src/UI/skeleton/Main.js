@@ -16,9 +16,10 @@ const Main = (props) => {
     _.get(store.getState(), "auth.jwt")
   ) {
     logincount++;
-    if ((logincount = 10)) {
+    if (logincount == 10) {
       alert("There is an error logging you in, try again");
       store.dispatch({ type: "LOGOUT" });
+      logincount = 0;
     }
     loginToServer().then(({ data }) => {
       store.dispatch({ type: "SET_USER_ID", id: data.login.id });
