@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
 import _ from "lodash";
 import AddMixModal from "./AddMixModal";
 import AddCommentModal from "./AddCommentModal";
@@ -19,7 +19,6 @@ const ProjectPage = (props) => {
     // Mix Modal Props
     openMixModal,
     mixModalData,
-    isMixModalOpen,
     editMixModalField,
     closeMixModal,
     addMix,
@@ -28,7 +27,6 @@ const ProjectPage = (props) => {
     // Comment Modal Props
     openCommentModal,
     commentModalData,
-    isCommentModalOpen,
     editCommentModalField,
     closeCommentModal,
     addComment,
@@ -37,7 +35,6 @@ const ProjectPage = (props) => {
     //Collaborator Modal Props
     openCollaboratorModal,
     collaboratorModalData,
-    isCollaboratorModalOpen,
     editCollaboratorModalField,
     closeCollaboratorModal,
     addCollaborator,
@@ -93,6 +90,10 @@ const ProjectPage = (props) => {
             value={selectedMixId}
             options={options}
             onChange={(value) => {
+              if (value == "NEW_MIX") {
+                openMixModal({ defaultMixNum: mixes.length + 1 });
+                return;
+              }
               handleSelectMix({
                 value,
                 defaultMixNum: mixes.length + 1,
@@ -127,10 +128,7 @@ const ProjectPage = (props) => {
           </div>
           {renderProjectButtons()}
         </div>
-        {selectedMix != {} &&
-        !isCommentModalOpen &&
-        !isCollaboratorModalOpen &&
-        !isMixModalOpen ? (
+        {selectedMix != {} && _.get(user, "id") ? (
           <React.Fragment>
             <CommentSection
               mix={selectedMix}
@@ -155,34 +153,55 @@ const ProjectPage = (props) => {
         show={!_.get(user, "id")}
         currentLocation={`/projects/${id}`}
       />
-      <AddMixModal
-        modalData={mixModalData}
-        show={isMixModalOpen}
-        onEditField={editMixModalField}
-        closeModal={closeMixModal}
-        onAddMix={addMix}
-        isAddingMix={isAddingMix}
+      <Route
+        exact
+        path={`/projects/${id}/add-mix`}
+        component={() => {
+          return (
+            <AddMixModal
+              modalData={mixModalData}
+              onEditField={editMixModalField}
+              closeModal={closeMixModal}
+              onAddMix={addMix}
+              isAddingMix={isAddingMix}
+            />
+          );
+        }}
       />
-      <AddCommentModal
-        selectedMixId={selectedMixId}
-        modalData={commentModalData}
-        show={isCommentModalOpen}
-        onEditField={editCommentModalField}
-        closeModal={closeCommentModal}
-        onAddComment={addComment}
-        audioUrl={selectedMix.fileUrl}
-        audioPosition={audioPosition}
-        handlePosChange={handlePosChange}
-        isAddingComment={isAddingComment}
+      <Route
+        exact
+        path={`/projects/${id}/add-comment`}
+        component={() => {
+          return (
+            <AddCommentModal
+              selectedMixId={selectedMixId}
+              modalData={commentModalData}
+              onEditField={editCommentModalField}
+              closeModal={closeCommentModal}
+              onAddComment={addComment}
+              audioUrl={selectedMix.fileUrl}
+              audioPosition={audioPosition}
+              handlePosChange={handlePosChange}
+              isAddingComment={isAddingComment}
+            />
+          );
+        }}
       />
-      <AddCollaboratorsModal
-        modalData={collaboratorModalData}
-        show={isCollaboratorModalOpen}
-        onEditField={editCollaboratorModalField}
-        closeModal={closeCollaboratorModal}
-        onAddCollaborator={addCollaborator}
-        isAddingCollaborator={isAddingCollaborator}
-        project={project}
+      <Route
+        exact
+        path={`/projects/${id}/add-collaborator`}
+        component={() => {
+          return (
+            <AddCollaboratorsModal
+              modalData={collaboratorModalData}
+              onEditField={editCollaboratorModalField}
+              closeModal={closeCollaboratorModal}
+              onAddCollaborator={addCollaborator}
+              isAddingCollaborator={isAddingCollaborator}
+              project={project}
+            />
+          );
+        }}
       />
     </React.Fragment>
   );

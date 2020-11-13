@@ -1,6 +1,5 @@
 import React from "react";
 import textLogoCombo from "../../resources/TextLogoComboBig.png";
-import screenshot from "../../resources/Screenshot_iphonexspacegrey_portrait.png";
 
 import Auth from "../../auth/Auth";
 import H3 from "../components/H3";
@@ -24,7 +23,7 @@ const MobileSplashPage = (props) => {
           <button
             className="btn btn-primary signup-button py-3 px-5"
             onClick={() => {
-              Auth.login({ callbackLink: "/" });
+              Auth.login({ callbackLink: "/dashboard" });
             }}
           >
             <H3>Sign-up for Free</H3>

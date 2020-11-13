@@ -1,7 +1,6 @@
 import _ from "lodash";
 
 const defaultState = {
-  isCreateModalOpen: false,
   isCreatingProject: false,
   createModalData: {
     title: "",
@@ -15,7 +14,6 @@ const homePageReducer = (state = defaultState, action) => {
       newState.isCreateModalOpen = true;
       break;
     case "CLOSE_CREATE_MODAL":
-      newState.isCreateModalOpen = false;
       newState.createModalData = defaultState.createModalData;
       newState.isCreatingProject = false;
       break;

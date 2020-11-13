@@ -1,17 +1,17 @@
 import React from "react";
-import Auth from "../../auth/Auth";
-import LoginSplashPage from "./LoginSplashPage";
 import CreateProjectModal from "./CreateProjectModal";
 import ProjectItem from "./ProjectItem";
 import { LoadingScreen } from "../components/Loading";
 import LogoHeader from "../components/LogoHeader";
 import H3 from "../components/H3";
 import P from "../components/P";
+import { Link, Route } from "react-router-dom";
+import { store } from "../../store";
+import Auth from "../../auth/Auth";
 
 const HomePage = (props) => {
   const {
     createModalData,
-    isCreateModalOpen,
     editCreateModalField,
     createProject,
     closeCreateModal,
@@ -20,11 +20,14 @@ const HomePage = (props) => {
     currentUser,
     loadingUser,
     refetchUser,
+    history,
     logout,
   } = props;
 
-  if (!Auth.isLoggedIn()) {
-    return <LoginSplashPage {...props} />;
+  if (!Auth.isLoggedIn() && !_.get(store.getState(), "auth.jwt")) {
+    console.log(store.getState());
+    console.log("here is the problem :/");
+    history.push("/");
   }
 
   if (!loadingUser) {
@@ -69,13 +72,20 @@ const HomePage = (props) => {
           </div>
         </div>
       </div>
-      <CreateProjectModal
-        modalData={createModalData}
-        show={isCreateModalOpen}
-        onEditField={editCreateModalField}
-        closeModal={closeCreateModal}
-        onCreate={createProject}
-        isCreatingProject={isCreatingProject}
+      <Route
+        exact
+        path={"/dashboard/create-project"}
+        component={() => {
+          return (
+            <CreateProjectModal
+              modalData={createModalData}
+              onEditField={editCreateModalField}
+              closeModal={closeCreateModal}
+              onCreate={createProject}
+              isCreatingProject={isCreatingProject}
+            />
+          );
+        }}
       />
     </React.Fragment>
   );

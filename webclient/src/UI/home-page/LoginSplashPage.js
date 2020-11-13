@@ -8,6 +8,10 @@ import P from "../components/P";
 import H3 from "../components/H3";
 
 const LoginSplashPage = (props) => {
+  console.log(Auth.isLoggedIn());
+  if (Auth.isLoggedIn()) {
+    props.history.push("/dashboard");
+  }
   return (
     <React.Fragment>
       <div className="splash-page web row">
@@ -25,7 +29,7 @@ const LoginSplashPage = (props) => {
               <button
                 className="btn btn-primary signup-button py-3 px-5"
                 onClick={() => {
-                  Auth.login({ callbackLink: "/" });
+                  Auth.login({ callbackLink: "/dashboard" });
                 }}
               >
                 <H3>Sign-up for Free</H3>

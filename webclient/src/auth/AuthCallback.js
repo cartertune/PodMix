@@ -13,6 +13,8 @@ class AuthCallback extends Component {
           const dispatch = _.get(store, "dispatch");
           if (dispatch) {
             dispatch({ type: "SET_USER_ID", id: data.login.id });
+            const callbackLink = Auth.getAuthState().callbackLink;
+            history.push(callbackLink);
           }
         })
         .catch((error) => {

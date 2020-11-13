@@ -10,8 +10,16 @@ const Modal = (props) => {
 
   if (show) {
     return (
-      <div className={modalClassname} role="dialog" tabIndex="-1">
-        <div className="pm-modal-dialog col-md-8 col-sm-10">
+      <div
+        className={modalClassname}
+        role="dialog"
+        tabIndex="-1"
+        onClick={() => onClose()}
+      >
+        <div
+          className="pm-modal-dialog col-md-8 col-sm-10"
+          onClick={(e) => e.stopPropagation()}
+        >
           {!notClosable && (
             <button className="close-icon" onClick={() => onClose()}>
               <FiX />

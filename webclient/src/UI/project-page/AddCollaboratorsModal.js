@@ -11,7 +11,6 @@ import H3 from "../components/H3";
 const AddCollaboratorsModal = (props) => {
   const {
     modalData,
-    show,
     closeModal,
     onEditField,
     onAddCollaborator,
@@ -31,8 +30,8 @@ const AddCollaboratorsModal = (props) => {
     <Modal
       header="Share"
       className="collaborators-modal"
-      show={show}
       onClose={closeModal}
+      show
     >
       <div className="row mt-4">
         <div className="col-8">
