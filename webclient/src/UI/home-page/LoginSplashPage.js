@@ -8,7 +8,6 @@ import P from "../components/P";
 import H3 from "../components/H3";
 
 const LoginSplashPage = (props) => {
-  console.log(Auth.isLoggedIn());
   if (Auth.isLoggedIn()) {
     props.history.push("/dashboard");
   }

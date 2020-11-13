@@ -25,8 +25,6 @@ const HomePage = (props) => {
   } = props;
 
   if (!Auth.isLoggedIn() && !_.get(store.getState(), "auth.jwt")) {
-    console.log(store.getState());
-    console.log("here is the problem :/");
     history.push("/");
   }
 
