@@ -5,6 +5,7 @@ import { createProject } from "../../connections/projectConnections";
 import { withRouter } from "react-router-dom";
 import HomePage from "../home-page/HomePage";
 import { getCurrentUser } from "../../connections/userConnections";
+import Auth from "../../auth/Auth";
 
 const mapStateToProps = (state, ownProps) => ({
   ...state.homePage,
@@ -12,9 +13,15 @@ const mapStateToProps = (state, ownProps) => ({
 });
 const mapDispatchToProps = (dispatch, ownProps) => ({
   openCreateModal: () => {
+    const { history } = ownProps;
     dispatch({ type: "OPEN_CREATE_MODAL" });
+    history.push("/dashboard/create-project");
   },
-  closeCreateModal: () => dispatch({ type: "CLOSE_CREATE_MODAL" }),
+  closeCreateModal: () => {
+    const { history } = ownProps;
+    dispatch({ type: "CLOSE_CREATE_MODAL" });
+    history.goBack();
+  },
   editCreateModalField: ({ field, value }) => {
     dispatch({ type: "EDIT_CREATE_PROJECT_MODAL_FIELD", field, value });
   },
@@ -28,7 +35,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     });
   },
   logout: () => {
-    dispatch({ type: "LOGOUT" });
+    Auth.logout();
   },
 });
 

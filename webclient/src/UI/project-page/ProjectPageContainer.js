@@ -20,33 +20,46 @@ const mapStateToProps = (state, ownProps) => ({
 });
 const mapDispatchToProps = (dispatch, ownProps) => ({
   openMixModal: ({ defaultMixNum }) => {
+    const { history, project } = ownProps;
     dispatch({ type: "OPEN_ADD_MIX_MODAL", defaultMixNum });
+    history.push(`${project.id}/add-mix`);
   },
-  closeMixModal: () => dispatch({ type: "CLOSE_ADD_MIX_MODAL" }),
+  closeMixModal: () => {
+    const { history } = ownProps;
+    dispatch({ type: "CLOSE_ADD_MIX_MODAL" });
+    history.goBack();
+  },
   editMixModalField: ({ field, value }) => {
     dispatch({ type: "EDIT_ADD_MIX_MODAL_FIELD", field, value });
   },
   openCommentModal: () => {
+    const { history, project } = ownProps;
     dispatch({ type: "OPEN_ADD_COMMENT_MODAL" });
+    history.push(`${project.id}/add-comment`);
   },
-  closeCommentModal: () => dispatch({ type: "CLOSE_ADD_COMMENT_MODAL" }),
+  closeCommentModal: () => {
+    const { history } = ownProps;
+    dispatch({ type: "CLOSE_ADD_COMMENT_MODAL" });
+    history.goBack();
+  },
   editCommentModalField: ({ field, value }) => {
     dispatch({ type: "EDIT_ADD_COMMENT_MODAL_FIELD", field, value });
   },
   openCollaboratorModal: () => {
+    const { history, project } = ownProps;
     dispatch({ type: "OPEN_ADD_COLLABORATOR_MODAL" });
+    history.push(`${project.id}/add-collaborator`);
   },
-  closeCollaboratorModal: () =>
-    dispatch({ type: "CLOSE_ADD_COLLABORATOR_MODAL" }),
+  closeCollaboratorModal: () => {
+    const { history } = ownProps;
+    dispatch({ type: "CLOSE_ADD_COLLABORATOR_MODAL" });
+    history.goBack();
+  },
   editCollaboratorModalField: ({ field, value }) => {
     dispatch({ type: "EDIT_ADD_COLLABORATOR_MODAL_FIELD", field, value });
   },
-  handleSelectMix: ({ value, defaultMixNum }) => {
-    if (value === "NEW_MIX") {
-      dispatch({ type: "OPEN_ADD_MIX_MODAL", defaultMixNum });
-    } else {
-      dispatch({ type: "SELECT_MIX", mixId: value });
-    }
+  handleSelectMix: ({ value }) => {
+    dispatch({ type: "SELECT_MIX", mixId: value });
   },
   handleTogglePlay: () => {
     dispatch({ type: "TOGGLE_PLAY_PAUSE" });
