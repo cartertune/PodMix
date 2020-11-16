@@ -1,9 +1,6 @@
 import _ from "lodash";
 
 const defaultState = {
-  isMixModalOpen: false,
-  isCommentModalOpen: false,
-  isCollaboratorModalOpen: false,
   isAddingMix: false,
   isAddingComment: false,
   isAddingCollaborator: false,
@@ -13,7 +10,7 @@ const defaultState = {
     tempAudioUrl: null,
     audioToUpload: null,
     file: null,
-    uploadPerc: 0
+    uploadPerc: 0,
   },
   commentModalData: {
     text: "",
@@ -40,11 +37,9 @@ const projectPageReducer = (state = defaultState, action) => {
       newState.isPlaying = false;
       break;
     case "OPEN_ADD_MIX_MODAL":
-      newState.isMixModalOpen = true;
       newState.mixModalData.title = "Mix " + action.defaultMixNum;
       break;
     case "CLOSE_ADD_MIX_MODAL":
-      newState.isMixModalOpen = false;
       newState.mixModalData = defaultState.mixModalData;
       newState.isAddingMix = false;
       break;
@@ -55,10 +50,8 @@ const projectPageReducer = (state = defaultState, action) => {
       newState.isAddingMix = true;
       break;
     case "OPEN_ADD_COMMENT_MODAL":
-      newState.isCommentModalOpen = true;
       break;
     case "CLOSE_ADD_COMMENT_MODAL":
-      newState.isCommentModalOpen = false;
       newState.commentModalData = defaultState.commentModalData;
       newState.isAddingComment = false;
       break;
@@ -69,10 +62,8 @@ const projectPageReducer = (state = defaultState, action) => {
       newState.isAddingComment = true;
       break;
     case "OPEN_ADD_COLLABORATOR_MODAL":
-      newState.isCollaboratorModalOpen = true;
       break;
     case "CLOSE_ADD_COLLABORATOR_MODAL":
-      newState.isCollaboratorModalOpen = false;
       newState.collaboratorModalData = defaultState.collaboratorModalData;
       break;
     case "EDIT_ADD_COLLABORATOR_MODAL_FIELD":
@@ -86,7 +77,7 @@ const projectPageReducer = (state = defaultState, action) => {
       newState.isAddingCollaborator = false;
       break;
     case "UPLOAD_PERC":
-      newState.mixModalData.uploadPerc = action.perc * 100
+      newState.mixModalData.uploadPerc = action.perc * 100;
       break;
     default:
   }

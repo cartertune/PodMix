@@ -9,7 +9,6 @@ import H3 from "../components/H3";
 const CreateProjectModal = (props) => {
   const {
     modalData,
-    show,
     closeModal,
     onEditField,
     onCreate,
@@ -18,7 +17,7 @@ const CreateProjectModal = (props) => {
   const { title } = modalData;
 
   return (
-    <Modal header="Create Project" show={show} onClose={closeModal}>
+    <Modal header="Create Project" onClose={closeModal} show>
       <div className="mt-5">
         <Input
           value={title}

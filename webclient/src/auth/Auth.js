@@ -38,8 +38,8 @@ class Auth {
       this.auth0.parseHash((err, authResult) => {
         if (authResult && authResult.accessToken && authResult.idToken) {
           this.setSession(authResult, callback);
-          const callbackLink = this.getAuthState().callbackLink;
-          history.push(callbackLink);
+          // const callbackLink = this.getAuthState().callbackLink;
+          // history.push(callbackLink);
           // history.replace("/");
         } else if (err) {
           //history.replace("/");

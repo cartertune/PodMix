@@ -7,14 +7,22 @@ import AuthCallback from "../../auth/AuthCallback";
 import HomePageContainer from "../home-page/HomePageContainer";
 import ProjectPageContainer from "../project-page/ProjectPageContainer";
 import PrivacyPolicyPage from "../home-page/PrivacyPolicyPage";
+import LoginSplashPage from "../home-page/LoginSplashPage";
 
 const Main = (props) => {
   const { loginToServer } = props;
+  let logincount = 0;
 
   if (
     !_.get(store.getState(), "auth.user.id") &&
     _.get(store.getState(), "auth.jwt")
   ) {
+    logincount++;
+    if (logincount == 10) {
+      alert("There is an error logging you in, try again");
+      store.dispatch({ type: "LOGOUT" });
+      logincount = 0;
+    }
     loginToServer().then(({ data }) => {
       store.dispatch({ type: "SET_USER_ID", id: data.login.id });
     });
@@ -23,7 +31,8 @@ const Main = (props) => {
   return (
     <main className="container main-page">
       <Switch>
-        <Route exact path="/" component={HomePageContainer} />
+        <Route exact path="/" component={LoginSplashPage} />
+        <Route path="/dashboard" component={HomePageContainer} />
         <Route
           path="/callback"
           render={(props) => (

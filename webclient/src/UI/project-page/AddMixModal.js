@@ -9,14 +9,7 @@ import LoadingBar from "../components/LoadingBar";
 import H3 from "../components/H3";
 
 const AddMixModal = (props) => {
-  const {
-    modalData,
-    show,
-    closeModal,
-    onEditField,
-    onAddMix,
-    isAddingMix,
-  } = props;
+  const { modalData, closeModal, onEditField, onAddMix, isAddingMix } = props;
   const { title, tempAudioUrl, file, uploadPerc } = modalData;
 
   const handleAudioUpload = (file) => {
@@ -35,12 +28,7 @@ const AddMixModal = (props) => {
   };
 
   return (
-    <Modal
-      header="Add Mix"
-      className="add-mix-modal"
-      show={show}
-      onClose={closeModal}
-    >
+    <Modal header="Add Mix" className="add-mix-modal" onClose={closeModal} show>
       <div className="mt-4">
         <Input
           value={title}

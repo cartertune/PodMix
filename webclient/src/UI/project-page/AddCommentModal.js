@@ -11,7 +11,6 @@ const AddCommentModal = (props) => {
   const {
     selectedMixId,
     modalData,
-    show,
     closeModal,
     onEditField,
     onAddComment,
@@ -28,8 +27,8 @@ const AddCommentModal = (props) => {
     <Modal
       header="Add Comment"
       className="add-comment-modal"
-      show={show}
       onClose={closeModal}
+      show
     >
       <div className="preview">
         <Waveform
