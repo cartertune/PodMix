@@ -35,6 +35,11 @@ const MobileSplashPage = (props) => {
         <P className="pb-1">- Upload all your mixes to one location</P>
         <P className="pb-1">- Keep the feedback process quick & easy </P>
       </div>
+      <div className="footer">
+        <a href="/privacy" title="Privacy">
+          privacy
+        </a>
+      </div>
     </div>
   );
 };

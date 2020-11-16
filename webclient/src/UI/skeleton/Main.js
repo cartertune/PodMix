@@ -6,6 +6,7 @@ import { login } from "../../connections/userConnections";
 import AuthCallback from "../../auth/AuthCallback";
 import HomePageContainer from "../home-page/HomePageContainer";
 import ProjectPageContainer from "../project-page/ProjectPageContainer";
+import PrivacyPolicyPage from "../home-page/PrivacyPolicyPage";
 import LoginSplashPage from "../home-page/LoginSplashPage";
 
 const Main = (props) => {
@@ -38,6 +39,7 @@ const Main = (props) => {
             <AuthCallback loginToServer={loginToServer} {...props} />
           )}
         />
+        <Route exact path="/privacy" component={PrivacyPolicyPage} />
         <Route
           path="/projects"
           component={() => (

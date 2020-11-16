@@ -48,6 +48,11 @@ const LoginSplashPage = (props) => {
             </div>
           </div>
         </div>
+        <div className="footer">
+          <a href="/privacy" title="Privacy">
+            privacy
+          </a>
+        </div>
       </div>
       <div className="mobile">
         <MobileSplashPage />

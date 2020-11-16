@@ -1,0 +1,13 @@
+.privacy-policy-page {
+  width: 100%;
+  padding-bottom: 20px;
+
+  .close-button {
+    padding: 8px;
+
+    svg {
+      font-size: 36px;
+      color: $pm-white;
+    }
+  }
+}

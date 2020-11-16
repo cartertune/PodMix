@@ -11,6 +11,19 @@
   }
 }
 
+.footer {
+  left: 0;
+  bottom: 4px;
+  width: 100%;
+  color: $pm-white;
+  text-align: center;
+
+  a {
+    font-size: 12px;
+    color: $pm-white;
+  }
+}
+
 .splash-page {
   display: flex;
   height: 100%;

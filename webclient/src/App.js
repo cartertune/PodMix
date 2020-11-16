@@ -10,29 +10,30 @@ import { PersistGate } from "redux-persist/lib/integration/react";
 import Skeleton from "./UI/skeleton/Skeleton";
 import { BrowserRouter } from "react-router-dom";
 import { setContext } from "apollo-link-context";
+import "./util/google-analytics.js";
 
 const authLink = setContext((req, prevContext) => {
   const jwt = _.get(store.getState(), "auth.jwt", "");
   if (jwt) {
     return {
       headers: {
-        authorization: `Bearer ${jwt}`
-      }
+        authorization: `Bearer ${jwt}`,
+      },
     };
   }
   return prevContext;
 });
 const httpLink = new HttpLink({
-  uri: process.env.SERVER_URL
+  uri: process.env.SERVER_URL,
 });
 
 const cache = new InMemoryCache();
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
-  cache
+  cache,
 });
 
-const App = props => {
+const App = (props) => {
   return (
     <ApolloProvider client={client}>
       <Provider store={store}>
