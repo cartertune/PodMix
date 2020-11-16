@@ -10,11 +10,18 @@ import LoginSplashPage from "../home-page/LoginSplashPage";
 
 const Main = (props) => {
   const { loginToServer } = props;
+  let logincount = 0;
 
   if (
     !_.get(store.getState(), "auth.user.id") &&
     _.get(store.getState(), "auth.jwt")
   ) {
+    logincount++;
+    if (logincount == 10) {
+      alert("There is an error logging you in, try again");
+      store.dispatch({ type: "LOGOUT" });
+      logincount = 0;
+    }
     loginToServer().then(({ data }) => {
       store.dispatch({ type: "SET_USER_ID", id: data.login.id });
     });
