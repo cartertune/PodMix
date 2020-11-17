@@ -73,7 +73,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     dispatch({ type: "SET_AUDIO_POSITION", pos: _.floor(time, 1) });
   },
   addMix: ({ title, file }) => {
-    const { addMix, signS3Url, project } = ownProps;
+    const { addMix, signS3Url, project, history } = ownProps;
     dispatch({ type: "ADDING_MIX" });
     signS3Url(file.type)
       .then(({ data }) => {
@@ -103,6 +103,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
               dispatch({
                 type: "CLOSE_ADD_MIX_MODAL",
               });
+              history.goBack();
             });
           })
           .catch((err) => {
@@ -122,7 +123,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
       });
   },
   addComment: ({ mixId, text, audioPosition }) => {
-    const { addComment, project } = ownProps;
+    const { addComment, project, history } = ownProps;
     dispatch({ type: "ADDING_COMMENT" });
     const comment = {
       time: _.floor(audioPosition),
@@ -131,6 +132,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     addComment({ comment, mixId, projectId: project.id }).then(() => {
       dispatch({ type: "ADD_COMMENT_SUCCESS" });
       dispatch({ type: "CLOSE_ADD_COMMENT_MODAL" });
+      history.goBack()
     });
   },
   deleteComment: ({ mixId, commentId }) => {
@@ -150,11 +152,13 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     completeComment({ projectId: project.id, commentId, mixId });
   },
   addCollaborator: ({ email }) => {
-    const { addCollaborator, project } = ownProps;
+    const { addCollaborator, project, history } = ownProps;
     dispatch({ type: "ADDING_COLLABORATOR" });
-    addCollaborator({ projectId: project.id, email }).then((project) =>
+    addCollaborator({ projectId: project.id, email }).then((project) => {
       dispatch({ type: "ADD_COLLABORATOR_SUCCESS" })
-    );
+      dispatch({type: "CLOSE_COLLABORATOR_MODAL"})
+      history.goBack()
+    });
   },
 });
 

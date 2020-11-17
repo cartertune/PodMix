@@ -15,6 +15,12 @@
   @media (max-width: $mobile-bp) {
     padding: 18px;
   }
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;
+}
+
+.container::-webkit-scrollbar {
+  display: none;
 }
 
 .btn-primary {
