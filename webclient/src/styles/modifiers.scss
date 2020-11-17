@@ -13,3 +13,23 @@
     display: none !important;
   }
 }
+
+.scrolling-text {
+  top: 0;
+  position: absolute;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  animation: floatText 6s infinite linear;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+@keyframes floatText {
+  from {
+    left: 0%;
+  }
+  to {
+    left: 100%;
+    transform: translateX(-100%);
+  }
+}

@@ -117,8 +117,8 @@ const ProjectPage = (props) => {
             <Link className="header-logo" to="/">
               <img src={logo} />
             </Link>
-            <div>
-              <h1>{title}</h1>
+            <div className="title-section">
+              <h1 className=" scrolling-text">{title}</h1>
               <h4>{`proj. owner: ${owner.name}`}</h4>
             </div>
           </div>

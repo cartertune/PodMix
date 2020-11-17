@@ -9,6 +9,17 @@
     font-weight: 600;
   }
 
+  .title-section {
+    position: relative;
+    display: flex;
+    padding-top: 36px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    width: 75%;
+  }
+
   .comment-section {
     display: flex;
     overflow-y: auto;
