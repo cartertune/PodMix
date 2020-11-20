@@ -4,6 +4,8 @@ const defaultState = {
   isAddingMix: false,
   isAddingComment: false,
   isAddingCollaborator: false,
+  isMixModalOpen: false,
+  isCommentModalOpen: false,
   selectedMixId: "",
   mixModalData: {
     title: "",
@@ -38,9 +40,11 @@ const projectPageReducer = (state = defaultState, action) => {
       break;
     case "OPEN_ADD_MIX_MODAL":
       newState.mixModalData.title = "Mix " + action.defaultMixNum;
+      // newState.isMixModalOpen = true;
       break;
     case "CLOSE_ADD_MIX_MODAL":
       newState.mixModalData = defaultState.mixModalData;
+      // newState.isMixModalOpen = false;
       newState.isAddingMix = false;
       break;
     case "EDIT_ADD_MIX_MODAL_FIELD":
@@ -50,9 +54,11 @@ const projectPageReducer = (state = defaultState, action) => {
       newState.isAddingMix = true;
       break;
     case "OPEN_ADD_COMMENT_MODAL":
+      // newState.isCommentModalOpen = true;
       break;
     case "CLOSE_ADD_COMMENT_MODAL":
       newState.commentModalData = defaultState.commentModalData;
+      // newState.isCommentModalOpen = false;
       newState.isAddingComment = false;
       break;
     case "EDIT_ADD_COMMENT_MODAL_FIELD":

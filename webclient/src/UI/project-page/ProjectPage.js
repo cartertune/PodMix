@@ -23,6 +23,7 @@ const ProjectPage = (props) => {
     closeMixModal,
     addMix,
     isAddingMix,
+    isMixModalOpen,
 
     // Comment Modal Props
     openCommentModal,
@@ -31,6 +32,7 @@ const ProjectPage = (props) => {
     closeCommentModal,
     addComment,
     isAddingComment,
+    isCommentModalOpen,
 
     //Collaborator Modal Props
     openCollaboratorModal,
@@ -52,11 +54,19 @@ const ProjectPage = (props) => {
     completeComment,
     project,
     user,
+    location,
   } = props;
 
   if (!project) {
     return <LoadingScreen />;
   }
+
+  console.log();
+  const splitPath = location.pathname.split("/");
+  console.log(splitPath);
+  const isAModalOpen =
+    splitPath.length > 3 &&
+    (splitPath[3] == "add-mix" || splitPath[3] == "add-comment");
 
   const { id, title, owner, mixes, collaborators } = project;
 
@@ -138,14 +148,16 @@ const ProjectPage = (props) => {
               onCommentSelected={handleCommentClick}
               currentAudioPosition={audioPosition}
             />
-            <MediaSection
-              audioUrl={selectedMix.fileUrl}
-              isPlaying={isPlaying}
-              audioPosition={audioPosition}
-              handleTogglePlay={handleTogglePlay}
-              handlePosChange={handlePosChange}
-              onCommentButtonPress={openCommentModal}
-            />
+            {isAModalOpen ? null : (
+              <MediaSection
+                audioUrl={selectedMix.fileUrl}
+                isPlaying={isPlaying}
+                audioPosition={audioPosition}
+                handleTogglePlay={handleTogglePlay}
+                handlePosChange={handlePosChange}
+                onCommentButtonPress={openCommentModal}
+              />
+            )}
           </React.Fragment>
         ) : null}
       </div>
@@ -156,7 +168,7 @@ const ProjectPage = (props) => {
       <Route
         exact
         path={`/projects/${id}/add-mix`}
-        component={() => {
+        render={() => {
           return (
             <AddMixModal
               modalData={mixModalData}
@@ -171,7 +183,7 @@ const ProjectPage = (props) => {
       <Route
         exact
         path={`/projects/${id}/add-comment`}
-        component={() => {
+        render={() => {
           return (
             <AddCommentModal
               selectedMixId={selectedMixId}
@@ -190,7 +202,7 @@ const ProjectPage = (props) => {
       <Route
         exact
         path={`/projects/${id}/add-collaborator`}
-        component={() => {
+        render={() => {
           return (
             <AddCollaboratorsModal
               modalData={collaboratorModalData}
