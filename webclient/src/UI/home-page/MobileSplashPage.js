@@ -5,6 +5,7 @@ import Auth from "../../auth/Auth";
 import H3 from "../components/H3";
 import P from "../components/P";
 import explainerVid from "../../resources/smartmockups_kh3vi2w1.mp4";
+import poster from "../../resources/Poster.png";
 
 const MobileSplashPage = (props) => {
   return (
@@ -17,7 +18,16 @@ const MobileSplashPage = (props) => {
           <h2>Take your music seriously, not yourself</h2>
         </div>
         <div className="screenshot-container">
-          <video src={explainerVid} loop autoPlay muted />
+          <video
+            data-keepplaying
+            autoplay
+            muted
+            loop
+            attribute
+            playsinline
+            poster={poster}
+            src={explainerVid}
+          />
         </div>
         <div className="px-2 d-flex justify-content-center my-5">
           <button
