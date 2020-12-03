@@ -64,11 +64,9 @@ const ProjectPage = (props) => {
   console.log();
   const splitPath = location.pathname.split("/");
   console.log(splitPath);
-  const isAModalOpen =
-    splitPath.length > 3 &&
-    (splitPath[3] == "add-mix" || splitPath[3] == "add-comment");
+  const isAModalOpen = splitPath.length > 3 
 
-  const { id, title, owner, mixes, collaborators } = project;
+  const { id, title, owner, mixes } = project;
 
   const selectedMix = _.find(mixes, (m) => m.id == selectedMixId) || {};
   if (selectedMix.id == null && !_.isEmpty(mixes)) {

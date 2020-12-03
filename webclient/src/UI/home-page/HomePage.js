@@ -73,7 +73,7 @@ const HomePage = (props) => {
       <Route
         exact
         path={"/dashboard/create-project"}
-        component={() => {
+        render={() => {
           return (
             <CreateProjectModal
               modalData={createModalData}
