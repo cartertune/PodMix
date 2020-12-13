@@ -2,7 +2,7 @@ import { createStore } from "redux";
 import { persistStore, persistCombineReducers } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import authReducer from "./auth/authReducer";
-import homePageReducer from "./UI/home-page/homePageReducer";
+import homePageReducer from "./UI/dashboard/homePageReducer";
 import projectPageReducer from "./UI/project-page/projectPageReducer";
 
 const persistConfig = {

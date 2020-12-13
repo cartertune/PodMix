@@ -19,12 +19,12 @@ const MobileSplashPage = (props) => {
         </div>
         <div className="screenshot-container">
           <video
-            data-keepplaying
-            autoplay
+            data-keepplaying="true"
+            autoPlay
             muted
             loop
-            attribute
-            playsinline
+            attribute="true"
+            playsInline
             poster={poster}
             src={explainerVid}
           />

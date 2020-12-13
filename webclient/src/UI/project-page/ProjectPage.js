@@ -61,10 +61,8 @@ const ProjectPage = (props) => {
     return <LoadingScreen />;
   }
 
-  console.log();
   const splitPath = location.pathname.split("/");
-  console.log(splitPath);
-  const isAModalOpen = splitPath.length > 3 
+  const isAModalOpen = splitPath.length > 3;
 
   const { id, title, owner, mixes } = project;
 
