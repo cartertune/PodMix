@@ -68,7 +68,7 @@ const ProjectPage = (props) => {
 
   const selectedMix = _.find(mixes, (m) => m.id == selectedMixId) || {};
   if (selectedMix.id == null && !_.isEmpty(mixes)) {
-    handleSelectMix({ value: mixes[0].id });
+    handleSelectMix({ value: _.last(mixes).id });
   }
 
   const renderProjectButtons = () => {

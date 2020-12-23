@@ -11,6 +11,19 @@
   }
 }
 
+.project-item {
+  height: fit-content;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  .icons {
+    position: absolute;
+    right: 0;
+    .chevron {
+      font-size: 24px;
+    }
+  }
+}
+
 .footer {
   left: 0;
   bottom: 4px;

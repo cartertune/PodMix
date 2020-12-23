@@ -2,8 +2,8 @@ import React from "react";
 import classnames from "classnames";
 
 export default (props) => {
-  const { onClick } = props;
-  const className = classnames("P", props.className, {});
+  const { onClick, bold } = props;
+  const className = classnames("P", props.className, { bold });
 
   return (
     <p className={className} onClick={onClick}>

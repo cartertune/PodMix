@@ -4,10 +4,10 @@ import { compose } from "react-apollo";
 import { store } from "../../store";
 import { login } from "../../connections/userConnections";
 import AuthCallback from "../../auth/AuthCallback";
-import HomePageContainer from "../home-page/HomePageContainer";
+import HomePageContainer from "../dashboard/HomePageContainer";
 import ProjectPageContainer from "../project-page/ProjectPageContainer";
-import PrivacyPolicyPage from "../home-page/PrivacyPolicyPage";
-import LoginSplashPage from "../home-page/LoginSplashPage";
+import PrivacyPolicyPage from "../splash-page/PrivacyPolicyPage";
+import LoginSplashPage from "../splash-page/LoginSplashPage";
 
 const Main = (props) => {
   const { loginToServer } = props;
