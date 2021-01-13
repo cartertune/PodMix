@@ -1,6 +1,6 @@
-# Bifocl
+# PosseMix
 
-clone repository: ``` git clone https://github.com/cartertune/WebApp-Boilerplate.git``` 
+clone repository
 # Server
 
 Dependencies:
