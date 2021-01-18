@@ -1,6 +1,7 @@
 # PosseMix
 
-clone repository
+A collaborative app for mixing music. 
+
 # Server
 
 Dependencies:
