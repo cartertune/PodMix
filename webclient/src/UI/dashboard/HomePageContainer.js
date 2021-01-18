@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { compose } from "react-apollo";
 import { createProject } from "../../connections/projectConnections";
 import { withRouter } from "react-router-dom";
-import HomePage from "../home-page/HomePage";
+import HomePage from "../dashboard/HomePage";
 import { getCurrentUser } from "../../connections/userConnections";
 import Auth from "../../auth/Auth";
 

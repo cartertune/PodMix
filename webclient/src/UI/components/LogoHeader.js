@@ -8,7 +8,7 @@ const LogoHeader = (props) => {
       <div className="header-logo mr-1">
         <img src={logo} />
       </div>
-      <H1>PoopMix</H1>
+      <H1>PosseMix</H1>
     </div>
   );
 };

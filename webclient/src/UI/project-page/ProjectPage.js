@@ -61,16 +61,14 @@ const ProjectPage = (props) => {
     return <LoadingScreen />;
   }
 
-  console.log();
   const splitPath = location.pathname.split("/");
-  console.log(splitPath);
-  const isAModalOpen = splitPath.length > 3 
+  const isAModalOpen = splitPath.length > 3;
 
   const { id, title, owner, mixes } = project;
 
   const selectedMix = _.find(mixes, (m) => m.id == selectedMixId) || {};
   if (selectedMix.id == null && !_.isEmpty(mixes)) {
-    handleSelectMix({ value: mixes[0].id });
+    handleSelectMix({ value: _.last(mixes).id });
   }
 
   const renderProjectButtons = () => {

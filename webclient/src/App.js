@@ -11,6 +11,11 @@ import Skeleton from "./UI/skeleton/Skeleton";
 import { BrowserRouter } from "react-router-dom";
 import { setContext } from "apollo-link-context";
 import "./util/google-analytics.js";
+import { hotjar } from "react-hotjar";
+
+const hjid = "2148313";
+const hjsv = "6";
+hotjar.initialize(hjid, hjsv);
 
 const authLink = setContext((req, prevContext) => {
   const jwt = _.get(store.getState(), "auth.jwt", "");
