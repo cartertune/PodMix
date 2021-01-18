@@ -3,6 +3,7 @@
 A collaborative app for mixing music. 
 
 # Server
+You will need config files from Carter for this to work. If you think you should have these and dont, message him. 
 
 Dependencies:
 
